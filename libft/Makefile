@@ -20,11 +20,27 @@ MY_SOURCES = ft_atoi.c \
 	     ft_strnstr.c \
 	     ft_toupper.c \
 	     ft_calloc.c \
-	     ft_strdup.c
+	     ft_strdup.c \
+		 ft_substr.c \
+		 ft_strjoin.c \
+		 ft_strtrim.c \
+		 ft_split.c \
+		 ft_power.c \
+		 ft_itoa.c \
+		 ft_strmapi.c \
+		 ft_striteri.c \
+		 ft_putchar_fd.c\
+		 ft_putstr_fd.c \
+		 ft_putendl_fd.c\
+		 ft_putnbr_fd.c\
 
 MY_HEADERS = .
 
+MY_SOURCES_BONUS = ft_test_bonus.c
+
 MY_OBJECTS = $(MY_SOURCES:.c=.o)
+
+MY_OBJECTS_BONUS = $(MY_SOURCES_BONUS:.c=.o)
 
 NAME = libft.a
 
@@ -41,8 +57,12 @@ $(NAME): $(MY_OBJECTS)
 	ar rc $(NAME) $(MY_OBJECTS)
 	ranlib $(NAME)
 
+bonus:	$(MY_OBJECTS) $(MY_OBJECTS_BONUS)
+		ar rc $(NAME) $(MY_OBJECTS) $(MY_OBJECTS_BONUS)
+		ranlib $(NAME)
+
 clean:
-	rm -f $(MY_OBJECTS)
+	rm -f $(MY_OBJECTS) $(MY_OBJECTS_BONUS)
 
 fclean: clean
 	rm -f $(NAME)

@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 14:58:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/08 14:31:08 by mbocquel         ###   ########.fr       */
+/*   Created: 2022/11/09 17:42:42 by mbocquel          #+#    #+#             */
+/*   Updated: 2022/11/09 17:42:44 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	ft_power(int nb, int power)
 {
-	size_t	i;
-	char	*s_char;
-
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	s_char = (char *)s;
-	while (i < n)
-	{
-		if (s_char[i] == (unsigned char)c)
-			return ((void *)s + i);
-		i++;
-	}
-	return (NULL);
+	if (power < 0)
+		return (0);
+	else if (power == 1)
+		return (nb);
+	else
+		return (nb * ft_power(nb, power - 1));
 }

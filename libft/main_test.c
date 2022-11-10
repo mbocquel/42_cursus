@@ -408,7 +408,7 @@ int	main(int argc, char **argv)
 	free(str_calloc);
 	printf("\n\n");
 
-	//Test de srdup
+	//Test de strdup
 	printf("        ----------- TEST DE LA FONCTION STRDUP ----------- \n");
 	char	str_strdup[] = "chaine a dupliquer";
 	char	*dup_strdup;
@@ -420,6 +420,51 @@ int	main(int argc, char **argv)
 	printf("dup_ft_strdup -> %s\n",dup_ft_strdup);
 	free(dup_strdup);
 	free(dup_ft_strdup);
+	printf("\n\n");
+
+	//Test de substr
+	printf("        ----------- TEST DE LA FONCTION FT_SUBSTR ----------- \n");
+	char	str_substr[] = "0123456789";
+	printf("Ma chaine : \"%s\", je veux recuperer a partir de la position start = 6 --> \"%s\"\n",str_substr, ft_substr(str_substr, 6, ft_strlen(str_substr)-5) );
+	printf("\n\n");
+	
+	//Test de ft_strjoin
+	printf("        ----------- TEST DE LA FONCTION FT_STRJOIN ----------- \n");
+	char	s1_ft_strjoin[] = "Bonjour ";
+	char	s2_ft_strjoin[] = "comment ca va ?";
+	printf("Je veux join \"%s\" et \"%s\"> --->\"%s\"\n",s1_ft_strjoin, s2_ft_strjoin, ft_strjoin(s1_ft_strjoin, s2_ft_strjoin));
+	printf("\n\n");
+
+	//Test de ft_strtrim
+	printf("        ----------- TEST DE LA FONCTION FT_STRTRIM ----------- \n");
+	char	str_strtrim[] = "**/-/=      Bon.-jour    ... ";
+	char	char_set_strtrim[] = "*-/=. ";
+	printf("Je veux trim \"%s\" avec le charset \"%s\"> --->  \"%s\"\n",str_strtrim, char_set_strtrim, ft_strtrim(str_strtrim, char_set_strtrim));
+	printf("\n\n");
+
+	//Test de ft_split
+	printf("        ----------- TEST DE LA FONCTION FT_SPLIT ----------- \n");
+	char	str_split[] = "Hello my name is Maxence and I am happy to study at 42 born to code!";
+	char	**strs_split;
+	printf("Je veux split \"%s\" a partir des espaces\n",str_split);
+	strs_split = ft_split(str_split, ' ');
+	i = 0;
+	while (strs_split[i])
+	{
+		printf("%s\n", strs_split[i]);
+		i++;
+	}
+	printf("\n\n");
+
+	//Test de ft_itoa
+	printf("        ----------- TEST DE LA FONCTION FT_ITOA ----------- \n");
+	printf("ft_itoa(15) ---> \"%s\"\n",ft_itoa(15));
+	printf("ft_itoa(-2545) ---> \"%s\"\n",ft_itoa(-2545));
+	printf("ft_itoa(0) ---> \"%s\"\n",ft_itoa(0));
+	printf("ft_itoa(1547875) ---> \"%s\"\n",ft_itoa(1547875));
+	printf("ft_itoa(2147483647) ---> \"%s\"\n",ft_itoa(2147483647));
+	printf("ft_itoa(-2147483648) ---> \"%s\"\n",ft_itoa(-2147483648));
+	printf("\n\n");
 
 	return (0);
 }

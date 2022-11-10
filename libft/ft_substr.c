@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 14:58:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/08 14:31:08 by mbocquel         ###   ########.fr       */
+/*   Created: 2022/11/09 16:35:17 by mbocquel          #+#    #+#             */
+/*   Updated: 2022/11/09 16:35:19 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	char	*result_str;
 	size_t	i;
-	char	*s_char;
 
-	if (s == NULL)
+	result_str = (char *)malloc((len + 1) * sizeof(char));
+	if (result_str == NULL)
 		return (NULL);
 	i = 0;
-	s_char = (char *)s;
-	while (i < n)
+	while (i < len)
 	{
-		if (s_char[i] == (unsigned char)c)
-			return ((void *)s + i);
+		result_str[i] = s[(size_t)start + i];
 		i++;
 	}
-	return (NULL);
+	result_str[i] = '\0';
+	return (result_str);
 }
