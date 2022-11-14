@@ -10,4 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*elem_list;
+
+	elem_list = malloc(sizeof(t_list));
+	if (!elem_list)
+	{
+		return (NULL);
+	}
+	elem_list -> next = NULL;
+	elem_list -> content = content;
+	return (elem_list);
+}

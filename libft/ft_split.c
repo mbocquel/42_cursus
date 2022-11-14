@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_pos_start_word(const char *s, int w, char c)
+static int	ft_pos_start_word(const char *s, int w, char c)
 {
 	int	count;
 	int	i;
@@ -39,7 +39,7 @@ int	ft_pos_start_word(const char *s, int w, char c)
 	return (-1);
 }
 
-int	ft_len_word(const char *s, int word, char c)
+static int	ft_len_word(const char *s, int word, char c)
 {
 	int	i;
 	int	l;
@@ -54,11 +54,11 @@ int	ft_len_word(const char *s, int word, char c)
 	return (l);
 }
 
-int	ft_count_words(const char *s, char c)
+static int	ft_count_words(const char *s, char c)
 {
 	int	count;
 	int	i;
-
+	
 	if (s[0] && s[0] != c)
 		count = 1;
 	else
@@ -80,9 +80,12 @@ char	**ft_split(char const *s, char c)
 	int		w;
 
 	w = 0;
+	printf("coucou");
+	if (s == NULL)
+		return (NULL);
 	strs = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
-	if (strs == 0)
-		return (0);
+	if (strs == NULL)
+		return (NULL);
 	while (w < ft_count_words(s, c))
 	{
 		i = 0;
@@ -97,4 +100,22 @@ char	**ft_split(char const *s, char c)
 	}
 	strs[ft_count_words(s, c)] = 0;
 	return (strs);
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	**strs;
+	char 	*s = NULL;
+	int	i;
+
+	i= 0;
+	strs = ft_split(0, ' ');
+	while(strs[i])
+	{
+		printf(" - %s\n", strs[i]);
+		i++;
+	}
+	return (0);
 }

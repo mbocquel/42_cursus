@@ -14,9 +14,12 @@
 
 int	ft_isalpha(int c)
 {
-	if (c >= 65 && c <= 90)
+	unsigned char	uc;
+
+	uc = (unsigned char)c;
+	if (uc >= 65 && uc <= 90)
 		return (1024);
-	else if (c >= 97 && c <= 122)
+	else if (uc >= 97 && uc <= 122)
 		return (1024);
 	else
 		return (0);

@@ -19,7 +19,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	int		i;
 
 	test_overfow = (int)(nmemb * size);
-	if (nmemb != (size_t)test_overfow / size)
+	if (nmemb != (size_t)test_overfow / size && size)
 		return (NULL);
 	result = malloc(nmemb * size);
 	if (result == NULL)

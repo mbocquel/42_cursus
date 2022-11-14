@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_find_start_trim(char const *s1, char const *set)
+static int	ft_find_start_trim(char const *s1, char const *set)
 {
 	int	start;
 	int	i;
@@ -28,7 +28,7 @@ int	ft_find_start_trim(char const *s1, char const *set)
 	return (start);
 }
 
-int	ft_find_end_trim(char const *s1, char const *set)
+static int	ft_find_end_trim(char const *s1, char const *set)
 {
 	int	end;
 	int	i;
@@ -51,6 +51,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		end;
 	char	*result;
 
+	i = 0;
 	start = ft_find_start_trim(s1, set);
 	end = ft_find_end_trim(s1, set);
 	if (start != -1 && end != -1)
@@ -58,15 +59,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 		result = (char *)malloc((end - start + 2) * sizeof(char));
 		if (result == NULL)
 			return (NULL);
-		i = 0;
 		while (i < end - start + 1)
 		{
 			result[i] = s1[start + i];
 			i++;
 		}
-		result[i] = '\0';
 	}
 	else
-		result = NULL;
+		result = (char *)malloc(sizeof(char));
+	result[i] = '\0';
 	return (result);
 }
