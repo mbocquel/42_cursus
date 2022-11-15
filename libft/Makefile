@@ -33,28 +33,19 @@ MY_SOURCES = ft_atoi.c \
 		 ft_putchar_fd.c\
 		 ft_putstr_fd.c \
 		 ft_putendl_fd.c\
-		 ft_putnbr_fd.c\
-		 ft_lstnew.c \
-		 ft_lstadd_front.c \
-		 ft_lstsize.c \
-		 ft_lstlast.c \
-		 ft_lstadd_back.c \
-		 ft_lstdelone.c \
-		 ft_lstclear.c \
-		 ft_lstiter.c \
-		 ft_lstmap.c
+		 ft_putnbr_fd.c
 
 MY_HEADERS = .
 
-MY_SOURCES_BONUS = ft_lstnew.c \
-				ft_lstadd_front.c \
-				ft_lstsize.c \
-				ft_lstlast.c \
-				ft_lstadd_back.c \
-				ft_lstdelone.c \
-				ft_lstclear.c \
-				ft_lstiter.c \
-				ft_lstmap.c \
+MY_SOURCES_BONUS = ft_lstnew_bonus.c \
+				ft_lstadd_front_bonus.c \
+				ft_lstsize_bonus.c \
+				ft_lstlast_bonus.c \
+				ft_lstadd_back_bonus.c \
+				ft_lstdelone_bonus.c \
+				ft_lstclear_bonus.c \
+				ft_lstiter_bonus.c \
+				ft_lstmap_bonus.c
 
 MY_OBJECTS = $(MY_SOURCES:.c=.o)
 
@@ -78,10 +69,6 @@ $(NAME): $(MY_OBJECTS)
 bonus:	$(MY_OBJECTS) $(MY_OBJECTS_BONUS)
 		ar rc $(NAME) $(MY_OBJECTS) $(MY_OBJECTS_BONUS)
 		ranlib $(NAME)
-
-so:
-		$(CC) -nostartfiles -fPIC $(CFLAGS) $(MY_SOURCES)
-		gcc -nostartfiles -shared -o libft.so $(MY_OBJECTS)
 
 clean:
 	rm -f $(MY_OBJECTS) $(MY_OBJECTS_BONUS)
