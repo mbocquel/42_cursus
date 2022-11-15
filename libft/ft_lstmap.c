@@ -18,12 +18,11 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*elem_new_lst;
 	t_list	*begin_new_lst;
 
-	if (lst)
-	{
-		begin_new_lst = ft_lstnew((*f)(lst->content));
-		elem_original = lst->next;
-		elem_new_lst = begin_new_lst;
-	}
+	if (!lst)
+		return (NULL);
+	begin_new_lst = ft_lstnew((*f)(lst->content));
+	elem_original = lst->next;
+	elem_new_lst = begin_new_lst;
 	while (elem_original)
 	{
 		elem_new_lst->next = ft_lstnew((*f)(elem_original->content));

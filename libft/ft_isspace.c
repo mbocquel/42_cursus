@@ -12,10 +12,7 @@
 
 int	ft_isspace(int c)
 {
-	unsigned char	uc;
-
-	uc = (unsigned char)c;
-	if (uc == 32 || (uc >= 9 && uc <= 13))
+	if (c == 32 || (c >= 9 && c <= 13))
 		return (1);
 	else
 		return (0);

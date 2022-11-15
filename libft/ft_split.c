@@ -12,110 +12,83 @@
 
 #include "libft.h"
 
-static int	ft_pos_start_word(const char *s, int w, char c)
+static int	ft_count_words(char const *s, char c)
 {
-	int	count;
 	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
-	if (s[0] && s[0] != c)
-	{
-		count = 1;
-		if (w == 0)
-			return (0);
-	}
-	i = 1;
 	while (s[i])
 	{
-		if (s[i] != c && s[i - 1] == c)
-		{
-			count++;
-			if (w == count - 1)
-				return (i);
-		}
-		i++;
-	}
-	return (-1);
-}
-
-static int	ft_len_word(const char *s, int word, char c)
-{
-	int	i;
-	int	l;
-
-	i = ft_pos_start_word(s, word, c);
-	l = 0;
-	while (s[i] && s[i] != c)
-	{
-		i++;
-		l++;
-	}
-	return (l);
-}
-
-static int	ft_count_words(const char *s, char c)
-{
-	int	count;
-	int	i;
-	
-	if (s[0] && s[0] != c)
-		count = 1;
-	else
-		count = 0;
-	i = 1;
-	while (s[i])
-	{
-		if (s[i] != c && s[i - 1] == c)
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 			count++;
 		i++;
 	}
 	return (count);
 }
 
+static char	*ft_get_word(char const *s, char c, int *i)
+{
+	int		len_word;
+	char	*new_word;
+	int		j;
+
+	j = 0;
+	len_word = 0;
+	while (s[*i] == c && s[*i])
+		(*i)++;
+	while (s[*i] && s[*i] != c)
+	{
+		len_word++;
+		(*i)++;
+	}
+	new_word = (char *)ft_calloc(len_word + 1, sizeof(char));
+	if (new_word == NULL)
+		return (NULL);
+	while (j < len_word)
+	{
+		new_word[j] = s[*i - len_word + j];
+		j++;
+	}
+	return (new_word);
+}
+
+void	ft_clear_memory(char **strs, int w)
+{
+	int	i;
+
+	i = 0;
+	while (i <= w)
+	{
+		free (strs[i]);
+		i++;
+	}
+	free(strs);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**strs;
-	int		i;
 	int		w;
+	int		i;
+	int		word_count;
 
+	word_count = ft_count_words(s, c);
 	w = 0;
-	printf("coucou");
-	if (s == NULL)
-		return (NULL);
-	strs = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
+	i = 0;
+	strs = (char **)ft_calloc((word_count + 1), sizeof(char *));
 	if (strs == NULL)
 		return (NULL);
-	while (w < ft_count_words(s, c))
+	while (w < word_count)
 	{
-		i = 0;
-		strs[w] = (char *)malloc((ft_len_word(s, w, c) + 1) * sizeof(char));
-		while (i < ft_len_word(s, w, c))
+		strs[w] = ft_get_word(s, c, &i);
+		if (strs[w] == NULL)
 		{
-			strs[w][i] = s[ft_pos_start_word(s, w, c) + i];
-			i++;
+			ft_clear_memory(strs, w);
+			return (NULL);
 		}
-		strs[w][i] = '\0';
 		w++;
 	}
-	strs[ft_count_words(s, c)] = 0;
 	return (strs);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	char	**strs;
-	char 	*s = NULL;
-	int	i;
-
-	i= 0;
-	strs = ft_split(0, ' ');
-	while(strs[i])
-	{
-		printf(" - %s\n", strs[i]);
-		i++;
-	}
-	return (0);
 }

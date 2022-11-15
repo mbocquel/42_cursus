@@ -79,6 +79,10 @@ bonus:	$(MY_OBJECTS) $(MY_OBJECTS_BONUS)
 		ar rc $(NAME) $(MY_OBJECTS) $(MY_OBJECTS_BONUS)
 		ranlib $(NAME)
 
+so:
+		$(CC) -nostartfiles -fPIC $(CFLAGS) $(MY_SOURCES)
+		gcc -nostartfiles -shared -o libft.so $(MY_OBJECTS)
+
 clean:
 	rm -f $(MY_OBJECTS) $(MY_OBJECTS_BONUS)
 

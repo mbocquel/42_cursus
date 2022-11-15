@@ -14,10 +14,7 @@
 
 int	ft_isdigit(int c)
 {
-	unsigned char	uc;
-
-	uc = (unsigned char)c;
-	if (uc > 47 && uc < 58)
+	if (c > 47 && c < 58)
 		return (2048);
 	else
 		return (0);
