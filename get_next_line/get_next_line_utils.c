@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static int	ft_pos_str(char *s, char c)
+int	ft_pos_str(char *s, char c)
 {
 	int	i;
 
@@ -26,16 +26,22 @@ static int	ft_pos_str(char *s, char c)
 	return (-1);
 }
 
-void	ft_add_elem_reserve(t_list_reserve **lst, t_list_reserve *new)
+t_list_reserve	*ft_add_elem_reserve(t_list_reserve **lst, char *data, int fd)
 {
 	t_list_reserve	*elem;
+	t_list_reserve	*new;
 
+	new = malloc(sizeof(t_list_reserve));
 	if (new == NULL)
-		return ;
+		return (NULL);
+	new->next = NULL;
+	new->data = data;
+	new->fd = fd;
+	new->pos_n = ft_pos_str(data, '\n');
 	if (*lst == NULL)
 	{
 		*lst = new;
-		return ;
+		return (new);
 	}
 	elem = *lst;
 	while (elem->next)
@@ -43,19 +49,43 @@ void	ft_add_elem_reserve(t_list_reserve **lst, t_list_reserve *new)
 		elem = elem->next;
 	}
 	elem->next = new;
+	return (new);
 }
 
-t_list_reserve	*ft_new_elem_reserve(char *data)
+size_t	ft_strlen(const char *str)
 {
-	t_list_reserve	*elem_list;
+	size_t	i;
 
-	elem_list = malloc(sizeof(t_list_reserve));
-	if (!elem_list)
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+size_t	ft_strcat_upto(char *dest, const char *src, size_t size, int end_cat)
+{
+	size_t	i;
+	size_t	len_dest;
+	size_t	len_src;
+	size_t	max_cat;
+
+	i = 0;
+	len_src = ft_strlen(src);
+	max_cat = len_src;
+	if (end_cat >= 0)
+		max_cat = (size_t)end_cat;
+	if (dest == NULL && size == 0)
+		return (len_src);
+	len_dest = ft_strlen(dest);
+	if (size <= len_dest)
+		return (len_src + size);
+	if (dest == NULL)
+		return (len_dest + len_src);
+	while (src[i] && i < (size - len_dest - 1) && i <= max_cat)
 	{
-		return (NULL);
+		dest[len_dest + i] = src[i];
+		i++;
 	}
-	elem_list->next = NULL;
-	elem_list->data = data;
-	elem_list->pos_n = ft_pos_str(data, '\n');
-	return (elem_list);
+	dest[len_dest + i] = '\0';
+	return (len_dest + len_src);
 }
