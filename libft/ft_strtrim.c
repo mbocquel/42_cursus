@@ -67,6 +67,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	else
 		result = (char *)malloc(sizeof(char));
+	if (result == NULL)
+		return (NULL);
 	result[i] = '\0';
 	return (result);
 }
