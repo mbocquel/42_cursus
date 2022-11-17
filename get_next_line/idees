@@ -52,6 +52,8 @@ clean_reserve ==> recupere l'adresse de la liste chaine. ne renvoie rien
 		si il y a le caractere de new ligne, ca supprime tout ce qui est avant dans la chaine de caractere. 
 		ca refait le test pour voir si il y a un caractere de retour a la ligne dans le buffer. 
 
+
+je free en netoyant uniquement si j'ai plus rien dans ma reserve !
 		
 
 

@@ -5,42 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 15:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/17 16:39:36 by mbocquel         ###   ########.fr       */
+/*   Created: 2022/11/15 17:36:35 by mbocquel          #+#    #+#             */
+/*   Updated: 2022/11/17 15:22:26 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char	*result;
-	int		test_overfow;
-	int		i;
-
-	test_overfow = (int)(nmemb * size);
-	if (size && nmemb != (size_t)test_overfow / size)
-		return (NULL);
-	result = malloc(nmemb * size);
-	if (result == NULL)
-		return (NULL);
-	i = 0;
-	while (i < test_overfow)
-	{
-		result[i] = 0;
-		i++;
-	}
-	return ((void *)result);
-}
 int	ft_pos_str(char *s, char c)
 {
 	int	i;
@@ -55,26 +26,36 @@ int	ft_pos_str(char *s, char c)
 	return (-1);
 }
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+char	*ft_strdup(const char *s)
+{
+	char	*dest;
+	int		i;
+	int		len;
+
+	i = 0;
+	len = 0;
+	while (s[len])
+		len++;
+	dest = (char *)malloc((len + 1) * sizeof(char));
+	if (dest == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
-	char	*char_src;
-	char	*char_dest;
 
-	i = -1;
-	char_dest = (char *)dest;
-	char_src = (char *)src;
-	if (dest - src > 0 && (size_t)(dest - src) < n)
-	{
-		while (++i < n)
-			char_dest[n - 1 - i] = char_src[n - 1 - i];
-	}
-	else if (dest != src)
-	{
-		while (++i < n)
-			char_dest[i] = char_src[i];
-	}
-	return (dest);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
 size_t	ft_strcat_upto(char *dest, const char *src, size_t size, int end_cat)
@@ -103,4 +84,18 @@ size_t	ft_strcat_upto(char *dest, const char *src, size_t size, int end_cat)
 	}
 	dest[len_dest + i] = '\0';
 	return (len_dest + len_src);
+}
+
+void	voir_chaine(t_list_reserve **begin)
+{
+	t_list_reserve	*elem;
+
+	elem = *begin;
+	while (elem)
+	{
+		printf("-----elem----\ndata = %s\n", elem->data);
+		printf("fd = %d\n", elem->fd);
+		printf("pos_n = %d\n", elem->pos_n);
+		elem = elem->next;
+	}
 }

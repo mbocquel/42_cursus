@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:59:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/16 16:59:59 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:43:45 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stddef.h>
 
 int	main(void)
 {
 	int fd;
+	char *line;
 
 	fd = open("test_a_lire", O_RDONLY);
 	if (fd == -1)
@@ -26,39 +28,57 @@ int	main(void)
 		printf("Open failed\n");
 		return (1);
 	}
-	printf("fd est %d\n", fd);
-	//printf("%s\n", get_next_line(fd));
+	line = get_next_line(fd);
+	printf("next line : %s\n",line);
 
-	//static t_list_reserve	**begin_reserve;
-	char					*buffer;
-	//char					*next_line;
-
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (buffer == NULL)
-		return (1);
-	buffer[BUFFER_SIZE] = '\0';
-	read(fd, buffer, BUFFER_SIZE);
-	printf("Buffersize %d - %s",BUFFER_SIZE, buffer);
-	/*if ((*begin_reserve)->pos_n > 0)
-		ft_make_ligne(begin_reserve, fd);
-	else
-	{
-		while (read(fd, buffer, BUFFER_SIZE) > 0)
-		{
-			if (process_buffer(begin_reserve, buffer, fd) == 1)
-			{
-				next_line = ft_make_ligne(begin_reserve, fd);
-				ft_clean_reserve(begin_reserve, fd);
-				return (next_line);
-			}
-		}
-	}
-	*/
 	if (close(fd) == -1)
 	{
 		printf("Closed failed\n");
 		return (1);
 	}
+	// buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	// if (buffer == NULL)
+	// 	return (1);
+	// buffer[BUFFER_SIZE] = '\0';
+	// read(fd, buffer, BUFFER_SIZE);
+	
+	// begin_reserve = malloc(sizeof(t_list_reserve *));
+	// *begin_reserve = ft_add_elem_reserve(begin_reserve, buffer, fd);
+	
+	
+	/*
+	elem_reserve = malloc(sizeof(t_list_reserve));
+	if (elem_reserve == NULL)
+		return (1);
+	elem_reserve->next = NULL;
+	elem_reserve->data = ft_strdup(buffer);
+	elem_reserve->fd = fd;
+	elem_reserve->pos_n = ft_pos_str(buffer, '\n');
 
-	return (0);
+	*begin_reserve = elem_reserve;
+	// */
+	// printf("Premiere lecture :\n");
+	// ft_add_elem_reserve(begin_reserve, buffer, fd);
+
+	// voir_elem_chaine(*begin_reserve);
+
+	// printf("Seconde lecture :\n");
+
+
+	// read(fd, buffer, BUFFER_SIZE);
+
+	// ft_add_elem_reserve(begin_reserve, buffer, fd);
+
+
+	// voir_elem_chaine(*begin_reserve);
+
+
+
+	// if (close(fd) == -1)
+	// {
+	// 	printf("Closed failed\n");
+	// 	return (1);
+	// }
+
+	// return (0);
 }
