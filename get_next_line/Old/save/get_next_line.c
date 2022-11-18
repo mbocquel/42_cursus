@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:22:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/18 17:08:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:01:36 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,23 @@ char	*get_next_line(int fd)
 		buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 		if (buffer == NULL)
 			return (NULL);
+		printf("get_next_line - j'ai alloue buffer avec calloc *%p\n", buffer);
 		char_read = read_and_add_to_storage(&storage, buffer, fd);
+		printf("get_next_line - je free buffer *%p\n",buffer);
 		free (buffer);
 		if (char_read == 0)
 			return (NULL);
 	}
 	next_line = make_next_line(&storage);
 	clean_storage(&storage);
+	printf("char_read %d\n\n", char_read);
+	//print_lst(storage);
 	if(char_read < BUFFER_SIZE)
 	{
+		printf("get_next_line - je free storage->content *%p\n",storage->content);
 		free(storage->content);
 		free(storage);
+		storage = NULL;
 	}
 	return (next_line);
 }
@@ -84,6 +90,7 @@ char	*make_next_line(t_list_sto **storage)
 	next_line = (char *)ft_calloc(ft_line_len(*storage) + 2, sizeof(char));
 	if (next_line == NULL)
 		return (NULL);
+	printf("make_next_line - j'ai alloue next_line avec calloc *%p\n", next_line);
 	j = -1;
 	elem = *storage;
 	while (elem)
@@ -108,7 +115,9 @@ void	clean_storage(t_list_sto **storage)
 	while (elem->next)
 	{
 		next = elem->next;
+		printf("clean_storage - je free elem->content *%p\n",elem->content);
 		free(elem->content);
+		printf("clean_storage - je free elem *%p\n",elem);
 		free(elem);
 		elem = next;
 	}
@@ -123,3 +132,15 @@ void	clean_storage(t_list_sto **storage)
 	*storage = elem;
 }
 
+void	print_lst(t_list_sto *storage)
+{
+	t_list_sto	*elem;
+
+	elem = storage;
+	while (elem)
+	{
+		printf("----elem-----\n");
+		printf("content = \"%s\"\n\n", elem->content);
+		elem = elem->next;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:23:16 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/18 17:06:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:38:58 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_list_sto	*ft_lstnew(void *content)
 	elem_list = malloc(sizeof(t_list_sto));
 	if (!elem_list)
 		return (NULL);
+	printf("ft_lstnew - j'ai alloue *%p\n",elem_list);
 	elem_list -> next = NULL;
 	elem_list -> content = content;
 	return (elem_list);
@@ -77,6 +78,7 @@ char	*ft_strdup(const char *s)
 	dest = (char *)malloc((len + 1) * sizeof(char));
 	if (dest == NULL)
 		return (NULL);
+	printf("ft_strdup - j'ai alloue *%p\n",dest);
 	while (s[i])
 	{
 		dest[i] = s[i];
