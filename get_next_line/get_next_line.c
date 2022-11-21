@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:22:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/18 17:08:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:34:34 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ char	*get_next_line(int fd)
 	if (BUFFER_SIZE <= 0 || fd == -1)
 		return (NULL);
 	char_read = BUFFER_SIZE;
-	while (line_to_make(storage) == 0 && char_read == BUFFER_SIZE)
+	while (line_to_make(storage) == 0 && char_read > 0)
 	{
 		buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 		if (buffer == NULL)
 			return (NULL);
 		char_read = read_and_add_to_storage(&storage, buffer, fd);
-		free (buffer);
-		if (char_read == 0)
-			return (NULL);
+		free(buffer);
 	}
+	//print_lst(storage);
 	next_line = make_next_line(&storage);
 	clean_storage(&storage);
-	if(char_read < BUFFER_SIZE)
+	if (char_read == 0 && storage != NULL)
 	{
 		free(storage->content);
 		free(storage);
+		storage = NULL;
 	}
 	return (next_line);
 }
@@ -80,8 +80,12 @@ char	*make_next_line(t_list_sto **storage)
 	int			i;
 	t_list_sto	*elem;
 	char		*next_line;
-
-	next_line = (char *)ft_calloc(ft_line_len(*storage) + 2, sizeof(char));
+	//printf("ft_line_len(*storage)%zu\n", ft_line_len(*storage));
+	//printf("ft_line_len(*storage)->%zu", ft_line_len(*storage));
+	//if (*storage == NULL || ((*storage)->content)[0] == '\0')
+	if (*storage == NULL || ft_line_len(*storage) == 0)
+		return (NULL);
+	next_line = (char *)ft_calloc(ft_line_len(*storage) + 1, sizeof(char));
 	if (next_line == NULL)
 		return (NULL);
 	j = -1;
@@ -91,9 +95,10 @@ char	*make_next_line(t_list_sto **storage)
 		i = -1;
 		while ((elem->content)[++i] && (elem->content)[i] != '\n')
 			next_line[++j] = (elem->content)[i];
+		if ((elem->content)[i] && (elem->content)[i] == '\n')
+			next_line[++j] =  '\n';
 		elem = elem->next;
 	}
-	next_line[++j] = '\n';
 	return (next_line);
 }
 
@@ -104,6 +109,8 @@ void	clean_storage(t_list_sto **storage)
 	int			i;
 	int			j;
 
+	if (*storage == NULL)
+		return ;
 	elem = *storage;
 	while (elem->next)
 	{
@@ -113,13 +120,16 @@ void	clean_storage(t_list_sto **storage)
 		elem = next;
 	}
 	i = 0;
+	//printf("\nelem->content : \"%s\"", elem->content);
 	while ((elem->content)[i] && (elem->content)[i] != '\n')
 		i++;
+	if ((elem->content)[i] && (elem->content)[i] == '\n')
+		i++;
 	j = -1;
-	while (++j < BUFFER_SIZE - i - 1)
-		(elem->content)[j] = (elem->content)[i + 1 + j];
-	while (j < BUFFER_SIZE)
-		(elem->content)[j++] = '\0';
+	while (++j < i)
+		(elem->content)[j] = (elem->content)[i + j];
+	while (++j < BUFFER_SIZE)
+		(elem->content)[j] = '\0';
+	//printf("\nelem->content : \"%s\"", elem->content);
 	*storage = elem;
 }
-

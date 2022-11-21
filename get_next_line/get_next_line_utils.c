@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:23:16 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/18 17:06:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:31:27 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ size_t	ft_line_len(t_list_sto *storage)
 	{
 		i = -1;
 		while ((elem->content)[++i] && (elem->content)[i] != '\n')
+			len_line++;
+		if ((elem->content)[i] && (elem->content)[i] == '\n')
 			len_line++;
 		elem = elem->next;
 	}
