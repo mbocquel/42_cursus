@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:22:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/22 15:21:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:50:29 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /* ----------------- Fonction get_next_line() --------------------------
 - Je commence par verifier si j'ai pas un soucis avec la taille du BUFFER 
@@ -35,29 +35,29 @@ debut du dernier content qui a ete integre a la ligne.
 */
 char	*get_next_line(int fd)
 {
-	static t_list_sto	*storage = NULL;
+	static t_list_sto	*storage[FOPEN_MAX] = {NULL};
 	char				*buffer;
 	char				*next_line;
 	int					char_read;
 
-	if (BUFFER_SIZE <= 0 || fd == -1)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= FOPEN_MAX)
 		return (NULL);
 	char_read = BUFFER_SIZE;
-	while (line_to_make(storage) == 0 && char_read > 0)
+	while (line_to_make(storage[fd]) == 0 && char_read > 0)
 	{
 		buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 		if (buffer == NULL)
 			return (NULL);
-		char_read = read_and_add_to_storage(&storage, buffer, fd);
+		char_read = read_and_add_to_storage(&(storage[fd]), buffer, fd);
 		free(buffer);
 	}
-	next_line = make_next_line(&storage);
-	clean_storage(&storage);
-	if (char_read == 0 && storage != NULL)
+	next_line = make_next_line(&(storage[fd]));
+	clean_storage(&(storage[fd]));
+	if (char_read == 0 && storage[fd] != NULL)
 	{
-		free(storage->content);
-		free(storage);
-		storage = NULL;
+		free(storage[fd]->content);
+		free(storage[fd]);
+		storage[fd] = NULL;
 	}
 	return (next_line);
 }
