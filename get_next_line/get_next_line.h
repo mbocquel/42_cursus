@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:23:59 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/21 16:41:14 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:44:08 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int			line_to_make(t_list_sto *storage);
 char		*make_next_line(t_list_sto **storage);
 size_t		ft_line_len(t_list_sto *storage);
 void		clean_storage(t_list_sto **storage);
+size_t		ft_strlen(const char *str);
+
 
 #endif
