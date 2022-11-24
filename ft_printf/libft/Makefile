@@ -65,7 +65,7 @@ $(NAME): $(MY_OBJECTS)
 	ranlib $(NAME)
 
 clean:
-	rm -f $(MY_OBJECTS) $(MY_OBJECTS_BONUS)
+	rm -f $(MY_OBJECTS)
 
 fclean: clean
 	rm -f $(NAME)
