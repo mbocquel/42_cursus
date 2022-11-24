@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:23:16 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/23 13:44:25 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:39:28 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,6 @@ void	ft_lstadd_back(t_list_sto **lst, void *content)
 	elem->next = new;
 }
 
-char	*ft_strdup(const char *s)
-{
-	char	*dest;
-	int		i;
-	int		len;
-
-	i = 0;
-	len = 0;
-	while (s[len])
-		len++;
-	dest = (char *)malloc((len + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (s[i])
-	{
-		dest[i] = s[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
 size_t	ft_line_len(t_list_sto *storage)
 {
 	size_t		len_line;
@@ -98,12 +76,7 @@ size_t	ft_line_len(t_list_sto *storage)
 	return (len_line);
 }
 
-size_t	ft_strlen(const char *str)
+void	clear_all_memory(t_list_sto **storage)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	
 }

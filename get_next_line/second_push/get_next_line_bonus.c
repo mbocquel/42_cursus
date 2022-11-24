@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:22:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/23 15:36:35 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:40:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	read_and_add_to_storage(t_list_sto **storage, char *buffer, int fd)
 
 	char_read = read(fd, buffer, BUFFER_SIZE);
 	if (char_read > 0)
-		ft_lstadd_back(storage, ft_strdup(buffer)); 
+		ft_lstadd_back(storage, ft_strdup(buffer));
 	return (char_read);
 }
 
