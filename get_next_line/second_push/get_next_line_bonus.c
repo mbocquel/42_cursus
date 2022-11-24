@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:22:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/24 14:40:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:04:37 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,54 @@ char	*get_next_line(int fd)
 	char				*buffer;
 	char				*next_line;
 	int					char_read;
+	int					error;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= 1024)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd > 1023)
 		return (NULL);
 	char_read = BUFFER_SIZE;
-	while (line_to_make(storage[fd]) == 0 && char_read > 0)
+	error = 0;
+	while (line_to_make(storage[fd]) == 0 && char_read > 0 && error == 0)
 	{
 		buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 		if (buffer == NULL)
-			return (NULL);
-		char_read = read_and_add_to_storage(&(storage[fd]), buffer, fd);
+			error = 1;
+		char_read = read_store(&(storage[fd]), buffer, fd, &error);
 		free(buffer);
 	}
-	next_line = make_next_line(&(storage[fd]));
+	next_line = make_next_line(&(storage[fd]), &error);
 	clean_storage(&(storage[fd]));
-	if (char_read == 0 && storage[fd] != NULL)
-	{
-		free(storage[fd]->content);
-		free(storage[fd]);
-		storage[fd] = NULL;
-	}
+	if ((char_read == 0 && storage[fd] != NULL) || error != 0)
+		clear_all_memory(&(storage[fd]));
+	if (error != 0)
+		return (NULL);
 	return (next_line);
 }
 
-int	read_and_add_to_storage(t_list_sto **storage, char *buffer, int fd)
+int	read_store(t_list_sto **storage, char *buffer, int fd, int *error)
 {
-	int	char_read;
+	int		char_read;
+	char	*content;
+	int		i;
 
+	i = 0;
 	char_read = read(fd, buffer, BUFFER_SIZE);
 	if (char_read > 0)
-		ft_lstadd_back(storage, ft_strdup(buffer));
+	{
+		while (buffer[i])
+			i++;
+		content = (char *)ft_calloc((i + 1), sizeof(char));
+		if (content == NULL)
+			*error = 1;
+		else
+		{
+			i = -1;
+			while (buffer[++i])
+				content[i] = buffer[i];
+			ft_lstadd_back(storage, content);
+		}
+	}
+	if (char_read == -1)
+		*error = 1;
 	return (char_read);
 }
 
@@ -73,7 +91,7 @@ int	line_to_make(t_list_sto *storage)
 	return (0);
 }
 
-char	*make_next_line(t_list_sto **storage)
+char	*make_next_line(t_list_sto **storage, int *error)
 {
 	int			j;
 	int			i;
@@ -84,7 +102,10 @@ char	*make_next_line(t_list_sto **storage)
 		return (NULL);
 	next_line = (char *)ft_calloc(ft_line_len(*storage) + 1, sizeof(char));
 	if (next_line == NULL)
+	{
+		*error = 1;
 		return (NULL);
+	}
 	j = -1;
 	elem = *storage;
 	while (elem)

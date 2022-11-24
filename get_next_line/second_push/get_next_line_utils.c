@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:23:16 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/24 14:39:28 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:00:31 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,28 @@ size_t	ft_line_len(t_list_sto *storage)
 
 void	clear_all_memory(t_list_sto **storage)
 {
-	
+	t_list_sto	*elem;
+	t_list_sto	*next;
+
+	if (*storage == NULL)
+		return ;
+	elem = *storage;
+	while (elem)
+	{
+		next = elem->next;
+		free(elem->content);
+		free(elem);
+		elem = next;
+	}
+	*storage = NULL;
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

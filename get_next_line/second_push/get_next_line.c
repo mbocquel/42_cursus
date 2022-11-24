@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:22:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/24 14:39:49 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:02:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ char	*get_next_line(int fd)
 		buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 		if (buffer == NULL)
 			error = 1;
-		char_read = read_and_add_to_storage(&storage, buffer, fd, &error);
+		char_read = read_store(&storage, buffer, fd, &error);
+		free(buffer);
 	}
 	next_line = make_next_line(&storage, &error);
 	clean_storage(&storage);
@@ -40,14 +41,29 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-int	read_and_add_to_storage(t_list_sto **storage,
-char *buffer, int fd, int *error)
+int	read_store(t_list_sto **storage, char *buffer, int fd, int *error)
 {
-	int	char_read;
+	int		char_read;
+	char	*content;
+	int		i;
 
+	i = 0;
 	char_read = read(fd, buffer, BUFFER_SIZE);
 	if (char_read > 0)
-		ft_lstadd_back(storage, buffer);
+	{
+		while (buffer[i])
+			i++;
+		content = (char *)ft_calloc((i + 1), sizeof(char));
+		if (content == NULL)
+			*error = 1;
+		else
+		{
+			i = -1;
+			while (buffer[++i])
+				content[i] = buffer[i];
+			ft_lstadd_back(storage, content);
+		}
+	}
 	if (char_read == -1)
 		*error = 1;
 	return (char_read);
@@ -125,7 +141,7 @@ void	clean_storage(t_list_sto **storage)
 	while ((elem->content)[i] && (elem->content)[i] != '\n')
 		i++;
 	j = -1;
-	while (++j < BUFFER_SIZE - 1 - i
+	while (++j < (int)ft_strlen(elem->content) - 1 - i
 		&& (elem->content)[i + 1 + j])
 		(elem->content)[j] = (elem->content)[i + 1 + j];
 	(elem->content)[j] = '\0';
