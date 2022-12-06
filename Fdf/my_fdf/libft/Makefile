@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/06 10:51:28 by mbocquel          #+#    #+#              #
-#    Updated: 2022/12/06 10:51:35 by mbocquel         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 MY_SOURCES = ft_atoi.c \
 			ft_isalpha.c \
 			ft_isprint.c \
@@ -48,6 +36,7 @@ MY_SOURCES = ft_atoi.c \
 			ft_putnbr_fd.c\
 			ft_lstnew.c \
 			ft_lstadd_front.c \
+			ft_swap.c \
 			ft_lstsize.c \
 			ft_lstlast.c \
 			ft_lstadd_back.c \

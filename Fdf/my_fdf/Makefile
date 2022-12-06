@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2022/12/06 12:06:11 by mbocquel         ###   ########.fr        #
+#    Updated: 2022/12/06 16:46:11 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,10 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) $(OMLX) -O3 -c $< -o $@
 
-$(NAME):	$(OBJECTS) $(LIBFT_DIR)libft.a $(MINILIBX_DIR)libmlx_linux.a
+$(NAME):	$(OBJECTS) 
+			make -C $(LIBFT_DIR)
+			make -C $(MINILIBX_DIR)
 			$(CC) $(CFLAGS) $(OBJECTS) $(CLIB) -o $(NAME)
-
-$(MINILIBX_DIR)libmlx_linux.a: 
-	make -C $(MINILIBX_DIR)
-
-$(LIBFT_DIR)libft.a: 
-	make -C $(LIBFT_DIR)
 
 clean:
 	$(RM) $(OBJECTS)
