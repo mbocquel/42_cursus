@@ -3,16 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:30:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/09 17:30:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:49:24 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_words(char const *s, char c)
+static int	is_sep(char c, char *sep)
+{
+	int	i;
+
+	i = 0;
+	while (sep[i])
+	{
+		if (c == sep[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static int	ft_count_words(char const *s, char *sep)
 {
 	int	i;
 	int	count;
@@ -21,14 +35,14 @@ static int	ft_count_words(char const *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+		if (!is_sep(s[i], sep) && (is_sep(s[i + 1], sep) || s[i + 1] == '\0'))
 			count++;
 		i++;
 	}
 	return (count);
 }
 
-static char	*ft_get_word(char const *s, char c, int *i)
+static char	*ft_get_word(char const *s, char *sep, int *i)
 {
 	int		len_word;
 	char	*new_word;
@@ -36,9 +50,9 @@ static char	*ft_get_word(char const *s, char c, int *i)
 
 	j = 0;
 	len_word = 0;
-	while (s[*i] == c && s[*i])
+	while (is_sep(s[*i],sep) && s[*i])
 		(*i)++;
-	while (s[*i] && s[*i] != c)
+	while (s[*i] && !is_sep(s[*i], sep))
 	{
 		len_word++;
 		(*i)++;
@@ -67,14 +81,14 @@ void	ft_clear_memory(char **strs, int w)
 	free(strs);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char *sep)
 {
 	char	**strs;
 	int		w;
 	int		i;
 	int		word_count;
 
-	word_count = ft_count_words(s, c);
+	word_count = ft_count_words(s, sep);
 	w = 0;
 	i = 0;
 	strs = (char **)ft_calloc((word_count + 1), sizeof(char *));
@@ -82,7 +96,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (w < word_count)
 	{
-		strs[w] = ft_get_word(s, c, &i);
+		strs[w] = ft_get_word(s, sep, &i);
 		if (strs[w] == NULL)
 		{
 			ft_clear_memory(strs, w);
