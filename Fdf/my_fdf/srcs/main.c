@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:55:25 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/08 23:26:03 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/08 23:39:39 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,11 @@ int	main(int argc, char **argv)
 		}
 		print_map(map);
 		trame = make_trame(map);
-		ft_printf("adresse de l'element (3,2) de la map %p", get_tram_elem(3, 2, trame));
+		//ft_printf("adresse de l'element (3,2) de la map %p\n", get_tram_elem(3, 2, trame));
 		//ft_printf("altitude (2, 3) : %d\n",get_alt_point(2, 3, map));
-		ft_printf("nb de lignes : %d\n",get_nb_line(map));
-		ft_printf("Altitude max : %d\n",get_alt_max(map));
-		ft_printf("Altitude min : %d\n",get_alt_min(map));
+		//ft_printf("nb de lignes : %d\n",get_nb_line(map));
+		//ft_printf("Altitude max : %d\n",get_alt_max(map));
+		//ft_printf("Altitude min : %d\n",get_alt_min(map));
 		free_map(map);
 		free_trame(trame);
 	}

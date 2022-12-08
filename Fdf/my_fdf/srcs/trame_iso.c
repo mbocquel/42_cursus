@@ -6,86 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:32:48 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/08 23:35:56 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/08 23:44:37 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	get_alt_point(int line, int col, t_map *begin_map)
-{
-	t_map	*elem;
-
-	elem = begin_map;
-	while (elem)
-	{
-		if (elem->n_line == line && col < elem->nb_col)
-			return (elem->line_int[col]);
-		elem = elem->next;
-	}
-	return (0);
-}
-
-int	get_alt_max(t_map *begin_map)
-{
-	t_map	*elem;
-	int		max;
-	int		i;
-
-	elem = begin_map;
-	if (elem)
-		max = elem->line_int[0];
-	while (elem)
-	{
-		i = 0;
-		while (i < elem->nb_col)
-		{
-			if (elem->line_int[i] > max)
-				max = elem->line_int[i];
-			i++;
-		}
-		elem = elem->next;
-	}
-	return (max);
-}
-
-int	get_alt_min(t_map *begin_map)
-{
-	t_map	*elem;
-	int		min;
-	int		i;
-
-	elem = begin_map;
-	if (elem)
-		min = elem->line_int[0];
-	while (elem)
-	{
-		i = 0;
-		while (i < elem->nb_col)
-		{
-			if (elem->line_int[i] < min)
-				min = elem->line_int[i];
-			i++;
-		}
-		elem = elem->next;
-	}
-	return (min);
-}
-
-int	get_nb_line(t_map *begin_map)
-{
-	t_map	*elem;
-	int		i;
-
-	elem = begin_map;
-	i = 0;
-	while (elem)
-	{
-		i++;
-		elem = elem->next;
-	}
-	return (i);
-}
 
 t_trame	*mk_trame_elem(int line, int col)
 {
@@ -149,17 +74,12 @@ t_trame	*make_trame(t_map *begin_map)
 	t_trame	*elem;
 	t_trame	*previous;
 
-	begin_trame = mk_trame_elem(0, 0);
-	if (!begin_trame)
-		return (NULL);
-	previous = begin_trame;
-	line = 0;
-	col = 1;
-	while (line < get_nb_line(begin_map))
+	begin_trame = NULL;
+	line = -1;
+	while (++line < get_nb_line(begin_map))
 	{
-		if (line > 0)
-			col = 0;
-		while (col < begin_map->nb_col)
+		col = -1;
+		while (++col < begin_map->nb_col)
 		{
 			elem = mk_trame_elem(line, col);
 			if (!elem)
@@ -170,23 +90,7 @@ t_trame	*make_trame(t_map *begin_map)
 				previous->right = elem;
 			trame_add_back(elem, &begin_trame);
 			previous = elem;
-			col++;
 		}
-		line++;
 	}
 	return (begin_trame);
-}
-
-void	free_trame(t_trame *begin_trame)
-{
-	t_trame	*elem;
-	t_trame	*next;
-
-	elem = begin_trame;
-	while (elem)
-	{
-		next = elem->next;
-		free(elem);
-		elem = next;
-	}
 }

@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2022/12/08 16:45:14 by mbocquel         ###   ########.fr        #
+#    Updated: 2022/12/08 23:46:38 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SOURCES = 	main.c \
 			get_color_gradian.c \
 			parsing.c \
 			parsing2.c \
-			trame_iso.c 
+			trame_iso.c \
+			free_functions.c\
+			functions_get_map_info.c
 			
 OBJECTS		= $(addprefix ${SOURCES_DIR}, ${SOURCES:.c=.o})
 
