@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:26:32 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/07 14:13:05 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:55:28 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	put_segment_img(t_data *img, t_seg seg, t_wdim wdim)
 
 	delt.x = seg.end.x - seg.start.x;
 	delt.y = seg.end.y - seg.start.y;
-	if (abs(delt.x) > abs(delt.y))
+	if (va_abs(delt.x) > va_abs(delt.y))
 		put_segment_img_cas1(img, seg, wdim);
 	else
 		put_segment_img_cas2(img, seg, wdim);
