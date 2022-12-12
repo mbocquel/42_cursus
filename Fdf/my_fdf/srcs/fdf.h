@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:13:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/09 17:58:00 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:46:27 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,8 @@ int				get_max_high_up(t_map *map);
 int				get_px_unit_x(t_map *map, t_wdim wdim);
 int				get_px_unit_y(t_map *map, t_wdim wdim);
 t_point			get_origin_coord(t_map *map, t_wdim wdim);
+void			position_trame(t_trame *trame, t_map *map, t_wdim wdim);
+void 			tracer_trame(t_data *img, t_trame *trame, t_wdim wdim);
+void			print_tram(t_trame *trame);
 
 #endif

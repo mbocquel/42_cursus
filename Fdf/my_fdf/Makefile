@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2022/12/09 18:03:21 by mbocquel         ###   ########.fr        #
+#    Updated: 2022/12/12 19:26:07 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SOURCES = 	main.c \
 			trame_iso.c \
 			free_functions.c\
 			functions_get_map_info.c \
-			analyse_map_dim.c
+			analyse_map_dim.c \
+			position_trame.c
 			
 OBJECTS		= $(addprefix ${SOURCES_DIR}, ${SOURCES:.c=.o})
 

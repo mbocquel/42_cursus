@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:55:25 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/09 18:02:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:56:10 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,16 @@ int	main(int argc, char **argv)
 		img.img = mlx_new_image(mlx, wdim.width, wdim.height);
 		img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 				&img.endian);
-		test_fonctions(&img, wdim);
-		mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-		mlx_key_hook(mlx_win, key_win, 0);
+		
 		print_map(map);
 		trame = make_trame(map);
-		ft_printf("altitude au dessus de l'origine : %d\n",get_max_high_up(map));
-		ft_printf("get_px_unit_x : %d\n",get_px_unit_x(map, wdim));
-		ft_printf("get_px_unit_y : %d\n",get_px_unit_y(map, wdim));
+		//ft_printf("altitude au dessus de l'origine : %d\n",get_max_high_up(map));
+		//ft_printf("get_px_unit_x : %d\n",get_px_unit_x(map, wdim));
+		//ft_printf("get_px_unit_y : %d\n",get_px_unit_y(map, wdim));
+		position_trame(trame, map, wdim);
+		//print_tram(trame);
+		tracer_trame(&img, trame, wdim);
+		
 		//ft_printf("adresse de l'element (3,2) de la map %p\n", get_tram_elem(3, 2, trame));
 		//ft_printf("altitude (2, 3) : %d\n",get_alt_point(2, 3, map));
 		//ft_printf("nb de lignes : %d\n",get_nb_line(map));
@@ -127,6 +129,9 @@ int	main(int argc, char **argv)
 		//ft_printf("Altitude min : %d\n",get_alt_min(map));
 		free_trame(trame);
 		free_map(map);
+		//test_fonctions(&img, wdim);
+		mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+		mlx_key_hook(mlx_win, key_win, 0);
 		mlx_loop(mlx);
 	
 	}

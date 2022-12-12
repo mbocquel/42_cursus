@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:32:48 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/08 23:44:37 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:59:17 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_trame	*mk_trame_elem(int line, int col)
 	new->col = col;
 	new->point.x = 0;
 	new->point.y = 0;
-	new->point.color = 0;
+	new->point.color = create_trgb(0, 125, 125, 105);
 	new->down = NULL;
 	new->right = NULL;
 	new->next = NULL;
