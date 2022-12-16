@@ -6,11 +6,28 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:55:25 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:10:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/16 21:42:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/*
+Obligatoire : 
+- Mieux gerer le centrage de l'image.
+- Gerer la fermeture de la fenetre en cliquant sur la croix en haut.
+- Gerer les erreurs de la MinilibX en verifiant ce que renvoie le poiteur.
+
+Fonctionalites bonus :
+- Rotation X, Y, Z axis. 
+- Modifier la hauteur du z.
+- Projection conique.
+- Zoom et de-zoom sur la carte.
+- Deplacement dans es 4 directions avec les fleches.
+- Tout reinitialiser.
+- Coloriser en fonction de l'altitude.
+- Modifier la hauteur du z.
+*/
 
 void	process_trame(t_trame *trame, t_wdim wdim, t_data *img)
 {

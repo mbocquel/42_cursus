@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2022/12/16 21:25:45 by mbocquel         ###   ########.fr        #
+#    Updated: 2022/12/16 21:42:15 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SOURCES = 	apply_isometric_proj.c \
 			put_segment_img.c \
 			tracer_trame.c \
 			ft_atoi_color.c \
+			rotate_functions.c \
 			 
 			
 OBJECTS		= $(addprefix ${SOURCES_DIR}, ${SOURCES:.c=.o})

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:13:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:23:31 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/16 21:51:15 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,7 @@ void			print_tram(t_trame *trame);
 int				trame_add_back(t_trame *new, t_trame **begin_trame);
 int				key_win(int key, void *p);
 t_point2d_fl	prod_mat3x2_p3d(t_mat3x2 mat, t_point_3d point_3d);
-void			prod_mat3x3_p3d(t_mat3x3 mat, t_point_3d p_3d,
-					t_point_3d *result);
+t_point_3d	prod_mat3x3_p3d(t_mat3x3 mat, t_point_3d p_3d);
 void			apply_2d_projection_trame(t_trame *trame, t_map *map,
 					t_wdim wdim);
 float			get_yf_max(t_trame *trame);

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:58:06 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/08 14:51:06 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:09:47 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ typedef struct s_list_sto
 	struct s_list_sto		*next;
 }					t_list_sto;
 int		ft_atoi(const char *nptr);
+int		ft_atoi_hex(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
-void		ft_swap(int *a, int *b);
+void	ft_swap(int *a, int *b);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
@@ -58,7 +59,7 @@ char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
-char	**ft_split(char const *s, char *sep);
+char	**ft_split(char const *s, char *c);
 int		ft_power(int nb, int power);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
