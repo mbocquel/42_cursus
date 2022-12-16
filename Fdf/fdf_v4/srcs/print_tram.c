@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:50:08 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 20:25:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/16 21:58:22 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	print_tram(t_trame *trame)
 	while (elem)
 	{
 		printf("----\n	Adresse %p\n", elem);
-		printf("	Point 3D x %d\n", elem->point_3d.x_3d);
-		printf("	Point 3D y %d\n", elem->point_3d.y_3d);
-		printf("	Point 3D z %d\n", elem->point_3d.z_3d);
+		printf("	Point 3D x %f\n", elem->point_3d.x_3d);
+		printf("	Point 3D y %f\n", elem->point_3d.y_3d);
+		printf("	Point 3D z %f\n", elem->point_3d.z_3d);
 		printf("	Point 2D float xf %f\n", elem->point_2d_fl.xf);
 		printf("	Point 2D float yf %f\n", elem->point_2d_fl.yf);
 		printf("	Point 2D px x %d\n", elem->point_2d_px.x);
@@ -39,9 +39,9 @@ void	print_tram(t_trame *trame)
 void	print_tram_elem(t_trame *elem)
 {
 	printf("----\n	Adresse %p\n", elem);
-	printf("	Point 3D x %d\n", elem->point_3d.x_3d);
-	printf("	Point 3D y %d\n", elem->point_3d.y_3d);
-	printf("	Point 3D z %d\n", elem->point_3d.z_3d);
+	printf("	Point 3D x %f\n", elem->point_3d.x_3d);
+	printf("	Point 3D y %f\n", elem->point_3d.y_3d);
+	printf("	Point 3D z %f\n", elem->point_3d.z_3d);
 	printf("	Point 2D float xf %f\n", elem->point_2d_fl.xf);
 	printf("	Point 2D float yf %f\n", elem->point_2d_fl.yf);
 	printf("	Point 2D px x %d\n", elem->point_2d_px.x);

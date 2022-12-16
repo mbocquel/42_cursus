@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:55:25 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:42:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:01:34 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,19 @@ void	process_trame(t_trame *trame, t_wdim wdim, t_data *img)
 	start = clock();
 	apply_isometric_proj(trame);
 	end = clock();
-	printf("apply_isometric_proj : %f\n",
+	printf("apply_isometric_proj : %f s\n",
 		((double) end - start) / CLOCKS_PER_SEC);
 	start = clock();
 	calculate_point_pos(trame, wdim);
 	end = clock();
-	printf("calculate_point_pos : %f\n",
+	printf("calculate_point_pos : %f s\n",
 		((double) end - start) / CLOCKS_PER_SEC);
 	start = clock();
 	tracer_trame(img, trame, wdim);
+	make_colored_trame(trame);
+	tracer_trame_color(img, trame, wdim);
 	end = clock();
-	printf("tracer_trame : %f\n",
+	printf("tracer_trame : %f s\n",
 		((double) end - start) / CLOCKS_PER_SEC);
 	free_trame(trame);
 }
@@ -65,7 +67,7 @@ int	main(int argc, char **argv)
 		start = clock();
 		trame = parsing_fdf(argv[1]);
 		end = clock();
-		printf("parsing_fdf : %f\n",
+		printf("parsing_fdf : %f s\n",
 			((double) end - start) / CLOCKS_PER_SEC);
 		if (!trame && ft_printf("Error with the map\n"))
 			return (1);

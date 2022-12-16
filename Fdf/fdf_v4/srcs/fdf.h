@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:13:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:51:15 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/16 22:58:05 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_point {
 	int	x;
 	int	y;
 	int	color;
+	int	color_modif;
 }				t_point;
 
 typedef struct s_point2d_fl {
@@ -38,9 +39,9 @@ typedef struct s_point2d_fl {
 }				t_point2d_fl;
 
 typedef struct s_point_3d {
-	int	x_3d;
-	int	y_3d;
-	int	z_3d;
+	float	x_3d;
+	float	y_3d;
+	float	z_3d;
 }				t_point_3d;
 
 typedef struct s_seg {
@@ -122,7 +123,7 @@ void			print_tram(t_trame *trame);
 int				trame_add_back(t_trame *new, t_trame **begin_trame);
 int				key_win(int key, void *p);
 t_point2d_fl	prod_mat3x2_p3d(t_mat3x2 mat, t_point_3d point_3d);
-t_point_3d	prod_mat3x3_p3d(t_mat3x3 mat, t_point_3d p_3d);
+t_point_3d		prod_mat3x3_p3d(t_mat3x3 mat, t_point_3d p_3d);
 void			apply_2d_projection_trame(t_trame *trame, t_map *map,
 					t_wdim wdim);
 float			get_yf_max(t_trame *trame);
@@ -140,5 +141,9 @@ int				ft_strtab_size(char **tab_str_alt_color);
 int				trame_add_front(t_trame *new, t_trame **begin_trame);
 t_trame			*get_tram_elem_from_end(int line, int col, t_trame *begin);
 void			print_tram_elem(t_trame *trame);
+void			get_alt_min_max(t_trame *trame, float *min, float *max);
+void			make_colored_trame(t_trame *trame);
+int				get_color_altitude(float min, float max, float z);
+void			tracer_trame_color(t_data *img, t_trame *trame, t_wdim wdim);
 
 #endif
