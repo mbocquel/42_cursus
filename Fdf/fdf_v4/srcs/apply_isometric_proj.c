@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	apply_isometric_proj(t_trame *trame)
+void	apply_isometric_proj(t_trame *trame, float z_factor)
 {
 	t_mat3x2	mat_proj;
 	t_trame		*elem;
@@ -22,7 +22,7 @@ void	apply_isometric_proj(t_trame *trame)
 	mat_proj.l1[2] = 0;
 	mat_proj.l2[0] = 0.4082;
 	mat_proj.l2[1] = 0.4082;
-	mat_proj.l2[2] = -0.8165;
+	mat_proj.l2[2] = -0.8165 * z_factor;
 	elem = trame;
 	while (elem)
 	{

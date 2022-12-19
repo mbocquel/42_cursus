@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:13:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:13:23 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:27:32 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int	ft_atoi_color(const char *nptr)
 
 	i = 0;
 	result = 0;
-	base_min = "0123456789ABCDEF";
-	while (nptr[i] && nptr[i] != 'x')
+	base_min = "0123456789abcdef";
+	while (nptr[i] && !(nptr[i] == 'x' || nptr[i] == 'X'))
 		i++;
-	while (nptr[++i] && pos_in_base(base_min, nptr[i]) != -1)
+	while (nptr[++i] && pos_in_base(base_min, ft_tolower(nptr[i])) != -1)
 	{
 		result = result * 16
-			+ pos_in_base(base_min, nptr[i]);
+			+ pos_in_base(base_min, ft_tolower(nptr[i]));
 	}
 	return (result);
 }

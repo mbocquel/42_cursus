@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 13:30:45 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 22:57:18 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:00:49 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,41 @@ int	get_color_gradian(t_point p_s, t_point p_e, t_point p)
 int	get_color_altitude(float min, float max, float z)
 {
 	int		col_min;
+	int		col_zero;
+	int		col_max;
+	int		col;
+	int		e;
+
+	e = 0;
+	col_min = create_trgb(0, 0, 0, 255);
+	col_zero = create_trgb(0, 0, 255, 0);
+	col_max = create_trgb(0, 255, 0, 0);
+	if (z > 0 && max > 0)
+	{
+		e = (int)(((z - 0) / (max - 0)) * 100);
+		col = create_trgb(
+			(e * get_t(col_max) + (100 - e) * get_t(col_zero)) / 100,
+			(e * get_r(col_max) + (100 - e) * get_r(col_zero)) / 100,
+			(e * get_g(col_max) + (100 - e) * get_g(col_zero)) / 100,
+			(e * get_b(col_max) + (100 - e) * get_b(col_zero)) / 100);
+		return (col);
+	}
+	if (z < 0 && min < 0)
+	{
+		e = (int)(((0 - z) / (0 - min)) * 100);
+		col = create_trgb(
+			(e * get_t(col_zero) + (100 - e) * get_t(col_min)) / 100,
+			(e * get_r(col_zero) + (100 - e) * get_r(col_min)) / 100,
+			(e * get_g(col_zero) + (100 - e) * get_g(col_min)) / 100,
+			(e * get_b(col_zero) + (100 - e) * get_b(col_min)) / 100);
+		return (col);
+	}
+	return (col_zero);		
+}
+
+/*int	get_color_altitude(float min, float max, float z)
+{
+	int		col_min;
 	int		col_max;
 	int		col;
 	int		e;
@@ -50,4 +85,4 @@ int	get_color_altitude(float min, float max, float z)
 			(e * get_g(col_max) + (100 - e) * get_g(col_min)) / 100,
 			(e * get_b(col_max) + (100 - e) * get_b(col_min)) / 100);
 	return (col);
-}
+}*/

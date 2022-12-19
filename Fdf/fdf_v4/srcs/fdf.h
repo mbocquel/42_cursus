@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:13:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 22:58:05 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/19 22:13:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,23 @@
 # include <math.h>
 # include <stdio.h>
 # include <time.h>
+# define KEY_R 114
+# define KEY_X 120
+# define KEY_Y 121
+# define KEY_Z 122
+# define KEY_R 114
+# define KEY_H 104
+# define KEY_L 108
+# define KEY_C 99
+# define KEY_UP_ARROW 65362
+# define KEY_LOW_ARROW 65364
+# define KEY_LEFT_ARROW 65361
+# define KEY_RIGHT_ARROW 65363
+# define KEY_PLUS 65451
+# define KEY_MINUS 65453
+# define KEY_ESC 0xFF1B
+# define MOUSE_ROLL_ZOOM 4
+# define MOUSE_ROLL_UNZOOM 5
 
 typedef struct s_data {
 	void	*img;
@@ -83,9 +100,15 @@ typedef struct s_trame {
 }				t_trame;
 
 typedef struct s_event_param {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_data	img;
+	void		*mlx_ptr;
+	void			*win_ptr;
+	t_data			img;
+	t_trame			*trame;
+	t_wdim			wdim;
+	float			scale_factor;
+	float			z_factor;
+	t_point2d_fl	orig;
+	int				original_color;
 }				t_event_param;
 
 void			put_circle_img(t_data *img, t_point center,
@@ -118,10 +141,10 @@ int				get_px_unit_x(t_map *map, t_wdim wdim);
 int				get_px_unit_y(t_map *map, t_wdim wdim);
 t_point2d_fl	get_origin_coord(t_trame *trame);
 void			position_trame(t_trame *trame, t_map *map, t_wdim wdim);
-void			tracer_trame(t_data *img, t_trame *trame, t_wdim wdim);
+void			tracer_trame(t_event_param *param);
 void			print_tram(t_trame *trame);
 int				trame_add_back(t_trame *new, t_trame **begin_trame);
-int				key_win(int key, void *p);
+int				handle_key(int key, void *p);
 t_point2d_fl	prod_mat3x2_p3d(t_mat3x2 mat, t_point_3d point_3d);
 t_point_3d		prod_mat3x3_p3d(t_mat3x3 mat, t_point_3d p_3d);
 void			apply_2d_projection_trame(t_trame *trame, t_map *map,
@@ -130,11 +153,11 @@ float			get_yf_max(t_trame *trame);
 float			get_yf_min(t_trame *trame);
 float			get_xf_max(t_trame *trame);
 float			get_xf_min(t_trame *trame);
-void			calculate_point_pos(t_trame *trame, t_wdim wdim);
+void			calculate_point_pos(t_event_param *param);
 float			get_scale_factor(t_trame *trame, t_wdim wdim);
-void			apply_isometric_proj(t_trame *trame);
+void			apply_isometric_proj(t_trame *trame, float z_factor);
 void			free_all(t_map *begin_map, t_trame *begin_trame);
-void			process_trame(t_trame *trame, t_wdim wdim, t_data *img);
+void			process_trame(t_event_param *param);
 int				ft_atoi_color(const char *nptr);
 int				free_line_split(char **tab_str_alt_color);
 int				ft_strtab_size(char **tab_str_alt_color);
@@ -144,6 +167,16 @@ void			print_tram_elem(t_trame *trame);
 void			get_alt_min_max(t_trame *trame, float *min, float *max);
 void			make_colored_trame(t_trame *trame);
 int				get_color_altitude(float min, float max, float z);
-void			tracer_trame_color(t_data *img, t_trame *trame, t_wdim wdim);
+void			tracer_trame_color(t_event_param *param);
+int				handle_mouse(int button, int x, int y, void *param);
+int				close_win(void *p);
+void			zoom_function(t_event_param *param, int	x, int	y);
+void			unzoom_function(t_event_param *param, int x, int	y);
+void			rotate_trame(t_event_param *param, int key);
+void			change_z_scale(t_event_param *param, int key);
+void			clear_img(t_event_param *param);
+void			translation(t_event_param *param, int key);
+void			print_command_list(void);
+void			focus_point(t_event_param *param, int x, int y);
 
 #endif

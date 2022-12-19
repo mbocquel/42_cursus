@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2022/12/16 22:52:35 by mbocquel         ###   ########.fr        #
+#    Updated: 2022/12/19 21:19:37 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,12 @@ SOURCES = 	apply_isometric_proj.c \
 			rotate_functions.c \
 			make_colored_trame.c \
 			get_alt_min_max.c \
+			zoom_unzoom.c \
+			rotate_trame.c \
+			change_z_scale.c \
+			clear_img.c \
+			translation.c \
+			print_command_list.c \
 			 
 			
 OBJECTS		= $(addprefix ${SOURCES_DIR}, ${SOURCES:.c=.o})

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:44:40 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 22:58:47 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:27:38 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,38 @@ t_trame	*get_last_point(t_trame *begin_trame)
 	return (elem);
 }
 
-void	tracer_trame(t_data *img, t_trame *trame, t_wdim wdim)
+void	tracer_trame(t_event_param *param)
 {
 	t_trame	*elem;
 	t_seg	seg;
 
-	elem = get_last_point(trame);
+	elem = get_last_point(param->trame);
 	while (elem)
 	{
 		seg.start = elem->point_2d_px;
 		if (elem->down)
 		{
 			seg.end = (elem->down)->point_2d_px;
-			put_segment_img(img, seg, wdim);
+			put_segment_img(&(param->img), seg, param->wdim);
 		}
 		if (elem->right)
 		{
 			seg.end = (elem->right)->point_2d_px;
-			put_segment_img(img, seg, wdim);
+			put_segment_img(&(param->img), seg, param->wdim);
 		}
 		elem = elem->previous;
 	}
+	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
+			param->img.img, 0, 0);
 }
 
-void	tracer_trame_color(t_data *img, t_trame *trame, t_wdim wdim)
+void	tracer_trame_color(t_event_param *param)
 {
 	t_trame	*elem;
 	t_seg	seg;
-
-	elem = get_last_point(trame);
+	
+	make_colored_trame(param->trame);
+	elem = get_last_point(param->trame);
 	while (elem)
 	{
 		seg.start = elem->point_2d_px;
@@ -66,14 +69,16 @@ void	tracer_trame_color(t_data *img, t_trame *trame, t_wdim wdim)
 		{
 			seg.end = (elem->down)->point_2d_px;
 			seg.end.color = seg.end.color_modif;
-			put_segment_img(img, seg, wdim);
+			put_segment_img(&(param->img), seg, param->wdim);
 		}
 		if (elem->right)
 		{
 			seg.end = (elem->right)->point_2d_px;
 			seg.end.color = seg.end.color_modif;
-			put_segment_img(img, seg, wdim);
+			put_segment_img(&(param->img), seg, param->wdim);
 		}
 		elem = elem->previous;
 	}
+	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
+			param->img.img, 0, 0);
 }
