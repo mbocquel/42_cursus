@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:40:46 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 21:22:24 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/20 23:18:29 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_trame(t_trame *begin_trame)
 	}
 }
 
-int	free_line_split(char **tab_str_alt_color)
+int	free_line_split(char **tab_str_alt_color, int return_val)
 {
 	int	i;
 
@@ -37,5 +37,5 @@ int	free_line_split(char **tab_str_alt_color)
 		i++;
 	}
 	free(tab_str_alt_color);
-	return (1);
+	return (return_val);
 }

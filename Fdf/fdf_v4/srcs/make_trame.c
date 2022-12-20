@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:32:48 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/19 18:28:00 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/20 23:23:13 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,10 @@ t_trame	*mk_trame_elem(int line, int col, char *str_alt_color)
 	return (new);
 }
 
-int	trame_add_back(t_trame *new, t_trame **begin_trame)
-{
-	t_trame	*elem;
-
-	if (new == NULL)
-		return (0);
-	if (*begin_trame == NULL)
-	{
-		*begin_trame = new;
-		return (1);
-	}
-	elem = *begin_trame;
-	while (elem->next)
-	{
-		elem = elem->next;
-	}
-	elem->next = new;
-	return (1);
-}
-
-int	trame_add_front(t_trame *new, t_trame **begin_trame)
+void	trame_add_front(t_trame *new, t_trame **begin_trame)
 {
 	if (new == NULL)
-		return (0);
+		return ;
 	if (*begin_trame == NULL)
 		*begin_trame = new;
 	else
@@ -69,5 +49,4 @@ int	trame_add_front(t_trame *new, t_trame **begin_trame)
 		new->next = *begin_trame;
 		*begin_trame = new;
 	}
-	return (1);
 }

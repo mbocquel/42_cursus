@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:13:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/19 22:13:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/20 23:23:36 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_trame {
 }				t_trame;
 
 typedef struct s_event_param {
-	void		*mlx_ptr;
+	void			*mlx_ptr;
 	void			*win_ptr;
 	t_data			img;
 	t_trame			*trame;
@@ -109,10 +109,11 @@ typedef struct s_event_param {
 	float			z_factor;
 	t_point2d_fl	orig;
 	int				original_color;
+	float			angle_x;
+	float			angle_y;
+	float			angle_z;
 }				t_event_param;
 
-void			put_circle_img(t_data *img, t_point center,
-					int radius, t_wdim wdim);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			put_segment_img(t_data *img, t_seg seg, t_wdim wdim);
 void			ft_swap_seg(t_seg *seg, t_point *delt);
@@ -126,42 +127,27 @@ int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
 t_trame			*parsing_fdf(char *fichier);
 int				ft_close_fichier(int fd);
 int				ft_open_fichier(char *fichier);
-void			print_map(t_map *begin_map);
-int				check_map(t_map *begin_map);
-void			free_map(t_map *begin_map);
-void			free_tab_char(char **line_tab_char);
-int				get_nb_line(t_map *begin_map);
-t_trame			*make_trame(t_map *begin_map);
 t_trame			*get_tram_elem(int line, int col, t_trame *begin);
 t_trame			*mk_trame_elem(int line, int col, char *str_alt_color);
 void			free_trame(t_trame *begin_trame);
 int				va_abs(int i);
-int				get_max_high_up(t_map *map);
-int				get_px_unit_x(t_map *map, t_wdim wdim);
-int				get_px_unit_y(t_map *map, t_wdim wdim);
-t_point2d_fl	get_origin_coord(t_trame *trame);
-void			position_trame(t_trame *trame, t_map *map, t_wdim wdim);
+t_point2d_fl	get_origin_coord(t_event_param *param);
 void			tracer_trame(t_event_param *param);
 void			print_tram(t_trame *trame);
-int				trame_add_back(t_trame *new, t_trame **begin_trame);
 int				handle_key(int key, void *p);
 t_point2d_fl	prod_mat3x2_p3d(t_mat3x2 mat, t_point_3d point_3d);
 t_point_3d		prod_mat3x3_p3d(t_mat3x3 mat, t_point_3d p_3d);
-void			apply_2d_projection_trame(t_trame *trame, t_map *map,
-					t_wdim wdim);
 float			get_yf_max(t_trame *trame);
 float			get_yf_min(t_trame *trame);
 float			get_xf_max(t_trame *trame);
 float			get_xf_min(t_trame *trame);
 void			calculate_point_pos(t_event_param *param);
 float			get_scale_factor(t_trame *trame, t_wdim wdim);
-void			apply_isometric_proj(t_trame *trame, float z_factor);
-void			free_all(t_map *begin_map, t_trame *begin_trame);
+void			apply_isometric_proj(t_event_param *param);
 void			process_trame(t_event_param *param);
 int				ft_atoi_color(const char *nptr);
-int				free_line_split(char **tab_str_alt_color);
-int				ft_strtab_size(char **tab_str_alt_color);
-int				trame_add_front(t_trame *new, t_trame **begin_trame);
+int				free_line_split(char **tab_str_alt_color, int return_val);
+void			trame_add_front(t_trame *new, t_trame **begin_trame);
 t_trame			*get_tram_elem_from_end(int line, int col, t_trame *begin);
 void			print_tram_elem(t_trame *trame);
 void			get_alt_min_max(t_trame *trame, float *min, float *max);
@@ -170,13 +156,19 @@ int				get_color_altitude(float min, float max, float z);
 void			tracer_trame_color(t_event_param *param);
 int				handle_mouse(int button, int x, int y, void *param);
 int				close_win(void *p);
-void			zoom_function(t_event_param *param, int	x, int	y);
-void			unzoom_function(t_event_param *param, int x, int	y);
+void			zoom_function(t_event_param *param, int button);
 void			rotate_trame(t_event_param *param, int key);
 void			change_z_scale(t_event_param *param, int key);
 void			clear_img(t_event_param *param);
 void			translation(t_event_param *param, int key);
 void			print_command_list(void);
 void			focus_point(t_event_param *param, int x, int y);
+int				get_color_altitude_pos(int e, int col_max, int col_zero);
+int				get_color_altitude_neg(int e, int col_zero, int col_min);
+void			clear_all_change(t_event_param *param);
+void			colorise(t_event_param *param);
+t_point_3d		rotate(t_event_param *param, t_point_3d p3d);
+void			initiate_param(t_event_param *param);
+void			print_command_list_part2(void);
 
 #endif

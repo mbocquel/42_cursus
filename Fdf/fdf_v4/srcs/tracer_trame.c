@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:44:40 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/19 19:27:38 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/20 13:44:13 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void	tracer_trame(t_event_param *param)
 		elem = elem->previous;
 	}
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
-			param->img.img, 0, 0);
+		param->img.img, 0, 0);
 }
 
 void	tracer_trame_color(t_event_param *param)
 {
 	t_trame	*elem;
 	t_seg	seg;
-	
+
 	make_colored_trame(param->trame);
 	elem = get_last_point(param->trame);
 	while (elem)
@@ -80,5 +80,5 @@ void	tracer_trame_color(t_event_param *param)
 		elem = elem->previous;
 	}
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
-			param->img.img, 0, 0);
+		param->img.img, 0, 0);
 }

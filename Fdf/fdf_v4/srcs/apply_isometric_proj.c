@@ -12,22 +12,23 @@
 
 #include "fdf.h"
 
-void	apply_isometric_proj(t_trame *trame, float z_factor)
+void	apply_isometric_proj(t_event_param *param)
 {
 	t_mat3x2	mat_proj;
 	t_trame		*elem;
+	t_point_3d	point;
 
 	mat_proj.l1[0] = 0.7071;
 	mat_proj.l1[1] = -0.7071;
 	mat_proj.l1[2] = 0;
 	mat_proj.l2[0] = 0.4082;
 	mat_proj.l2[1] = 0.4082;
-	mat_proj.l2[2] = -0.8165 * z_factor;
-	elem = trame;
+	mat_proj.l2[2] = -0.8165;
+	elem = param->trame;
 	while (elem)
 	{
-		elem->point_2d_fl.xf = prod_mat3x2_p3d(mat_proj, elem->point_3d).xf;
-		elem->point_2d_fl.yf = prod_mat3x2_p3d(mat_proj, elem->point_3d).yf;
+		point = rotate(param, elem->point_3d);
+		elem->point_2d_fl = prod_mat3x2_p3d(mat_proj, point);
 		elem = elem->next;
 	}
 }

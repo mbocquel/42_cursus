@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2022/12/19 21:19:37 by mbocquel         ###   ########.fr        #
+#    Updated: 2022/12/20 18:07:14 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ SOURCES = 	apply_isometric_proj.c \
 			free_functions.c \
 			ft_swap_seg.c \
 			get_color_gradian.c \
-			get_nb_line.c \
 			get_scale_factor.c \
 			get_tram_elem.c \
 			get_xf_min_and_max.c \
@@ -31,10 +30,7 @@ SOURCES = 	apply_isometric_proj.c \
 			make_trame.c \
 			my_mlx_pixel_put.c \
 			parsing.c \
-			print_map.c \
-			print_tram.c \
 			prod_mat.c \
-			put_circle_img.c \
 			put_segment_img.c \
 			tracer_trame.c \
 			ft_atoi_color.c \
@@ -47,15 +43,14 @@ SOURCES = 	apply_isometric_proj.c \
 			clear_img.c \
 			translation.c \
 			print_command_list.c \
+			clear_all_change.c \
 			 
 			
 OBJECTS		= $(addprefix ${SOURCES_DIR}, ${SOURCES:.c=.o})
 
-DEP		= $(addprefix ${SOURCES_DIR}, ${SOURCES:.c=.d})
-
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
@@ -85,7 +80,6 @@ clean:
 
 fclean: clean
 	$(RM)  $(NAME)
-	$(RM)  $(DEP)
 	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
