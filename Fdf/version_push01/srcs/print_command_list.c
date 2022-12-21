@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 21:19:25 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/21 13:49:14 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:19:55 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,15 @@ void	print_command_list_part2(void)
 	ft_printf("#   Mouse roll down -> Zoom out                          #\n");
 	ft_printf("#   Left click      -> Center on the location            #\n");
 	ft_printf("#                                                        #\n");
-	ft_printf("#                GENERAL COMMANDS (KEYBOARD)             #\n");
+	ft_printf("#                COLOR COMMANDS (KEYBOARD)               #\n");
 	ft_printf("#   C   -> Apply colors based on altitude                #\n");
 	ft_printf("#   V   -> Apply original colors                         #\n");
+	ft_printf("#                                                        #\n");
+	ft_printf("#             PROJECTION COMMANDS (KEYBOARD)             #\n");
+	ft_printf("#   P   -> Apply parallel projection                     #\n");
+	ft_printf("#   I   -> Apply isometric projection                    #\n");
+	ft_printf("#                                                        #\n");
+	ft_printf("#                GENERAL COMMANDS (KEYBOARD)             #\n");
 	ft_printf("#   R   -> Clear all changes                             #\n");
 	ft_printf("#   ESC -> Leave program                                 #\n");
 	ft_printf("#                                                        #\n");

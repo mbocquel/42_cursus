@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:38:41 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/20 16:07:57 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:05:24 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	zoom_function(t_event_param *param, int button)
 		ft_printf("---- Zoom out ----\n");
 	}
 	clear_img(param);
-	apply_isometric_proj(param);
+	if (param->proj == 1)
+		apply_isometric_proj(param);
+	else
+		apply_para_proj(param);
 	calculate_point_pos(param);
 	if (param->original_color)
 		tracer_trame(param);

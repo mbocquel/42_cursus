@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:12:30 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/21 13:13:10 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:54:23 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_event_param {
 	float			angle_x;
 	float			angle_y;
 	float			angle_z;
+	int				proj;
 }				t_event_param;
 
 #endif

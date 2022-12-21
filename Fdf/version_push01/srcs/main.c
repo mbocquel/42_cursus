@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:55:25 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/21 13:42:15 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:55:11 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	initiate_param(t_event_param *param)
 	param->angle_y = 0;
 	param->angle_z = 0;
 	param->original_color = 1;
+	param->proj = 1;
 }
 
 int	main(int argc, char **argv)

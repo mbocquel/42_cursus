@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:46:03 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/21 13:40:41 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:10:40 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	handle_key(int key, void *p)
 		rotate_trame(param, key);
 	else if (key == KEY_H || key == KEY_L)
 		change_z_scale(param, key);
+	else if (key == KEY_P || key == KEY_I)
+		change_proj(param, key);
 	else if (key == KEY_UP_ARROW || key == KEY_LOW_ARROW
 		|| key == KEY_LEFT_ARROW || key == KEY_RIGHT_ARROW)
 		translation(param, key);

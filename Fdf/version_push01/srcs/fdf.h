@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:13:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/21 13:41:40 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:10:20 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define KEY_L 108
 # define KEY_C 99
 # define KEY_V 118
+# define KEY_P 112
+# define KEY_I 105
 # define KEY_UP_ARROW 65362
 # define KEY_LOW_ARROW 65364
 # define KEY_LEFT_ARROW 65361
@@ -33,8 +35,10 @@
 # define MOUSE_ROLL_ZOOM 4
 # define MOUSE_ROLL_UNZOOM 5
 
-/*  --- apply_isometric_proj.c 		----*/
+/*  --- apply_proj.c 				----*/
 void			apply_isometric_proj(t_event_param *param);
+void			apply_para_proj(t_event_param *param);
+void			change_proj(t_event_param *param, int key);
 
 /*  --- calculate_point_pos.c 		----*/
 void			calculate_point_pos(t_event_param *param);

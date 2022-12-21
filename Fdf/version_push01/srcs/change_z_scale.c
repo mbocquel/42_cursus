@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 19:11:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/21 13:59:02 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:58:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	change_z_scale(t_event_param *param, int key)
 		param->z_factor += 0.01;
 		ft_printf("---- Altitude scale increased ----\n");
 	}
-	apply_isometric_proj(param);
+	if (param->proj == 1)
+		apply_isometric_proj(param);
+	else
+		apply_para_proj(param);
 	calculate_point_pos(param);
 	if (param->original_color)
 		tracer_trame(param);

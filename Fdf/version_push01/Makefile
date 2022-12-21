@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2022/12/21 13:10:53 by mbocquel         ###   ########.fr        #
+#    Updated: 2022/12/21 14:52:43 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fdf
 
 SOURCES_DIR = srcs/
 
-SOURCES = 	apply_isometric_proj.c \
+SOURCES = 	apply_proj.c \
 			calculate_point_pos.c \
 			change_z_scale.c \
 			clear_all_change.c \

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:42:03 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/21 13:10:37 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:04:30 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	rotate_trame(t_event_param *param, int key)
 		ft_printf("---- Rotation on the Z axis ----\n");
 	}
 	clear_img(param);
-	apply_isometric_proj(param);
+	if (param->proj == 1)
+		apply_isometric_proj(param);
+	else
+		apply_para_proj(param);
 	calculate_point_pos(param);
 	if (param->original_color)
 		tracer_trame(param);
