@@ -46,7 +46,7 @@ SOURCES = 	apply_proj.c \
 						
 OBJECTS		= $(addprefix ${SOURCES_DIR}, ${SOURCES:.c=.o})
 
-CC = cc
+CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 

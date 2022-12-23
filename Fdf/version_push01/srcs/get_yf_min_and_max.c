@@ -17,6 +17,7 @@ float	get_yf_min(t_trame *trame)
 	t_trame	*elem;
 	float	min;
 
+	min = 0;
 	elem = trame;
 	if (elem)
 		min = elem->point_2d_fl.yf;
@@ -34,6 +35,7 @@ float	get_yf_max(t_trame *trame)
 	t_trame	*elem;
 	float	max;
 
+	max = 0;
 	elem = trame;
 	if (elem)
 		max = elem->point_2d_fl.yf;
