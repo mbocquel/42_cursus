@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:56:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/02 19:24:19 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:54:23 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,31 +41,66 @@ int	ft_atoi_arg_error(const char *nptr, int *error)
 	return (0);
 }
 
-void	parsing(char *str, t_lst_ps **pile_a, int *error)
+t_pile	*last_pile_elem(t_pile *lst)
+{
+	t_pile	*elem;
+
+	if (!lst || !(lst->next))
+		return (lst);
+	elem = lst;
+	while (elem)
+	{
+		if (elem->next == NULL)
+			return (elem);
+		else
+			elem = elem->next;
+	}
+	return (elem);
+}
+
+t_pile	*parsing(int argc, char **argv, int *error)
+{
+	int			i;
+	t_pile	*pile_a;
+	t_pile	*last;
+
+	pile_a = NULL;
+	i = argc;
+	while (--i > 0 && *error == 0)
+		parsing_arg(argv[i], &pile_a, error);
+	if (pile_a == NULL || *error)
+	{
+		free_unit_pile(&pile_a);
+		return (NULL);
+	}
+	last = last_pile_elem(pile_a);
+	pile_a->prev = last;
+	last->next = pile_a;
+	return (pile_a);
+}
+
+void	parsing_arg(char *str, t_pile **pile_a, int *error)
 {
 	char	**str_split;
 	int		i;
 	int		nb_args;
-	int		arg;
+	int		val;
 
 	nb_args = 0;
-	arg = 0;
+	val = 0;
 	str_split = ft_split(str, " ");
 	if (str_split == NULL)
 		*error = 1;
 	while (*error == 0 && str_split[nb_args])
 		nb_args++;
-	i = nb_args - 1;
-	while (*error == 0 && i >= 0)
+	i = nb_args;
+	while (*error == 0 && --i >= 0)
 	{
-		arg = ft_atoi_arg_error(str_split[i], error);
-		if (*error)
-		{
-			free_split(str_split, nb_args, i);
-			break ;
-		}
-		push_front_lst(pile_a, arg, error);
-		i--;
+		val = ft_atoi_arg_error(str_split[i], error);
+		if (is_in_pile(*pile_a, val))
+			*error = 1;
+		if (*error == 0)
+			push_front_lst(pile_a, val, error);
 	}
-	free_split(str_split, nb_args, i);
+	free_split(str_split);
 }

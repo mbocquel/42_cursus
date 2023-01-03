@@ -1,51 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_functions.c                                   :+:      :+:    :+:   */
+/*   actions_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 18:20:08 by mbocquel          #+#    #+#             */
+/*   Created: 2023/01/03 18:24:03 by mbocquel          #+#    #+#             */
 /*   Updated: 2023/01/03 18:54:23 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_split(char **str_split)
+void	action_rotate(t_pile **pile)
 {
-	int	i;
-
-	i = 0;
-	while (str_split[i])
+	if (*pile)
 	{
-		free(str_split[i]);
-		i++;
+		*pile = (*pile)->next;
 	}
-	free(str_split);
 }
 
-void	free_piles(t_pile **pile_a, t_pile **pile_b)
+void	action_d_rotate(t_pile **pile_a, t_pile **pile_b)
 {
-	free_unit_pile(pile_a);
-	free_unit_pile(pile_b);
+	action_rotate(pile_a);
+	action_rotate(pile_b);
 }
 
-void	free_unit_pile(t_pile **pile)
+void	action_r_rotate(t_pile **pile)
 {
-	t_pile	*elem;
-	t_pile	*temp;
-
-	if (*pile == NULL)
-		return ;
-	elem = *pile;
-	while (elem)
+	if (*pile)
 	{
-		temp = elem;
-		elem = elem->next;
-		free(temp);
-		if (elem == *pile)
-			break ;
+		*pile = (*pile)->prev;
 	}
-	*pile = NULL;
+}
+
+void	action_d_r_rotate(t_pile **pile_a, t_pile **pile_b)
+{
+	action_r_rotate(pile_a);
+	action_r_rotate(pile_b);
 }
