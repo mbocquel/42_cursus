@@ -6,13 +6,13 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:56:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/03 18:54:23 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:04:16 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi_arg_error(const char *nptr, int *error)
+int	ft_atoi_arg_error(const char *nptr, int *val)
 {
 	long	result;
 	int		i;
@@ -35,9 +35,8 @@ int	ft_atoi_arg_error(const char *nptr, int *error)
 		i++;
 	}
 	if (sng * result < -2147483648 || sng * result > 2147483647 || nptr[i])
-		*error = 1;
-	if (*error == 0)
-		return ((int)(sng * result));
+		return (1);
+	*val = (int)(sng * result);
 	return (0);
 }
 
@@ -58,28 +57,26 @@ t_pile	*last_pile_elem(t_pile *lst)
 	return (elem);
 }
 
-t_pile	*parsing(int argc, char **argv, int *error)
+void	parsing(int argc, char **argv, t_ps *ps)
 {
-	int			i;
-	t_pile	*pile_a;
+	int		i;
 	t_pile	*last;
 
-	pile_a = NULL;
 	i = argc;
-	while (--i > 0 && *error == 0)
-		parsing_arg(argv[i], &pile_a, error);
-	if (pile_a == NULL || *error)
-	{
-		free_unit_pile(&pile_a);
-		return (NULL);
-	}
-	last = last_pile_elem(pile_a);
-	pile_a->prev = last;
-	last->next = pile_a;
-	return (pile_a);
+	ps->pile_a = NULL;
+	ps->pile_b = NULL;
+	ps->inst = NULL;
+	while (--i > 0)
+		parsing_arg(argv[i], ps);
+	if (ps->pile_a == NULL)
+		ft_exit(ps, ERROR_PARSING);
+	last = last_pile_elem(ps->pile_a);
+	(ps->pile_a)->prev = last;
+	last->next = ps->pile_a;
+	get_final_position(ps);
 }
 
-void	parsing_arg(char *str, t_pile **pile_a, int *error)
+void	parsing_arg(char *str, t_ps *ps)
 {
 	char	**str_split;
 	int		i;
@@ -90,17 +87,19 @@ void	parsing_arg(char *str, t_pile **pile_a, int *error)
 	val = 0;
 	str_split = ft_split(str, " ");
 	if (str_split == NULL)
-		*error = 1;
-	while (*error == 0 && str_split[nb_args])
+		ft_exit(ps, ERROR_PARSING);
+	while (str_split[nb_args])
 		nb_args++;
 	i = nb_args;
-	while (*error == 0 && --i >= 0)
+	while (--i >= 0)
 	{
-		val = ft_atoi_arg_error(str_split[i], error);
-		if (is_in_pile(*pile_a, val))
-			*error = 1;
-		if (*error == 0)
-			push_front_lst(pile_a, val, error);
+		if (ft_atoi_arg_error(str_split[i], &val)
+			|| is_in_pile(ps->pile_a, val))
+		{
+			free_split(str_split);
+			ft_exit(ps, ERROR_PARSING);
+		}
+		add_to_pile(ps, val);
 	}
 	free_split(str_split);
 }

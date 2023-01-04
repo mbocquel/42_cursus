@@ -6,17 +6,36 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:20:08 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/03 18:54:23 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:16:19 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_exit(t_ps *ps, int error_code)
+{
+	if (error_code % 2 == 0)
+	{
+		free_pile(&(ps->pile_a));
+		free_pile(&(ps->pile_b));
+	}
+	if (error_code % 3 == 0)
+		free_split(ps->inst);
+	if (error_code % 5 == 0)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(1);
+	}
+	return (0);
+}
 
 void	free_split(char **str_split)
 {
 	int	i;
 
 	i = 0;
+	if (str_split == NULL)
+		return ;
 	while (str_split[i])
 	{
 		free(str_split[i]);
@@ -25,13 +44,7 @@ void	free_split(char **str_split)
 	free(str_split);
 }
 
-void	free_piles(t_pile **pile_a, t_pile **pile_b)
-{
-	free_unit_pile(pile_a);
-	free_unit_pile(pile_b);
-}
-
-void	free_unit_pile(t_pile **pile)
+void	free_pile(t_pile **pile)
 {
 	t_pile	*elem;
 	t_pile	*temp;

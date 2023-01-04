@@ -6,21 +6,21 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:06:41 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/03 18:54:23 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:49:51 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_piles(t_pile *pile_a, t_pile *pile_b)
+void	print_piles(t_ps *ps)
 {
 	t_pile	*elem_a;
 	t_pile	*elem_b;
-	int			break_a;
-	int			break_b;
+	int		break_a;
+	int		break_b;
 
-	elem_a = pile_a;
-	elem_b = pile_b;
+	elem_a = ps->pile_a;
+	elem_b = ps->pile_b;
 	break_a = 0;
 	break_b = 0;
 	if (!elem_a)
@@ -47,7 +47,7 @@ void	print_piles(t_pile *pile_a, t_pile *pile_b)
 		else
 			ft_printf("|\n");
 		if (!break_a)
-			ft_printf("| %p			", elem_a);
+			ft_printf("| %p		", elem_a);
 		else
 			ft_printf("|				");
 		if (!break_b)
@@ -72,11 +72,11 @@ void	print_piles(t_pile *pile_a, t_pile *pile_b)
 			ft_printf("|			\n");
 		if (!break_a)
 			elem_a = elem_a->next;
-		if (elem_a == pile_a)
+		if (elem_a == ps->pile_a)
 			break_a = 1;
 		if (!break_b)
 			elem_b = elem_b->next;
-		if (elem_b == pile_b)
+		if (elem_b == ps->pile_b)
 			break_b = 1;
 	}
 	ft_printf("________________________	________________________\n");

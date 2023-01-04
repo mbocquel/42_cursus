@@ -57,7 +57,7 @@ MY_OBJECTS = $(MY_SOURCES:.c=.o)
 
 NAME = libft.a
 
-CC = cc
+CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
