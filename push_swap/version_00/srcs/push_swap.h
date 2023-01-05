@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:22:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/04 17:11:55 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/05 22:51:41 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void	start_process_5(t_ps *ps);
 void	start_process_100(t_ps *ps);
 void	start_process_big(t_ps *ps);
 void	record_action(t_ps *ps, const char *action);
+void	print_instruction(t_ps *ps);
 
 #endif
