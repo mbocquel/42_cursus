@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:58:06 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 20:16:52 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:44:33 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <fcntl.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1500
+#  define BUFFER_SIZE 4096
 # endif
 
 typedef struct s_list
