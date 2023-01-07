@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:09:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/04 17:11:40 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:35:46 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,25 @@ void	record_action(t_ps *ps, const char *action)
 	if (ps->inst)
 		free(ps->inst);
 	ps->inst = new_inst;
+}
+
+void	add_action(t_ps *ps, char *str)
+{
+	if (ft_strncmp(str, "sa", 3) == 0)
+		action_swap(&(ps->pile_a));
+	if (ft_strncmp(str, "sb", 3) == 0)
+		action_swap(&(ps->pile_b));
+	if (ft_strncmp(str, "ra", 3) == 0)
+		action_rotate(&(ps->pile_a));
+	if (ft_strncmp(str, "rb", 3) == 0)
+		action_rotate(&(ps->pile_b));
+	if (ft_strncmp(str, "rra", 3) == 0)
+		action_r_rotate(&(ps->pile_a));
+	if (ft_strncmp(str, "rrb", 3) == 0)
+		action_r_rotate(&(ps->pile_b));
+	if (ft_strncmp(str, "pa", 3) == 0)
+		action_push(&(ps->pile_b), &(ps->pile_a));
+	if (ft_strncmp(str, "pb", 3) == 0)
+		action_push(&(ps->pile_a), &(ps->pile_b));
+	record_action(ps, str);
 }

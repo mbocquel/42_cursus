@@ -6,22 +6,13 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:20:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/05 23:49:31 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:37:35 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* idees 
-
-Gestion de la fin et des erreurs. Ne pas me balader avec ce pointeur de erreur
-mais plutot envoyer des codes erreurs a une fonction exit, qui gere bien les 
-truc (libere ce qu'il faut et affiche ou non la sortie d'erreur.)
-utiliser les operatons binaire pour trouver les bons char d'erreur
-
-*/
-
 #include "push_swap.h"
 
-static unsigned int	ft_abs(int i)
+int	ft_abs(int i)
 {
 	if (i == -2147483648)
 		return (0);
@@ -39,9 +30,9 @@ void	print_instruction(t_ps *ps)
 	inst = NULL;
 	while (ps->inst && (ps->inst)[++i])
 	{
-		if ((ps->inst)[i + 1] 
-			&& ft_abs(ft_strncmp((ps->inst)[i],(ps->inst)[i + 1], 3)) == 1 
-			&& (ps->inst)[i][0] == (ps->inst)[i + 1][0])
+		if ((ps->inst)[i + 1] && *((ps->inst)[i]) != 'p'
+			&& ft_abs(ft_strncmp((ps->inst)[i], (ps->inst)[i + 1], 3)) == 1
+			&& *((ps->inst)[i]) == *((ps->inst)[i + 1]))
 		{
 			if ((ps->inst)[i][0] == 's')
 				inst = "ss";
@@ -57,6 +48,7 @@ void	print_instruction(t_ps *ps)
 			ft_printf("%s\n", (ps->inst)[i]);
 		inst = NULL;
 	}
+	ft_printf("Instructions : %d\n", i);
 }
 
 int	main(int argc, char **argv)
@@ -76,5 +68,7 @@ int	main(int argc, char **argv)
 		start_process_100(&ps);
 	else
 		start_process_big(&ps);
+	print_instruction(&ps);
+	print_piles(&ps);
 	return (ft_exit(&ps, 6));
 }

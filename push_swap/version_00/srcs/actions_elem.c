@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions_swap_push.c                                :+:      :+:    :+:   */
+/*   actions_elem.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 14:46:34 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/04 13:06:12 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:19:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ void	action_swap(t_pile **pile)
 		second->pos = first->pos;
 		first->pos = temp_pos;
 	}
-}
-
-void	action_d_swap(t_pile **pile_a, t_pile **pile_b)
-{
-	action_swap(pile_a);
-	action_swap(pile_b);
 }
 
 void	action_push(t_pile **pile_from, t_pile **pile_to)
@@ -65,4 +59,20 @@ void	action_push(t_pile **pile_from, t_pile **pile_to)
 	((*pile_to)->prev)->next = from_first;
 	(*pile_to)->prev = from_first;
 	*pile_to = from_first;
+}
+
+void	action_rotate(t_pile **pile)
+{
+	if (*pile)
+	{
+		*pile = (*pile)->next;
+	}
+}
+
+void	action_r_rotate(t_pile **pile)
+{
+	if (*pile)
+	{
+		*pile = (*pile)->prev;
+	}
 }

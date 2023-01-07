@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/01/04 17:05:44 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/01/07 18:14:04 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,8 @@ SOURCES_DIR = srcs/
 SOURCES = 	main.c \
 			free_functions.c \
 			parsing.c \
-			push_front_lst.c \
-			actions_rotate.c  \
-			actions_swap_push.c \
+			add_to_pile.c \
+			actions_elem.c  \
 			print_piles.c \
 			get_final_position.c \
 			start_process_3.c \
