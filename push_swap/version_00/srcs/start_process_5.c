@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:57:50 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/07 20:38:59 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/07 22:03:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,27 +58,29 @@ int	next_pos_in_pile(t_ps *ps, int pos, char c)
 
 void	bring_top(t_ps *ps, int i, char c)
 {
-	int		cost_ra;
-	int		cost_rra;
+	int		cost;
+	char	*rx;
+	char	*rrx;
 	t_pile	*pile;
 
 	pile = ps->pile_a;
+	rx = "ra";
+	rrx = "rra";
 	if (c == 'b')
-		pile = ps->pile_b;
-	cost_ra = 0;
-	cost_rra = 0;
-	cost_ra = place(pile, i) - 1;
-	cost_rra = pile_size(pile) - place(pile, i) + 1;
-	if (cost_ra <= cost_rra)
 	{
-		while (cost_ra--)
-			add_action(ps, "ra");
+		pile = ps->pile_b;
+		rx = "rb";
+		rrx = "rrb";
 	}
+	if (place(pile, i) - 1 <= pile_size(pile) - place(pile, i) + 1)
+		cost = place(pile, i) - 1;
 	else
 	{
-		while (cost_rra--)
-			add_action(ps, "rra");
+		cost = pile_size(pile) - place(pile, i) + 1;
+		rx = rrx;
 	}
+	while (cost--)
+		add_action(ps, rx);
 }
 
 void	start_process_5(t_ps *ps)
