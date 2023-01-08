@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:57:50 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/07 22:03:53 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:47:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,7 @@ void	start_process_5(t_ps *ps)
 			add_action(ps, "sb");
 		to_bring_top = next_pos_in_pile(ps, ps->pile_b->pos, 'a');
 		if (to_bring_top == 0)
-		{
 			add_action(ps, "pa");
-			add_action(ps, "ra");
-		}
 		else
 		{
 			bring_top(ps, to_bring_top, 'a');

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:20:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/07 20:37:35 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:59:42 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	print_instruction(t_ps *ps)
 			ft_printf("%s\n", (ps->inst)[i]);
 		inst = NULL;
 	}
-	ft_printf("Instructions : %d\n", i);
 }
 
 int	main(int argc, char **argv)
@@ -69,6 +68,5 @@ int	main(int argc, char **argv)
 	else
 		start_process_big(&ps);
 	print_instruction(&ps);
-	print_piles(&ps);
 	return (ft_exit(&ps, 6));
 }
