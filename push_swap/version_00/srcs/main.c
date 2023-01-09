@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:20:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/08 15:59:42 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:00:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_abs(int i)
 	return (i);
 }
 
-void	print_instruction(t_ps *ps)
+int	print_instruction(t_ps *ps)
 {
 	int		i;
 	char	*inst;
@@ -48,12 +48,14 @@ void	print_instruction(t_ps *ps)
 			ft_printf("%s\n", (ps->inst)[i]);
 		inst = NULL;
 	}
+	return (i);
 }
 
 int	main(int argc, char **argv)
 {
 	t_ps	ps;
 	int		size;
+	//int		move;
 
 	if (argc == 1)
 		ft_exit(&ps, ERROR_ARG);
@@ -64,9 +66,13 @@ int	main(int argc, char **argv)
 	else if (size <= 5)
 		start_process_5(&ps);
 	else if (size <= 100)
-		start_process_100(&ps);
+		start_process_big(&ps, 4);
 	else
-		start_process_big(&ps);
+		start_process_big(&ps, 11);
+	bring_top(&ps, 1, 'a');
 	print_instruction(&ps);
+	//move = print_instruction(&ps);
+	//print_piles(&ps);
+	//ft_printf("Move : %d\n", move);
 	return (ft_exit(&ps, 6));
 }

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:22:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/07 20:39:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:05:07 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ int		ft_exit(t_ps *ps, int error_code);
 void	get_final_position(t_ps *ps);
 void	start_process_3(t_ps *ps);
 void	start_process_5(t_ps *ps);
-void	start_process_100(t_ps *ps);
-void	start_process_big(t_ps *ps);
+void	start_process_big(t_ps *ps, int nb_chunk);
 void	record_action(t_ps *ps, const char *action);
-void	print_instruction(t_ps *ps);
+int		print_instruction(t_ps *ps);
 void	add_action(t_ps *ps, char *str);
 int		pile_is_sorted(t_pile *pile);
 int		ft_abs(int i);
 int		place(t_pile *pile, int pos);
 int		next_pos_in_pile(t_ps *ps, int pos, char c);
 void	bring_top(t_ps *ps, int i, char c);
+int		max_pile_range(t_pile *pile, int start, int end);
 
 #endif

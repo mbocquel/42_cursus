@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:57:50 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/08 15:47:18 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:04:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	next_pos_in_pile(t_ps *ps, int pos, char c)
 	elem = start;
 	while (elem)
 	{
-		if (elem->pos > pos && elem->pos < next)
+		if (c == 'a' && elem->pos > pos && elem->pos < next)
 			next = elem->pos;
 		elem = elem->next;
 		if (elem == start)
@@ -81,6 +81,26 @@ void	bring_top(t_ps *ps, int i, char c)
 	}
 	while (cost--)
 		add_action(ps, rx);
+}
+
+int	max_pile_range(t_pile *pile, int start, int end)
+{
+	t_pile	*elem;
+	int		max;
+
+	elem = pile;
+	max = 0;
+	if (elem)
+		max = elem->pos;
+	while (elem)
+	{
+		if (elem->pos >= start && elem->pos <= end && elem->pos >= max)
+			max = elem->pos;
+		elem = elem->prev;
+		if (elem == pile)
+			break ;
+	}
+	return (max);
 }
 
 void	start_process_5(t_ps *ps)

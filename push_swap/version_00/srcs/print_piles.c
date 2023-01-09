@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:06:41 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/04 15:49:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:55:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void	print_piles(t_ps *ps)
 		else
 			ft_printf("|\n");
 		if (!break_a)
-			ft_printf("| pos %d				", elem_a->pos);
+			ft_printf("| %d				", elem_a->pos);
 		else
 			ft_printf("|				");
 		if (!break_b)
-			ft_printf("| pos %d\n", elem_b->pos);
+			ft_printf("| %d\n", elem_b->pos);
 		else
 			ft_printf("|\n");
-		if (!break_a)
+		/*if (!break_a)
 			ft_printf("| %p		", elem_a);
 		else
 			ft_printf("|				");
@@ -69,7 +69,7 @@ void	print_piles(t_ps *ps)
 		if (!break_b)
 			ft_printf("| prev %p		\n", elem_b->prev);
 		else
-			ft_printf("|			\n");
+			ft_printf("|			\n");*/
 		if (!break_a)
 			elem_a = elem_a->next;
 		if (elem_a == ps->pile_a)

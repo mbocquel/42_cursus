@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/01/07 18:14:04 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/01/09 16:59:51 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SOURCES = 	main.c \
 			get_final_position.c \
 			start_process_3.c \
 			start_process_5.c \
-			start_process_100.c \
 			start_process_big.c \
 			add_action.c \
 						
