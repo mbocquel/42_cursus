@@ -6,11 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:56:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/06 11:03:17 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:54:54 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	ft_atoi_arg_error(const char *nptr, int *val)
 {

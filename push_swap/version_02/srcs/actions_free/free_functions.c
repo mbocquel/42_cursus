@@ -6,11 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:20:08 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/04 16:16:19 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:56:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	ft_exit(t_ps *ps, int error_code)
 {

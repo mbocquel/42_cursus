@@ -6,22 +6,32 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:20:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/10 14:16:00 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:21:16 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_abs(int i)
-{
-	if (i == -2147483648)
-		return (0);
-	if (i < 0)
-		return (-i);
-	return (i);
-}
+/* ***************************** TARGET *************************************
+ 	3 numbers --> less than 3 moves.
+	5 numbers --> less than 12 moves.
 
-int	print_instruction(t_ps *ps)
+	100 numbers :
+		less than 700 moves		--> 5 points
+		less than 900 moves		--> 4 points
+		less than 1100 moves	--> 3 points
+		less than 1300 moves 	--> 2 points
+		less than 1500 moves 	--> 1 point
+
+	500 numbers :
+		less than 5500 moves	--> 5 points
+		less than 7000 moves	--> 4 points
+		less than 8500 moves	--> 3 points
+		less than 10000 moves 	--> 2 points
+		less than 11500 moves 	--> 1 point
+   ********************************************************************** */
+
+void	print_instruction(t_ps *ps, int *move)
 {
 	int		i;
 	char	*inst;
@@ -42,13 +52,12 @@ int	print_instruction(t_ps *ps)
 				inst = "rrr";
 			i++;
 		}
-		if (inst)
-			ft_printf("%s\n", inst);
-		else
-			ft_printf("%s\n", (ps->inst)[i]);
+		if (inst && ft_printf("%s\n", inst))
+			(*move)++;
+		else if (!inst && ft_printf("%s\n", (ps->inst)[i]))
+			(*move)++;
 		inst = NULL;
 	}
-	return (i);
 }
 
 int	main(int argc, char **argv)
@@ -61,18 +70,16 @@ int	main(int argc, char **argv)
 		ft_exit(&ps, ERROR_ARG);
 	parsing(argc, argv, &ps);
 	size = pile_size(ps.pile_a);
-	if (size <= 3)
+	move = 0;
+	if (size < 3 && !(pile_is_sorted(ps.pile_a)))
+		add_action(&ps, "sa");
+	else if (size == 3)
 		start_process_3(&ps);
 	else if (size <= 5)
 		start_process_5(&ps);
-	else if (size <= 100)
-		start_process_big(&ps, 4);
 	else
-		start_process_big(&ps, 11);
-	//bring_top(&ps, 1, 'a');
-	//print_instruction(&ps);
-	move = print_instruction(&ps);
-	//print_piles(&ps);
-	ft_printf("Move : %d\n", move);
-	return (ft_exit(&ps, 6));
+		start_process_big(&ps);
+	bring_top(&ps, 1, 'a');
+	print_instruction(&ps, &move);
+	return (ft_exit(&ps, EXIT_NORMAL));
 }

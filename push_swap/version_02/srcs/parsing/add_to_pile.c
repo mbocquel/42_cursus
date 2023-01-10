@@ -6,11 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:33:40 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/07 20:33:01 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:54:47 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	is_in_pile(t_pile *pile, int val)
 {

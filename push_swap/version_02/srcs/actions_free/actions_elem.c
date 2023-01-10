@@ -6,11 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 14:46:34 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/06 12:19:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:56:44 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	action_swap(t_pile **pile)
 {

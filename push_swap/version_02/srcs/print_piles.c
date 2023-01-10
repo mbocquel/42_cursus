@@ -6,11 +6,23 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:06:41 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/09 17:12:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:46:32 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_piles_2(t_pile *e_a, t_pile *e_b, int b_a, int b_b)
+{
+	if (!b_a)
+		ft_printf("| %d				", e_a->pos);
+	else
+		ft_printf("|				");
+	if (!b_b)
+		ft_printf("| %d \n", e_b->pos);
+	else
+		ft_printf("|\n");
+}
 
 void	print_piles(t_ps *ps)
 {
@@ -29,47 +41,7 @@ void	print_piles(t_ps *ps)
 		break_b = 1;
 	while (!break_a || !break_b)
 	{
-		//ft_printf("________________________	________________________\n");
-		/*if (!break_a)
-			ft_printf("| %d				", elem_a->val);
-		else
-			ft_printf("|				");
-		if (!break_b)
-			ft_printf("| %d\n", elem_b->val);
-		else
-			ft_printf("|\n");*/
-		if (!break_a)
-			ft_printf("| %d				", elem_a->pos);
-		else
-			ft_printf("|				");
-		if (!break_b)
-			ft_printf("| %d\n", elem_b->pos);
-		else
-			ft_printf("|\n");
-		/*if (!break_a)
-			ft_printf("| %p		", elem_a);
-		else
-			ft_printf("|				");
-		if (!break_b)
-			ft_printf("| %p\n", elem_b);
-		else
-			ft_printf("|\n");
-		if (!break_a)
-			ft_printf("| next %p		", elem_a->next);
-		else
-			ft_printf("|				");
-		if (!break_b)
-			ft_printf("| next %p\n", elem_b->next);
-		else
-			ft_printf("|\n");
-		if (!break_a)
-			ft_printf("| prev %p		", elem_a->prev);
-		else
-			ft_printf("|				");
-		if (!break_b)
-			ft_printf("| prev %p		\n", elem_b->prev);
-		else
-			ft_printf("|			\n");*/
+		print_piles_2(elem_a, elem_b, break_a, break_b);
 		if (!break_a)
 			elem_a = elem_a->next;
 		if (elem_a == ps->pile_a)
@@ -79,6 +51,4 @@ void	print_piles(t_ps *ps)
 		if (elem_b == ps->pile_b)
 			break_b = 1;
 	}
-	ft_printf("________________________	________________________\n");
-	ft_printf("       PILE A           	          PILE B\n");
 }

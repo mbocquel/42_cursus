@@ -6,11 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:09:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/07 20:35:46 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:56:49 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	get_nb_action(char **inst)
 {
