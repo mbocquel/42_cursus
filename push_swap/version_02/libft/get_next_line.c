@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:22:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/16 17:20:13 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:10:27 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 char	*get_next_line(int fd)
 {
-	static t_list_sto	*storage[1024] = {NULL};
+	static t_list_sto	*st[1024] = {NULL};
 	char				*buffer;
 	char				*next_line;
-	int					char_read;
-	int					error;
+	int					c;
+	int					e;
 
 	if (BUFFER_SIZE <= 0 || fd < 0 || fd > 1023)
 		return (NULL);
-	char_read = BUFFER_SIZE;
-	error = 0;
-	while (line_to_make_gnl(storage[fd]) == 0 && char_read > 0 && error == 0)
+	c = BUFFER_SIZE;
+	e = 0;
+	while (line_to_make_gnl(st[fd]) == 0 && c > 0 && e == 0)
 	{
 		buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 		if (buffer == NULL)
-			error = 1;
-		char_read = read_store_gnl(&(storage[fd]), buffer, fd, &error);
+			e = 1;
+		c = read_store_gnl(&(st[fd]), buffer, fd, &e);
 		free(buffer);
 	}
-	next_line = make_next_line(&(storage[fd]), &error);
-	clean_storage_gnl(&(storage[fd]));
-	if ((char_read == 0 && storage[fd] != NULL) || error != 0)
-		clear_all_memory_gnl(&(storage[fd]));
-	if (error != 0)
+	next_line = make_next_line(&(st[fd]), &e);
+	clean_storage_gnl(&(st[fd]));
+	if (e != 0 || (st[fd] != NULL && (c == 0 || !ft_strlen(st[fd]->content))))
+		clear_all_memory_gnl(&(st[fd]));
+	if (e != 0)
 		return (NULL);
 	return (next_line);
 }

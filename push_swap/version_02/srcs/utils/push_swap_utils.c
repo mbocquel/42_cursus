@@ -6,11 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:57:22 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/10 15:05:38 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:36:37 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	pile_is_sorted(t_pile *pile)
 {
@@ -74,19 +74,12 @@ void	bring_top(t_ps *ps, int i, char c)
 		add_action(ps, rx);
 }
 
-int	ft_abs(int i)
+void	init_cost(t_cost *c)
 {
-	if (i == -2147483648)
-		return (0);
-	if (i < 0)
-		return (-i);
-	return (i);
-}
-
-int	ft_max(int a, int b)
-{
-	if (a >= b)
-		return (a);
-	else
-		return (b);
+	c->ra = 0;
+	c->rra = 0;
+	c->rb = 0;
+	c->rrb = 0;
+	c->rev_a = 0;
+	c->rev_b = 0;
 }

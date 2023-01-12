@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:20:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/10 18:21:16 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/12 10:27:24 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,35 +31,6 @@
 		less than 11500 moves 	--> 1 point
    ********************************************************************** */
 
-void	print_instruction(t_ps *ps, int *move)
-{
-	int		i;
-	char	*inst;
-
-	i = -1;
-	inst = NULL;
-	while (ps->inst && (ps->inst)[++i])
-	{
-		if ((ps->inst)[i + 1] && *((ps->inst)[i]) != 'p'
-			&& ft_abs(ft_strncmp((ps->inst)[i], (ps->inst)[i + 1], 3)) == 1
-			&& *((ps->inst)[i]) == *((ps->inst)[i + 1]))
-		{
-			if ((ps->inst)[i][0] == 's')
-				inst = "ss";
-			if ((ps->inst)[i][0] == 'r' && (ps->inst)[i][1] != 'r')
-				inst = "rr";
-			if ((ps->inst)[i][0] == 'r' && (ps->inst)[i][1] == 'r')
-				inst = "rrr";
-			i++;
-		}
-		if (inst && ft_printf("%s\n", inst))
-			(*move)++;
-		else if (!inst && ft_printf("%s\n", (ps->inst)[i]))
-			(*move)++;
-		inst = NULL;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_ps	ps;
@@ -73,11 +44,11 @@ int	main(int argc, char **argv)
 	move = 0;
 	if (size < 3 && !(pile_is_sorted(ps.pile_a)))
 		add_action(&ps, "sa");
-	else if (size == 3)
+	else if (size == 3 && !(pile_is_sorted(ps.pile_a)))
 		start_process_3(&ps);
-	else if (size <= 5)
+	else if (size <= 5 && !(pile_is_sorted(ps.pile_a)))
 		start_process_5(&ps);
-	else
+	else if (!(pile_is_sorted(ps.pile_a)))
 		start_process_big(&ps);
 	bring_top(&ps, 1, 'a');
 	print_instruction(&ps, &move);

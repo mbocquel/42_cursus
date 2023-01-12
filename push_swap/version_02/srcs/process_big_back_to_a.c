@@ -6,50 +6,51 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:50:03 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/10 15:14:59 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:09:08 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	cost_bring_back_to_a(t_ps *ps, int pos, int *rx)
+t_cost	cost_bring_back_to_a(t_ps *ps, int pos)
 {
-	int	cost_rx;
-	int	cost_rrx;
-	int	top_a;
-	int	size;
+	t_cost	c;
+	int		top_a;
 
-	*rx = 1;
-	size = pile_size(ps->pile_a) + pile_size(ps->pile_b);
-	cost_rx = place(ps->pile_b, pos) - 1;
-	cost_rrx = pile_size(ps->pile_b) - place(ps->pile_b, pos) + 1;
-	top_a = to_bring_top_a(ps->pile_a, pos, size);
+	init_cost(&c);
+	c.rb = place(ps->pile_b, pos) - 1;
+	c.rrb = pile_size(ps->pile_b) - place(ps->pile_b, pos) + 1;
+	top_a = to_bring_top_a(ps, pos);
 	if (top_a)
 	{
-		cost_rx = ft_max(cost_rx, place(ps->pile_a, top_a) - 1);
-		cost_rrx = ft_max(cost_rrx, pile_size(ps->pile_a)
-				- place(ps->pile_a, top_a) + 1);
+		c.ra = place(ps->pile_a, top_a) - 1;
+		c.rra = pile_size(ps->pile_a) - place(ps->pile_a, top_a) + 1;
 	}
-	if (cost_rx <= cost_rrx)
-		return (cost_rx);
-	else
+	c.total = ft_min4(ft_max(c.ra, c.rb), ft_max(c.rra, c.rrb),
+			c.ra + c.rrb, c.rra + c.rb);
+	if (c.total == ft_max(c.rra, c.rrb))
 	{
-		*rx = 0;
-		return (cost_rrx);
+		c.rev_a = 1;
+		c.rev_b = 1;
 	}
+	else if (c.total == c.ra + c.rrb)
+		c.rev_b = 1;
+	else if (c.total == c.rra + c.rb)
+		c.rev_a = 1;
+	return (c);
 }
 
-int	to_bring_top_a(t_pile *pile, int pos, int size)
+int	to_bring_top_a(t_ps *ps, int pos)
 {
 	t_pile	*elem;
 	int		to_bring_top;
 	int		pos_min;
 
-	if (!pile)
+	if (!ps->pile_a)
 		return (0);
-	to_bring_top = size + 1;
-	elem = pile;
-	pos_min = size;
+	to_bring_top = pile_size(ps->pile_a) + pile_size(ps->pile_b) + 1;
+	elem = ps->pile_a;
+	pos_min = pile_size(ps->pile_a) + pile_size(ps->pile_b);
 	while (elem)
 	{
 		if (elem->pos > pos && elem->pos < to_bring_top)
@@ -57,10 +58,10 @@ int	to_bring_top_a(t_pile *pile, int pos, int size)
 		if (elem->pos < pos_min)
 			pos_min = elem->pos;
 		elem = elem->next;
-		if (elem == pile)
+		if (elem == ps->pile_a)
 			break ;
 	}
-	if (to_bring_top == size + 1)
+	if (to_bring_top == pile_size(ps->pile_a) + pile_size(ps->pile_b) + 1)
 		return (pos_min);
 	return (to_bring_top);
 }
@@ -69,20 +70,18 @@ int	find_elem_to_bring_back(t_ps *ps)
 {
 	int		pos;
 	int		cost;
-	int		rx;
 	t_pile	*elem;
 
 	elem = ps->pile_b;
 	if (!elem)
 		return (0);
-	rx = 1;
 	pos = elem->pos;
-	cost = cost_bring_back_to_a(ps, elem->pos, &rx);
+	cost = cost_bring_back_to_a(ps, elem->pos).total;
 	while (elem)
 	{
-		if (cost_bring_back_to_a(ps, elem->pos, &rx) < cost)
+		if (cost_bring_back_to_a(ps, elem->pos).total < cost)
 		{
-			cost = cost_bring_back_to_a(ps, elem->pos, &rx);
+			cost = cost_bring_back_to_a(ps, elem->pos).total;
 			pos = elem->pos;
 		}
 		elem = elem->next;
@@ -92,45 +91,20 @@ int	find_elem_to_bring_back(t_ps *ps)
 	return (pos);
 }
 
-void	action_return_opti(t_ps *ps, int cost_a, int cost_b, int rx)
+void	return_to_a(t_ps *ps)
 {
-	while (cost_a > 0 || cost_b > 0)
-	{
-		if (rx == 1 && cost_a-- > 0)
-			add_action(ps, "ra");
-		else if (rx == 0 && cost_a-- > 0)
-			add_action(ps, "rra");
-		if (rx == 1 && cost_b-- > 0)
-			add_action(ps, "rb");
-		else if (rx == 0 && cost_b-- > 0)
-			add_action(ps, "rrb");
-	}
-	add_action(ps, "pa");
-}
-
-void	return_to_a(t_ps *ps, int size)
-{
-	int	cost_b;
-	int	cost_a;
-	int	rx;
-	int	pos;
+	t_cost	c;
+	int		pos;
 
 	pos = find_elem_to_bring_back(ps);
-	rx = 0;
-	cost_bring_back_to_a(ps, pos, &rx);
-	cost_a = 0;
-	if (rx == 1)
-		cost_b = place(ps->pile_b, pos) - 1;
-	else
-		cost_b = pile_size(ps->pile_b) - place(ps->pile_b, pos) + 1;
-	if (to_bring_top_a(ps->pile_a, pos, size))
-	{
-		if (rx == 1)
-			cost_a = place(ps->pile_a,
-					to_bring_top_a(ps->pile_a, pos, size)) - 1;
-		else
-			cost_a = pile_size(ps->pile_a)
-				- place(ps->pile_a, to_bring_top_a(ps->pile_a, pos, size)) + 1;
-	}
-	action_return_opti(ps, cost_a, cost_b, rx);
+	c = cost_bring_back_to_a(ps, pos);
+	if (!c.rev_a && !c.rev_b)
+		rotate_ra_rb(ps, c);
+	if (c.rev_a && c.rev_b)
+		rotate_rra_rrb(ps, c);
+	if (c.rev_a && !c.rev_b)
+		rotate_rra_rb(ps, c);
+	if (!c.rev_a && c.rev_b)
+		rotate_ra_rrb(ps, c);
+	add_action(ps, "pa");
 }

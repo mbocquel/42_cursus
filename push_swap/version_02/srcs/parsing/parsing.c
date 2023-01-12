@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:56:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/10 14:54:54 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/11 10:56:55 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ int	ft_atoi_arg_error(const char *nptr, int *val)
 	{
 		if (nptr[i] == '-')
 			sng = -1;
+		if (!nptr[i + 1] || !(nptr[i + 1] >= '0' && nptr[i + 1] <= '9'))
+			return (1);
 		i++;
 	}
 	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9' && result <= 2147483648)
-	{
-		result = result * 10 + nptr[i] - '0';
-		i++;
-	}
+		result = result * 10 + nptr[i++] - '0';
 	if (sng * result < -2147483648 || sng * result > 2147483647 || nptr[i])
 		return (1);
 	*val = (int)(sng * result);

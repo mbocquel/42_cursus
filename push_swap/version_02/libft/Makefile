@@ -1,3 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/01/11 14:11:32 by mbocquel          #+#    #+#              #
+#    Updated: 2023/01/11 14:12:09 by mbocquel         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libft.a
+
 MY_SOURCES = ft_atoi.c \
 			ft_isalpha.c \
 			ft_isprint.c \
@@ -50,12 +64,9 @@ MY_SOURCES = ft_atoi.c \
 			get_next_line.c \
 			ft_atoi_hex.c
 
-
 MY_HEADERS = .
 
 MY_OBJECTS = $(MY_SOURCES:.c=.o)
-
-NAME = libft.a
 
 CC = gcc
 

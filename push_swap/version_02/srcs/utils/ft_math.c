@@ -1,36 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_math.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 19:04:09 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/10 19:34:25 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/01/11 17:25:16 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/01/11 17:36:32 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	main(int argc, char **argv)
+int	ft_abs(int i)
 {
-	t_ps	ps;
-	char	*inst;
+	if (i == -2147483648)
+		return (0);
+	if (i < 0)
+		return (-i);
+	return (i);
+}
 
-	if (argc == 1)
-		ft_exit(&ps, ERROR_ARG);
-	parsing(argc, argv, &ps);
-	inst = get_next_line(0);
-	while (inst)
-	{
-		add_action(&ps, inst);
-		free(inst);
-		inst = get_next_line(0);
-	}
-	free(inst);
-	if (pile_is_sorted(ps.pile_a) && pile_size(ps.pile_b) == 0)
-		ft_printf("OK\n");
+int	ft_max(int a, int b)
+{
+	if (a >= b)
+		return (a);
 	else
-		ft_printf("KO\n");
-	return (ft_exit(&ps, EXIT_NORMAL));
+		return (b);
+}
+
+int	ft_min4(int a, int b, int c, int d)
+{
+	int	min;
+
+	min = a;
+	if (b < min)
+		min = b;
+	if (c < min)
+		min = c;
+	if (d < min)
+		min = d;
+	return (min);
 }
