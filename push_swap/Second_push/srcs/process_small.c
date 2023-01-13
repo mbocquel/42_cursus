@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:57:50 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/11 17:20:38 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:47:16 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	start_process_5(t_ps *ps)
 
 	if (pile_is_sorted(ps->pile_a))
 		return ;
-	top_a = 0;
 	while (pile_size(ps->pile_a) > 3)
 		add_action(ps, "pb");
 	start_process_3(ps);

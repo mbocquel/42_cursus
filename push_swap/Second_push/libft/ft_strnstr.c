@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:07:59 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/07 17:22:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:52:15 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		return ((char *)big);
 	i = 0;
 	j = 0;
-	while (big[i] && i < len)
+	while (big && big[i] && i < len)
 	{
 		if (big[i] == little[j])
 		{

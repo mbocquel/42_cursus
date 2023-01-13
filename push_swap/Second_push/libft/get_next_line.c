@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:22:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/11 14:10:27 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:47:59 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	read_store_gnl(t_list_sto **storage, char *buffer, int fd, int *error)
 	char	*content;
 	int		i;
 
-	i = 0;
 	char_read = read(fd, buffer, BUFFER_SIZE);
 	if (char_read > 0)
 	{
