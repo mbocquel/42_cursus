@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:07:16 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/16 20:07:04 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:04:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@ int	main(int argc, char **argv, char **env)
 	t_pipex px;
 
 	parsing_normal(&px, argc, argv, env);
-	ft_printf("in_file : %s\n", px.in_file);
-	ft_printf("out_file : %s\n", px.out_file);
 	print_prog(&px);
-	return (0);
+	
+	//return (ft_exit(&px, EXIT_NORMAL));
 }
 
 /*
@@ -75,7 +74,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		if(access("/bin/ls", F_OK) == 0)
 			printf("fichier OK\n");
-		/*if (execve(argv[1], argv + 1, env) == -1)
+		if (execve(argv[1], argv + 1, env) == -1)
 		{
 			perror("execve");
 			return (1);			
