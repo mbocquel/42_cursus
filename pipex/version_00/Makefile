@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/01/16 22:31:29 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/01/17 13:23:10 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ BUILD_DIR = ./build/
 SOURCES = 	main.c \
 			parsing.c \
 			ft_exit.c \
+			print_data.c \
 
 SOURCES_BONUS = 
 
