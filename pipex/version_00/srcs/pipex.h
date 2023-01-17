@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:09:49 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/17 16:34:24 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:21:49 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_pipex
 	char			*out_file;
 	char			**path_env;
 	int				pipe_fd[2];
+	int				pipe_sauv[2];
 	t_gar_col		*garbage;
 	t_cmd			*cmd;
 }					t_pipex;

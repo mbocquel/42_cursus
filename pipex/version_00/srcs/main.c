@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:07:16 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/17 16:36:05 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:39:20 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,167 @@ int	main(int argc, char **argv, char **env)
 }
 
 */
+void	manage_redirect_out(t_pipex *px, t_cmd *cmd)
+{
+	int	fd_out;
+
+	if (cmd->next != NULL)
+	{
+		dup2((px->pipe_fd)[1], STDOUT_FILENO);
+	}
+	else
+	{
+		fd_out = open(px->out_file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		dup2(fd_out, STDOUT_FILENO);
+		close(fd_out);
+	}
+}
+
+void	manage_redirect(t_pipex *px, t_cmd *cmd)
+{
+	int	fd_in;
+
+	if (cmd == px->cmd)
+	{
+		fd_in = open(px->in_file, O_RDONLY);
+		dup2(fd_in, STDIN_FILENO);
+		close(fd_in);
+	}
+	else
+	{
+		dup2((px->pipe_fd)[0], STDIN_FILENO);
+	}
+	manage_redirect_out(px, cmd);
+}
+
+void	close_mul_fd(int fd1, int fd2)
+{
+	close(fd1);
+	close(fd2);
+}
+
+int	start_execution(t_pipex *px, t_cmd *cmd, char **env)
+{
+	char *cmd_path;
+	
+	if (pipe(px->pipe_fd) == -1)
+	{
+		perror("pipe");
+		return (1);
+	}
+	/*(px->pipe_sauv)[0] = dup((px->pipe_fd)[0]);
+	(px->pipe_sauv)[1] = dup((px->pipe_fd)[1]);*/
+	while (cmd != NULL)
+	{
+		cmd->pid = fork();
+		if (cmd->pid == -1)
+			return (1);
+		if (cmd->pid == 0)
+		{
+			manage_redirect(px, cmd);
+			close_mul_fd((px->pipe_fd)[0], (px->pipe_fd)[1]);
+			cmd_path = get_path_prog(px, (cmd->cmd_split)[0]);
+			if (cmd_path == NULL)
+			{
+				ft_putstr_fd((cmd->cmd_split)[0], 2);
+				ft_putstr_fd("je trouve pas", 2);
+			}
+			else 
+				ft_putstr_fd(cmd_path, 2);
+			execve(cmd_path, cmd->cmd_split, env);
+		}
+		if (cmd->next == NULL)
+			close_mul_fd((px->pipe_fd)[0], (px->pipe_fd)[1]);
+		waitpid(cmd->pid, NULL, 0);
+		cmd = cmd->next;
+	}
+	//close_mul_fd((px->pipe_fd)[0], (px->pipe_fd)[1]);
+	return (0);
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	t_pipex	px;
+
+	/*if (argc < 5)
+	{
+		ft_putstr_fd("Error - wrong number of arguments\n", 2);
+		return (1);
+	}*/
+	parsing_normal(&px, argc, argv, env);
+	start_execution(&px, px.cmd, env);
+//	print_prog(&px);
+
+	return (0);
+}
+
+/*
+int	main(int argc, char **argv, char **env)
+{
+	t_pipex	px;
+	int	pid1;
+	int	pid2;
+	char *cmd_path;
+	t_cmd *cmd;
+
+	if (argc < 5)
+	{
+		ft_putstr_fd("Error - wrong number of arguments\n", 2);
+		return (1);
+	}
+	if (pipe(px.pipe_fd) == -1)
+	{
+		perror("pipe");
+		return (1);
+	}
+	parsing_normal(&px, argc, argv, env);
+	ft_printf("pipe_read %d\n", px.pipe_fd[0]);
+	ft_printf("pipe_write %d\n\n", px.pipe_fd[1]);
+	cmd = px.cmd;
+	if (cmd)
+	{
+		pid1 = fork();
+		if (pid1 == -1)
+			return (1);
+		if (pid1 == 0)
+		{
+			int fd = open(px.in_file, O_RDONLY);
+			cmd_path = get_path_prog(&px, (cmd->cmd_split)[0]);
+			dup2(fd, STDIN_FILENO);
+			dup2((px.pipe_fd)[1], STDOUT_FILENO);
+			close((px.pipe_fd)[1]);
+			close((px.pipe_fd)[0]);
+			close(fd);
+			execve(cmd_path, cmd->cmd_split, env);
+		}
+		waitpid(pid1, NULL, 0);
+		cmd = cmd->next;
+	}
+	if (cmd)
+	{
+		pid2 = fork();
+		if (pid2 == -1)
+			return (1);
+		if (pid2 == 0)
+		{
+			//int fd = open(px.in_file, O_RDONLY);
+			cmd_path = get_path_prog(&px, (cmd->cmd_split)[0]);
+			dup2((px.pipe_fd)[0], STDIN_FILENO);
+			//dup2((px.pipe_fd)[1], STDOUT_FILENO);
+			close((px.pipe_fd)[1]);
+			close((px.pipe_fd)[0]);
+			//close(fd);
+			execve(cmd_path, cmd->cmd_split, env);
+		}
+		waitpid(pid1, NULL, 0);
+		cmd = cmd->next;
+	}
+	return (ft_exit(&px, EXIT_NORMAL));
+}
+*/
+
+/*
+MAIN OK POUR DEUX CMD
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	px;
@@ -288,16 +449,15 @@ int	main(int argc, char **argv, char **env)
 		waitpid(pid2, NULL, 0);
 	}
 	return (0);
-}
+}*/
 
-/*
-int	main(int argc, char **argv, char **env)
+/*int	main(int argc, char **argv, char **env)
 {
 	t_pipex	px;
-	int	pid1;
-	int	pid2;
 	char *cmd_path;
 	t_cmd *cmd;
+	int	fd_in;
+	int	fd_out;
 
 	if (argc < 5)
 	{
@@ -310,47 +470,46 @@ int	main(int argc, char **argv, char **env)
 		return (1);
 	}
 	parsing_normal(&px, argc, argv, env);
-	ft_printf("pipe_read %d\n", px.pipe_fd[0]);
-	ft_printf("pipe_write %d\n\n", px.pipe_fd[1]);
 	cmd = px.cmd;
-	if (cmd)
+	while (cmd != NULL)
 	{
-		pid1 = fork();
-		if (pid1 == -1)
+		cmd->pid = fork();
+		if (cmd->pid == -1)
 			return (1);
-		if (pid1 == 0)
+		if (cmd->pid == 0)
 		{
-			int fd = open(px.in_file, O_RDONLY);
-			cmd_path = get_path_prog(&px, (cmd->cmd_split)[0]);
-			dup2(fd, STDIN_FILENO);
-			dup2((px.pipe_fd)[1], STDOUT_FILENO);
+			if (cmd == px.cmd)
+			{
+				fd_in = open(px.in_file, O_RDONLY);
+				dup2(fd_in, STDIN_FILENO);
+				close(fd_in);
+			}
+			else
+			{
+				dup2((px.pipe_fd)[0], STDIN_FILENO);
+			}
+			if (cmd->next != NULL)
+			{
+				dup2((px.pipe_fd)[1], STDOUT_FILENO);
+			}
+			else
+			{
+				fd_out = open(px.out_file, O_WRONLY | O_CREAT, 0777);
+				dup2(fd_out, STDOUT_FILENO);
+				close(fd_out);
+			}
 			close((px.pipe_fd)[1]);
 			close((px.pipe_fd)[0]);
-			close(fd);
-			execve(cmd_path, cmd->cmd_split, env);
-		}
-		waitpid(pid1, NULL, 0);
-		cmd = cmd->next;
-	}
-	if (cmd)
-	{
-		pid2 = fork();
-		if (pid2 == -1)
-			return (1);
-		if (pid2 == 0)
-		{
-			//int fd = open(px.in_file, O_RDONLY);
 			cmd_path = get_path_prog(&px, (cmd->cmd_split)[0]);
-			dup2((px.pipe_fd)[0], STDIN_FILENO);
-			//dup2((px.pipe_fd)[1], STDOUT_FILENO);
-			close((px.pipe_fd)[1]);
-			close((px.pipe_fd)[0]);
-			//close(fd);
 			execve(cmd_path, cmd->cmd_split, env);
 		}
-		waitpid(pid1, NULL, 0);
+		if (cmd->next == NULL)
+		{
+			close((px.pipe_fd)[1]);
+			close((px.pipe_fd)[0]);		
+		}
+		waitpid(cmd->pid, NULL, 0);
 		cmd = cmd->next;
 	}
-	return (ft_exit(&px, EXIT_NORMAL));
-}
-*/
+	return (0);
+}*/
