@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:58:06 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/07 20:44:33 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:23:37 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,15 @@ int		ft_printf_putnbr(int n, int *error);
 int		ft_printf_put_usint(unsigned int u_nbr, int *error);
 int		ft_printf_putnbrhex(unsigned int nb_hex, char x, int *error);
 int		ft_printf_putnbrhex_ull(unsigned long long nb_hex, char x, int *error);
+int		ft_printf_fd(int fd, const char *str, ...);
+int		ft_printf_fd_process(int fd, va_list *args, int *i, const char *str);
+int		ft_printf_fd_putchar(int fd, int c);
+int		ft_printf_fd_putstr(int fd, char *str);
+int		ft_printf_fd_putptr(int fd, void *ptr);
+int		ft_printf_fd_putnbr(int fd, int n);
+int		ft_printf_fd_put_usint(int fd, unsigned int u_nbr);
+int		ft_printf_fd_putnbrhex(int fd, unsigned int nb_hex, char x);
+int		ft_printf_fd_putnbrhex_ull(int fd, unsigned long long nb_hex, char x);
 void	ft_lstadd_back_gnl(t_list_sto **lst, void *content);
 char	*get_next_line(int fd);
 int		line_to_make_gnl(t_list_sto *storage);

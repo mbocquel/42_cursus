@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 13:22:45 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/18 11:57:43 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:58:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	print_prog(t_pipex *px)
 	t_cmd		*c;
 	t_gar_col	*garb;
 
-	//ft_printf("in_file %s\n", px->in_file);
-	//ft_printf("out_file %s\n\n", px->out_file);
 	ft_printf("Path Env\n");
 	i = -1;
 	while ((px->path_env)[++i])

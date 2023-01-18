@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:07:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/18 14:00:31 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:13:08 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	garbage_col(t_pipex *px, void *ptr)
 		return ;
 	new_garb = (t_gar_col *)malloc(sizeof(t_gar_col));
 	if (new_garb == NULL)
-		ft_exit(px, ERROR_GARBAGE_COL, "");
+		ft_exit(px, ERROR_MALLOC, "garbage_col", "new_garb");
 	new_garb->ptr = ptr;
 	new_garb->next = NULL;
 	if (px->garbage == NULL)
@@ -45,11 +45,11 @@ void	garbage_split(t_pipex *px, char **strs)
 	garbage_col(px, (void *)strs);
 }
 
-int	ft_exit(t_pipex *px, int code_exit, char *str)
+void	empty_garbage(t_pipex *px)
 {
 	t_gar_col	*elem_garb;
 	t_gar_col	*temp;
-	(void)str;
+
 	elem_garb = px->garbage;
 	while (elem_garb)
 	{
@@ -58,10 +58,30 @@ int	ft_exit(t_pipex *px, int code_exit, char *str)
 		elem_garb = temp->next;
 		free(temp);
 	}
-	if (code_exit % 5 == 0)
+}
+
+int	ft_exit(t_pipex *px, int code_exit, char *str1, char *str2)
+{
+	int	val_return;
+
+	ft_printf_fd(2, "code exit %d\n", code_exit);
+	val_return = code_exit;
+	if (code_exit % 2 != 0)
+		ft_putstr_fd("Error: ", 2);
+	if (code_exit == ERROR_MALLOC)
+		ft_printf_fd(2, "memory allocaton problem in %s --> %s\n", str1, str2);
+	if (code_exit == ERROR_ARG_NUM)
+		ft_printf_fd(2, "%s\n", str1);
+	if (code_exit == ERROR_PERROR)
+		ft_printf_fd(2, "%s: %s\n", strerror(errno), str2);
+	if (code_exit == ERROR_CMD_NOT_FOUND)
 	{
-		ft_putstr_fd("Error\n", 2);
-		exit(code_exit);
+		val_return = 127;
+		ft_printf_fd(2, "command not found: %s\n", str1);
 	}
-	return (0);
+	if (code_exit % 2 == 0)
+		val_return = 0;
+	empty_garbage(px);
+	ft_printf("%d\n",val_return );
+	exit(val_return);
 }

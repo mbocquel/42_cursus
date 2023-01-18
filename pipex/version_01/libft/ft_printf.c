@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:58:01 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/29 17:05:08 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:24:50 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_printf_putnbrhex(unsigned int nb_hex, char x, int *error)
 
 	if (x == 'x')
 		base = "0123456789abcdef";
-	if (x == 'X')
+	else
 		base = "0123456789ABCDEF";
 	result = 0;
 	if (nb_hex < 16)
@@ -89,7 +89,7 @@ int	ft_printf_putnbrhex_ull(unsigned long long nb_hex, char x, int *error)
 
 	if (x == 'x')
 		base = "0123456789abcdef";
-	if (x == 'X')
+	else
 		base = "0123456789ABCDEF";
 	result = 0;
 	if (nb_hex < 16)

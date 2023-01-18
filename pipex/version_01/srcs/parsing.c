@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:11:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/18 13:17:47 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:59:38 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*get_path_prog(t_pipex *px, char *name)
 	{
 		cmd_path = ft_path(path_strs[i], name);
 		if (cmd_path == NULL)
-			ft_exit(px, ERROR_PARSING, "");
+			ft_exit(px, ERROR_MALLOC, "get_path_prog", "cmd_path");
 		else
 			garbage_col(px, (void *)cmd_path);
 		if (access(cmd_path, F_OK) == 0)
@@ -81,11 +81,11 @@ int	add_cmd(t_pipex *px, char *cmd)
 
 	new = (t_cmd *)malloc(sizeof(t_cmd));
 	if (new == NULL)
-		return (ft_exit(px, ERROR_PARSING, ""));
+		return (ft_exit(px, ERROR_MALLOC, "add_cmd", "new"));
 	garbage_col(px, (void *)new);
 	cmd_split = ft_split(cmd, " ");
 	if (cmd_split == NULL)
-		return (ft_exit(px, ERROR_PARSING, ""));
+		return (ft_exit(px, ERROR_MALLOC, "add_cmd", "cmd_split"));
 	garbage_split(px, cmd_split);
 	new->cmd_split = cmd_split;
 	new->next = NULL;
@@ -106,9 +106,7 @@ int	parsing_normal(t_pipex *px, int argc, char **argv, char **env)
 	i = argc - 2;
 	px->path_env = get_env_path(px, env);
 	if (px->path_env == NULL)
-		ft_exit(px, ERROR_PARSING, "");
-	//px->in_file = argv[1];
-	//px->out_file = argv[argc - 1];
+		ft_exit(px, ERROR_MALLOC, "parsing_normal", "path_env");
 	while (i > 1)
 	{
 		add_cmd(px, argv[i]);
@@ -117,7 +115,7 @@ int	parsing_normal(t_pipex *px, int argc, char **argv, char **env)
 	px->nb_cmd = argc - 3;
 	px->pid = (int *)malloc(sizeof(int) * (px->nb_cmd));
 	if (px->pid == NULL)
-		return (ft_exit(px, ERROR_PARSING, ""));
+		return (ft_exit(px, ERROR_MALLOC, "parsing_normal", "pid"));
 	garbage_col(px, (void *)(px->pid));	
 	return (0);
 }
