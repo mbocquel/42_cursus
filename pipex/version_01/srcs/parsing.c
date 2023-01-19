@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:11:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/18 16:59:38 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:27:26 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ char	*get_path_prog(t_pipex *px, char *name)
 	char	**path_strs;	
 
 	i = 0;
+	if (ft_strncmp(name, ".", 1) == 0 || ft_strncmp(name, "/", 1) == 0)
+		return (name);
 	path_strs = px->path_env;
 	while (path_strs[i])
 	{
@@ -113,9 +115,5 @@ int	parsing_normal(t_pipex *px, int argc, char **argv, char **env)
 		i--;
 	}
 	px->nb_cmd = argc - 3;
-	px->pid = (int *)malloc(sizeof(int) * (px->nb_cmd));
-	if (px->pid == NULL)
-		return (ft_exit(px, ERROR_MALLOC, "parsing_normal", "pid"));
-	garbage_col(px, (void *)(px->pid));	
 	return (0);
 }

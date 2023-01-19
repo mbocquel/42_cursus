@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/01/17 13:23:10 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/01/18 11:26:35 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3
 
 RM = rm -rf
 

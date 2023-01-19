@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:37:24 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/19 14:08:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:36:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ open, close, read, write,
 malloc, free, perror,
 strerror, access, dup, dup2,
 execve, exit, fork, pipe,
-unlink, wait, waitpid*/
+unlink, wait, waitpid
+
+J'ai plein de fd encore ouvert en sortie. ==> trouver comment corriger.
+Et je comprend pas bien les leak des enfants ==> est ce que ca veut 
+dire que valgrind regarde aussi cote enfant ce qui a ete affecte avant que
+tout disparraisse ?
+valgrind --trace-children=yes --track-fds=yes --leak-check=full*/
 
 int	first_process(t_pipex *px, t_cmd *cmd, char **env)
 {

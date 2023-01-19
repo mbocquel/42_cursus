@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:37:24 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/18 17:17:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:39:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ strerror, access, dup, dup2,
 execve, exit, fork, pipe,
 unlink, wait, waitpid*/
 
-/*J'ai des soucis pour la gestion des sorties.
- si un de mes enfants se foire, mon parent continu normalement et du coup 
- je n'ai pas de code d'erreur en sortie du programme ce qui ne va pas. */
+/*
+A traiter : cas ou le fichier existe mais n'est pas executable. 
+--trace-children=yes et --track-fds=yes*/
 
- 
 int	first_process(t_pipex *px, t_cmd *cmd, char **env)
 {
 	char	*cmd_path;
@@ -62,9 +61,9 @@ int	pipex(t_pipex *px, char **env)
 {
 	int		i;
 	t_cmd	*cmd;
-	int status_0 = 0;
-	int status_1 = 0;
+	int		status_1;
 
+	status_1 = 0;
 	if (pipe(px->pipe_fd) == -1)
 		return (ft_exit(px, ERROR_PERROR, "pipe", ""));
 	i = -1;
@@ -72,26 +71,21 @@ int	pipex(t_pipex *px, char **env)
 	while (++i < px->nb_cmd)
 	{
 		(px->pid)[i] = fork();
-		if ((px->pid)[i] == 0)
-		{
-			if (i == 0)
-				first_process(px, cmd, env);
-			else
-				last_process(px, cmd, env);
-		}
+		if ((px->pid)[i] == 0 && i == 0)
+			first_process(px, cmd, env);
+		else if ((px->pid)[i] == 0)
+			last_process(px, cmd, env);
 		cmd = cmd->next;
 	}
 	close((px->pipe_fd)[0]);
 	close((px->pipe_fd)[1]);
-
-	waitpid((px->pid)[0], &status_0, 0);
+	waitpid((px->pid)[0], NULL, 0);
 	waitpid((px->pid)[1], &status_1, 0);
 	if (status_1)
-		return (ft_exit(px, status_1, "", ""));
-	if (status_0)
-		return (ft_exit(px, status_0, "", ""));
-	/*ft_printf("(px->pid)[0] %d - First : a = %d - status = %d\n",(px->pid)[0], a, status_0);
-	ft_printf("(px->pid)[1] %d - Second : b = %d - status = %d\n",(px->pid)[1], b, status_1);*/
+	{
+		ft_printf("status_1 %d exit status %d\n", status_1, WEXITSTATUS(status_1));
+		return (ft_exit(px, WEXITSTATUS(status_1), "", ""));
+	}
 	return (0);
 }
 
@@ -100,11 +94,14 @@ int	main(int argc, char **argv, char **env)
 	t_pipex	px;
 
 	if (argc != 5)
-		return (ft_exit(&px, ERROR_ARG_NUM, "wrong number of argument", ""));
+		return (ft_exit(&px, ERROR_ARG_NUM, argv[0], ""));
+	px.garbage = NULL;
+	px.cmd = NULL;
+	px.error = 0;
 	parsing_normal(&px, argc, argv, env);
 	px.fd_in = open(argv[1], O_RDONLY);
 	if (px.fd_in == -1)
-		return(ft_exit(&px, ERROR_PERROR, "open", argv[1]));
+		return (ft_exit(&px, ERROR_PERROR, "open", argv[1]));
 	px.fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (px.fd_out == -1)
 		return (ft_exit(&px, ERROR_PERROR, "open", argv[argc - 1]));

@@ -6,17 +6,29 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 13:22:45 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/18 14:58:52 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/19 12:43:06 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+void	print_prog2(t_pipex *px)
+{
+	t_gar_col	*garb;
+
+	ft_printf("\nGarbage \n");
+	garb = px->garbage;
+	while (garb)
+	{
+		ft_printf("	garbage %p\n", garb->ptr);
+		garb = garb->next;
+	}
+}
+
 void	print_prog(t_pipex *px)
 {
 	int			i;
 	t_cmd		*c;
-	t_gar_col	*garb;
 
 	ft_printf("Path Env\n");
 	i = -1;
@@ -35,11 +47,5 @@ void	print_prog(t_pipex *px)
 		}
 		c = c->next;
 	}
-	ft_printf("\nGarbage \n");
-	garb = px->garbage;
-	while (garb)
-	{
-		ft_printf("	garbage %p\n", garb->ptr);
-		garb = garb->next;
-	}
+	print_prog2(px);
 }
