@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:37:24 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/19 12:47:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:08:51 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@ malloc, free, perror,
 strerror, access, dup, dup2,
 execve, exit, fork, pipe,
 unlink, wait, waitpid*/
-
-/*
-A traiter : cas ou le fichier existe mais n'est pas executable. 
---trace-children=yes et --track-fds=yes*/
 
 int	first_process(t_pipex *px, t_cmd *cmd, char **env)
 {
