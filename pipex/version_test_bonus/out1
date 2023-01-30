@@ -1,9 +1,0 @@
-DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/103528/bus,guid=7de03c716527724b2ef5972d63c90e84
-XDG_RUNTIME_DIR=/run/user/103528
-GNOME_TERMINAL_SERVICE=:1.104
-VSCODE_GIT_IPC_HANDLE=/run/user/103528/vscode-git-a4dcc10850.sock
-SSH_AUTH_SOCK=/run/user/103528/keyring/ssh
-KRB5CCNAME=FILE:/tmp/krb5cc_103528_7boy3D
-DOCKER_HOST=unix:///run/user/103528/docker.sock
-GPG_AGENT_INFO=/run/user/103528/gnupg/S.gpg-agent:0:1
-DBUS_STARTER_ADDRESS=unix:path=/run/user/103528/bus,guid=7de03c716527724b2ef5972d63c90e84
