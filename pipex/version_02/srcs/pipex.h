@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:09:49 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/30 14:00:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:05:56 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_pipex
 	int				pid[2];
 	char			**path_env;
 	int				pipe_fd[2];
+	int				ret_wait[2];
 	int				code_exit_last;
 	t_gar_col		*garbage;
 	t_cmd			*cmd;
@@ -68,6 +69,7 @@ void	close_fd(t_pipex *px);
 int		ft_exit_child(int code_exit, char *str1);
 int		ft_exit_parent(t_pipex *px, int code_exit, char *str1);
 int		ft_exit(t_pipex *px, int code_exit, char *str1, int child);
+void	close_pipe(int pipe[2]);
 
 /* garbage.c */
 void	garbage_col(t_pipex *px, void *ptr);

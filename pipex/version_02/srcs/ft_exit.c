@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:07:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/30 16:11:49 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:04:42 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ void	close_fd(t_pipex *px)
 	close(2);
 	close(px->fd_in);
 	close(px->fd_out);
+}
+
+void	close_pipe(int pipe[2])
+{
+	close(pipe[0]);
+	close(pipe[1]);
 }
 
 int	ft_exit_child(int code_exit, char *str1)

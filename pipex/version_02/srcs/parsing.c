@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:11:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/30 15:50:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:06:24 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ int	parsing_normal(t_pipex *px, int argc, char **argv, char **env)
 	i = argc - 2;
 	px->pipe_fd[0] = 0;
 	px->pipe_fd[1] = 0;
+	px->ret_wait[0] = 0;
+	px->ret_wait[1] = 0;
 	px->fd_in = 0;
 	px->fd_out = 0;
 	px->path_env = get_env_path(px, env);

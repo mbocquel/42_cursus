@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:37:24 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/30 16:09:55 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:06:46 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,12 @@ int	pipex(t_pipex *px, char **env, char **argv)
 			last_process(px, cmd, env, argv);
 		cmd = cmd->next;
 	}
-	close((px->pipe_fd)[0]);
-	close((px->pipe_fd)[1]);
-	waitpid((px->pid)[1], &(px->code_exit_last), 0);
+	close_pipe(px->pipe_fd);
+	while (px->ret_wait[0] != -1 && px->ret_wait[1] != -1 && errno != ECHILD)
+	{
+		px->ret_wait[0] = waitpid((px->pid)[0], NULL, 0);
+		px->ret_wait[1] = waitpid((px->pid)[1], &(px->code_exit_last), 0);
+	}
 	return (0);
 }
 
