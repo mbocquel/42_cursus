@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"libft.h": "c",
+		"wait.h": "c",
+		"typeinfo": "c",
+		"type_traits": "c"
+	}
+}
