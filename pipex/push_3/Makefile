@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/01/30 14:51:00 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/02/02 16:54:27 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,12 +38,16 @@ CLIB = -Llibft -lft
 all: $(NAME)
 
 $(BUILD_DIR)%.o: $(SOURCES_DIR)%.c
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -O3 -c $< -o $@
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -O3 -c $< -o $@
+	@echo "Compiling " $<
 
-$(NAME):	$(OBJECTS) 
-			make -C $(LIBFT_DIR)
-			$(CC) $(CFLAGS) $(OBJECTS) $(CLIB) -o $(NAME)
+$(NAME):	$(OBJECTS)
+			@echo
+			@make -C $(LIBFT_DIR)
+			@$(CC) $(CFLAGS) $(OBJECTS) $(CLIB) -o $(NAME)
+			@echo "\nCreating ./"$(NAME)
+			@echo "\n----- ALL DONE THANKS! -----\n"
 
 clean:
 	$(RM) $(BUILD_DIR)

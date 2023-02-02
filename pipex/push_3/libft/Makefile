@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 14:11:32 by mbocquel          #+#    #+#              #
-#    Updated: 2023/01/30 15:33:44 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/02/02 16:53:43 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,12 +84,14 @@ RM = rm -rf
 all: $(NAME)
 
 $(BUILD_DIR)%.o : $(SOURCES_DIR)%.c
-	mkdir -p $(dir $@)
-	$(CC) -c $(CFLAGS) -O3 -c $< -o $@
+	@mkdir -p $(dir $@)
+	@$(CC) -c $(CFLAGS) -O3 -c $< -o $@
+	@echo "	Compiling " $<
 	
 $(NAME): $(MY_OBJECTS)
-	ar rc $(NAME) $(MY_OBJECTS)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(MY_OBJECTS)
+	@ranlib $(NAME)
+	@echo "Creating "$(NAME)
 
 clean:
 	$(RM) $(BUILD_DIR)
