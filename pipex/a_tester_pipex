@@ -1,0 +1,12 @@
+valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all
+
+< in yes | head > out
+< in sleep 5 | sleep 5 > out
+< in sleep 5 | gfhjgfxhj > out
+chmod 000 in
+chmod 000 out
+
+env -i ./pipex in "ls -l" "wc -l" out
+env -i ./pipex in "/bin/ls -l" "bin/wc -l" out
+
+./pipex in "./a.out" "wc -l" out
