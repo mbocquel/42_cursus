@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:09:49 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/02 14:02:23 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/06 13:49:31 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ typedef struct s_pipex
 /* main.c */
 int		first_process(t_pipex *px, t_cmd *cmd, char **env, char **argv);
 int		last_process(t_pipex *px, t_cmd *cmd, char **env, char **argv);
-int		pipex(t_pipex *px, char **env, char **argv);
+int		pipex(t_pipex *px, char **env, char **argv, int i);
+int		ft_empty(char *str);
 
 /* parsing.c */
 char	*ft_path(char const *s1, char const *s2);
@@ -65,11 +66,11 @@ int		add_cmd(t_pipex *px, char *cmd);
 int		parsing_normal(t_pipex *px, int argc, char **argv, char **env);
 
 /* ft_exit.c */
-void	close_fd(t_pipex *px);
+int		close_fd(t_pipex *px);
 int		ft_exit_child(t_pipex *px, int code_exit, char *str1);
 int		ft_exit_parent(t_pipex *px, int code_exit, char *str1);
 int		ft_exit(t_pipex *px, int code_exit, char *str1, int child);
-void	close_pipe(int pipe[2]);
+int		close_pipe(int pipe[2]);
 
 /* garbage.c */
 void	garbage_col(t_pipex *px, void *ptr);

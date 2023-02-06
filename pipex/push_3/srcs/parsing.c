@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:11:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/30 18:06:24 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/06 12:31:12 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*get_path_prog(t_pipex *px, char *name, int child)
 {
 	int		i;
 	char	*cmd_path;
-	char	**path_strs;	
+	char	**path_strs;
 
 	i = 0;
 	if (ft_strncmp(name, ".", 1) == 0 || ft_strncmp(name, "/", 1) == 0)

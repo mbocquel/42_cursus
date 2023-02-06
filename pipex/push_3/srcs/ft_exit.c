@@ -6,25 +6,40 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:07:18 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/02 14:02:09 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/06 12:54:23 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	close_fd(t_pipex *px)
+int	close_fd(t_pipex *px)
 {
-	close(0);
-	close(1);
-	close(2);
-	close(px->fd_in);
-	close(px->fd_out);
+	int	res;
+
+	res = 0;
+	if (px->fd_in != -1)
+	{
+		if (close(px->fd_in) == -1)
+			res = -1;
+	}
+	if (px->fd_out != -1)
+	{
+		if (close(px->fd_out) == -1)
+			res = -1;
+	}
+	return (res);
 }
 
-void	close_pipe(int pipe[2])
+int	close_pipe(int pipe[2])
 {
-	close(pipe[0]);
-	close(pipe[1]);
+	int	res;
+
+	res = 0;
+	if (close(pipe[0]) == -1)
+		res = -1;
+	if (close(pipe[1]) == -1)
+		res = -1;
+	return (res);
 }
 
 int	ft_exit_child(t_pipex *px, int code_exit, char *str1)
@@ -57,11 +72,6 @@ int	ft_exit_parent(t_pipex *px, int code_exit, char *str1)
 		ft_printf_fd(2, "Error: %s: %s\n", strerror(errno), str1);
 	if (code_exit == ERROR_MALLOC)
 		ft_printf_fd(2, "Error: memory allocaton problem in %s\n", str1);
-	if (code_exit == ERROR_ARG_NUM)
-	{
-		ft_printf_fd(2, "Error: number of argument. ");
-		ft_printf_fd(2, "Usage: %s file1 \"cmd1\" \"cmd2\" file2\n", str1);
-	}
 	empty_garbage(px);
 	close_fd(px);
 	if (px->code_exit_last != 0 || code_exit == ERROR_PERROR
