@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/02/03 18:25:26 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/02/07 18:20:30 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,18 @@ SOURCES = 	main.c \
 			parsing.c \
 			utils.c \
 			print.c \
+			routines.c \
+			garbage.c \
 			
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.c=.o})
 
 DEPS := $(OBJECTS:.o=.d)
 
-CC = gcc
+CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3 -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -g3
+
+DEPS_FLAGS = -MMD -MP
 
 RM = rm -rf
 
@@ -37,11 +41,11 @@ all: $(NAME)
 
 $(BUILD_DIR)%.o: $(SOURCES_DIR)%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -O3 -c $< -o $@
-	@echo "Compiling " $<
+	@$(CC) $(CFLAGS) $(DEPS_FLAGS) -c $< -o $@
+	@echo "\033[92mCompiling " $< "\033[0m"
 
 $(NAME):	$(OBJECTS)
-			@$(CC) $(CFLAGS) $(OBJECTS) $(CLIB) -o $(NAME)
+			@$(CC) $(CFLAGS) $(DEPS_FLAGS) $(OBJECTS) $(CLIB) -o $(NAME)
 			@echo "\nCreating ./"$(NAME)
 			@echo "\nAll done!"
 
