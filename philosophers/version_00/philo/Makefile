@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/02/07 18:20:30 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/02/08 10:21:33 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,13 @@ SOURCES_DIR = ./srcs/
 
 BUILD_DIR = ./build/
 
-SOURCES = 	main.c \
-			parsing.c \
-			utils.c \
-			print.c \
-			routines.c \
-			garbage.c \
+SOURCES = 	test.c
+#			main.c \
+#			parsing.c \
+#			utils.c \
+#			print.c \
+#			routines.c \
+#			garbage.c \
 			
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.c=.o})
 
