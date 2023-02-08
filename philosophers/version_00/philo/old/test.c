@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:21:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/08 10:51:22 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:00:02 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,11 @@ int	main(void)
 	
 	
 }
+
+/*Mes questions
+Besoin de faire un Atoi error pour m'assurer qu'on m'envoie pas de la merde (unsigned int )
+
+Comment reprensenter mes philosophes ? 
+Est ce que un tableau de Mutex c'est ok pour les fourchettes ? 
+
+*/

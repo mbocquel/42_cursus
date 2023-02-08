@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/02/08 10:21:33 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/02/08 16:18:29 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ SOURCES_DIR = ./srcs/
 
 BUILD_DIR = ./build/
 
-SOURCES = 	test.c
-#			main.c \
+SOURCES = 	main.c \
 #			parsing.c \
 #			utils.c \
 #			print.c \
