@@ -10,3 +10,6 @@ env -i ./pipex in "ls -l" "wc -l" out
 env -i ./pipex in "/bin/ls -l" "bin/wc -l" out
 
 ./pipex in "./a.out" "wc -l" out
+
+./pipex /dev/stdin head "wc -l" /dev/stdout
+
