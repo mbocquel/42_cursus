@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:26:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/09 17:28:17 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:40:47 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (free_and_exit(&param, 1));
 	}
-	if (start_simulation(&param) != 0)
+	if ((param.n_meals == -1 || param.n_meals > 0)
+		&& start_simulation(&param) != 0)
 		return (free_and_exit(&param, 1));
 	return (free_and_exit(&param, 0));
 }
