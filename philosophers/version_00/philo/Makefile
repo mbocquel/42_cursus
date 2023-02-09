@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/02/08 16:18:29 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/02/09 17:29:29 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,10 @@ SOURCES_DIR = ./srcs/
 BUILD_DIR = ./build/
 
 SOURCES = 	main.c \
-#			parsing.c \
-#			utils.c \
-#			print.c \
-#			routines.c \
-#			garbage.c \
+			utils_exit.c \
+			parsing.c \
+			eat.c \
+			sleep_and_death.c \
 			
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.c=.o})
 
@@ -29,7 +28,7 @@ DEPS := $(OBJECTS:.o=.d)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -pthread -g3
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 DEPS_FLAGS = -MMD -MP
 
