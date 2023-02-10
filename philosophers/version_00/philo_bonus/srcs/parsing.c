@@ -6,11 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:28:33 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/10 16:48:44 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:02:08 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	init_param(t_param *p, char **argv)
 {
@@ -34,34 +34,13 @@ int	init_param(t_param *p, char **argv)
 	return (error_count);
 }
 
-int	initiate_mutex(t_param *p)
-{
-	int	i;
-	int	error_count;
-
-	i = 0;
-	error_count = 0;
-	error_count += pthread_mutex_init(&(p->mutex_death), NULL);
-	error_count += pthread_mutex_init(&(p->mutex_n_finished), NULL);
-	while (i < p->n_philo)
-	{
-		error_count += pthread_mutex_init(&(p->mutex_fork[i]), NULL);
-		i++;
-	}
-	return (error_count);
-}
-
 int	parsing(t_param *p, char **argv)
 {
 	int	i;
 
 	if (init_param(p, argv))
 		return (1);
-	p->mutex_fork = malloc(p->n_philo * sizeof(pthread_mutex_t));
-	if (p->mutex_fork == NULL)
-		return (1);
-	if (initiate_mutex(p))
-		return (1);
+	p->sem_fork = sem_open("fork", O_CREAT, S_IRWXG, p->n_philo);
 	p->tab_philo = malloc(p->n_philo * sizeof(t_philo));
 	if (p->tab_philo == NULL)
 		return (1);

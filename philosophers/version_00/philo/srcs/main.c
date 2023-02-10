@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:26:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/10 14:00:25 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:09:01 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ int	start_simulation(t_param *param)
 	while (i < param->n_philo)
 	{
 		philo = &(param->tab_philo[i]);
-		pthread_create(&(philo->id_thread), NULL, start_routine, (void *)philo);
+		if (pthread_create(&(philo->id_thread), NULL,
+				start_routine, (void *)philo))
+			return (1);
 		i++;
 	}
 	i = 0;

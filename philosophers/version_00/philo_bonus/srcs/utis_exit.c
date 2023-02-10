@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_exit.c                                       :+:      :+:    :+:   */
+/*   utis_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 10:27:09 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/10 18:33:32 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/02/10 17:30:02 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/02/10 18:07:05 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	ft_isspace(int c)
 {
@@ -49,41 +49,10 @@ int	ft_atoi_ui_error(const char *nptr, int *val)
 
 int	free_and_exit(t_param *p, int code_exit)
 {
-	int	i;
-
-	i = 0;
-	pthread_mutex_destroy(&p->mutex_death);
-	pthread_mutex_destroy(&p->mutex_n_finished);
-	if (p->mutex_fork)
-	{
-		while (i < p->n_philo)
-		{
-			pthread_mutex_destroy(&(p->mutex_fork[i]));
-			i++;
-		}
-		free(p->mutex_fork);
-	}
+	sem_close(p->sem_fork);
 	if (p->tab_philo)
 		free(p->tab_philo);
+	/*Faire en sorte de kill les child process s'il y en a ...*/
+	//exit(code_exit);
 	return (code_exit);
-}
-
-void	print_activite(t_philo *philo, char *msg, char *color)
-{
-	int				print;
-	struct timeval	tv;
-	unsigned long	time_stamp;
-
-	gettimeofday(&tv, NULL);
-	time_stamp = get_timediff_us(tv, philo->param->t0) / 1000;
-	print = 1;
-	pthread_mutex_lock(&(philo->param->mutex_death));
-	pthread_mutex_lock(&(philo->param->mutex_n_finished));
-	if (philo->param->death == 1
-		|| philo->param->n_finished == philo->param->n_philo)
-		print = 0;
-	if (print)
-		printf("%s%ld	%d %s\e[0m\n", color, time_stamp, philo->id, msg);
-	pthread_mutex_unlock(&(philo->param->mutex_n_finished));
-	pthread_mutex_unlock(&(philo->param->mutex_death));
 }
