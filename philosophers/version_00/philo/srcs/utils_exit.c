@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:27:09 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/09 17:20:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:00:51 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,31 +68,22 @@ int	free_and_exit(t_param *p, int code_exit)
 	return (code_exit);
 }
 
-void	print_activite(t_philo *philo, int activite)
+void	print_activite(t_philo *philo, char *msg, char *color)
 {
 	int				print;
 	struct timeval	tv;
-	char			*msg;
+	unsigned long	time_stamp;
 
+	gettimeofday(&tv, NULL);
+	time_stamp = get_timediff_us(tv, philo->param->t0) / 1000;
 	print = 1;
-	if (activite == FORK_TAKEN)
-		msg = "has taken a fork";
-	else if (activite == EATING)
-		msg = "is eating";
-	else if (activite == SLEEPING)
-		msg = "is sleeping";
-	else if (activite == THINKING)
-		msg = "is thinking";
 	pthread_mutex_lock(&(philo->param->mutex_death));
 	pthread_mutex_lock(&(philo->param->mutex_n_finished));
-	if (philo->param->death == 1)
+	if (philo->param->death == 1
+		|| philo->param->n_finished == philo->param->n_philo)
 		print = 0;
 	if (print)
-	{
-		gettimeofday(&tv, NULL);
-		printf("%ld %d %s\n", get_timediff(tv, philo->param->t0),
-			philo->id, msg);
-	}
+		printf("%s%ld	%d	%s\e[0m\n", color, time_stamp, philo->id, msg);
 	pthread_mutex_unlock(&(philo->param->mutex_n_finished));
 	pthread_mutex_unlock(&(philo->param->mutex_death));
 }

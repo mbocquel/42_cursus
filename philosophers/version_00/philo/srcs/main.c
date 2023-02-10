@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:26:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/09 17:40:47 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:00:25 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ void	*start_routine(void *args)
 	philo = (t_philo *)args;
 	if (philo->id % 2 == 0)
 	{
-		print_activite(philo, THINKING);
-		if (ft_sleep(philo->param->t_to_eat * 0.5, philo))
+		print_activite(philo, THINKING, MAGENTA);
+		if (ft_sleep(10, philo))
 			return (NULL);
 	}
 	while (check_if_stop(philo->param) == 0)
 	{
-		pick_fork(philo);
+		if (pick_fork(philo) && ft_sleep(philo->param->t_to_die * 2, philo))
+			return (NULL);
 		if (routine_eat(philo) && release_fork(philo))
 			return (NULL);
 		release_fork(philo);
@@ -40,9 +41,6 @@ void	*start_routine(void *args)
 			return (NULL);
 		if (routine_sleep(philo))
 			return (NULL);
-		if (check_if_stop(philo->param))
-			return (NULL);
-		print_activite(philo, THINKING);
 	}
 	return (NULL);
 }
