@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utis_exit.c                                        :+:      :+:    :+:   */
+/*   utils_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:30:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/10 18:07:05 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:49:04 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,60 @@ int	ft_atoi_ui_error(const char *nptr, int *val)
 	return (0);
 }
 
-int	free_and_exit(t_param *p, int code_exit)
+void	free_char_mat(char **strs)
 {
+	int	i;
+
+	i = 0;
+	if (strs == NULL)
+		return ;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
+}
+
+void	kill_child_process(t_param *p)
+{
+	int	i;
+	
+	i = 0;
+	while (i < p->n_philo)
+	{
+		kill((p->tab_philo[i]).pid, SIGKILL);
+		i++;
+	}
+}
+
+int	ft_exit(t_param *p, int id_child, int code_exit)
+{
+	int	i;
+
+	printf("ft_exit child : %d code exit %d\n", id_child, code_exit);
+	i = -1;
+	if (code_exit == ALL_FINISH || code_exit == PHILO_DEATH)
+		kill_child_process(p);
 	sem_close(p->sem_fork);
+	sem_close(p->sem_death);
+	while (++i < p->n_philo)
+		sem_close((p->sem_finish_eating)[i]);
 	if (p->tab_philo)
 		free(p->tab_philo);
-	/*Faire en sorte de kill les child process s'il y en a ...*/
-	//exit(code_exit);
-	return (code_exit);
+	if (p->finish_name)
+		free_char_mat(p->finish_name);
+	if (code_exit == EXIT_ERROR)
+		exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);	
+}
+
+void	print_activite(t_philo *philo, char *msg, char *color)
+{
+	struct timeval	tv;
+	unsigned long	time_stamp;
+
+	gettimeofday(&tv, NULL);
+	time_stamp = get_timediff_us(tv, philo->param->t0) / 1000;
+	printf("%s%ld	%d %s\e[0m\n", color, time_stamp, philo->id, msg);
 }

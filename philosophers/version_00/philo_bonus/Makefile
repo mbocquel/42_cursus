@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/02/10 16:09:52 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/02/13 18:46:32 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,23 @@ SOURCES_DIR = ./srcs/
 
 BUILD_DIR = ./build/
 
-SOURCES = 	main.c \
+#SOURCES = 	test.c \
+#			parsing.c \
+#			utils_exit.c \
+#			ft_itoa.c \
+#			ft_strjoin.c \
+#			sleep_and_death.c \
+
+SOURCES = 	eat.c \
+ 			ft_itoa.c \
+ 			ft_strjoin.c \
+ 			parsing.c \
+ 			sleep_and_death.c \
+ 			utils_exit.c \
+			main_parent.c \
+			child_routine.c \
+			parent_monitor.c \
+			
 			
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.c=.o})
 
@@ -24,7 +40,7 @@ DEPS := $(OBJECTS:.o=.d)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -g3
 
 DEPS_FLAGS = -MMD -MP
 
