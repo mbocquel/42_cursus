@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:27:09 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/10 18:33:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:20:25 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	print_activite(t_philo *philo, char *msg, char *color)
 	struct timeval	tv;
 	unsigned long	time_stamp;
 
+	(void)color;
 	gettimeofday(&tv, NULL);
 	time_stamp = get_timediff_us(tv, philo->param->t0) / 1000;
 	print = 1;
@@ -83,7 +84,8 @@ void	print_activite(t_philo *philo, char *msg, char *color)
 		|| philo->param->n_finished == philo->param->n_philo)
 		print = 0;
 	if (print)
-		printf("%s%ld	%d %s\e[0m\n", color, time_stamp, philo->id, msg);
+		printf("%ld	%d %s\n", time_stamp, philo->id, msg);
+		//printf("%s%ld	%d %s\e[0m\n", color, time_stamp, philo->id, msg);
 	pthread_mutex_unlock(&(philo->param->mutex_n_finished));
 	pthread_mutex_unlock(&(philo->param->mutex_death));
 }

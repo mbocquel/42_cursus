@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:30:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 12:18:23 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:16:45 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,38 +62,31 @@ void	free_char_mat(char **strs)
 	free(strs);
 }
 
-void	kill_child_process(t_param *p)
+int	ft_exit(t_param *p, int n_philo, int code_exit)
 {
 	int	i;
-	
-	i = 0;
-	while (i < p->n_philo)
-	{
-		kill((p->tab_philo[i]).pid, SIGKILL);
-		i++;
-	}
-}
 
-int	ft_exit(t_param *p, int id_child, int code_exit)
-{
-	int	i;
-	
-	(void)id_child;
-	i = -1;
-	if (code_exit == ALL_FINISH || code_exit == PHILO_DEATH)
-		kill_child_process(p);
-	sem_close(p->sem_fork);
-	sem_close(p->sem_death);
-	sem_close(p->sem_print);
-	while (++i < p->n_philo)
-		sem_close((p->sem_finish_eating)[i]);
+	if (n_philo != 0)
+		sem_post(p->sem_death);
+	if (n_philo == 0)
+	{
+		i = 0;
+		while (i < p->n_philo)
+		{
+			if ((p->tab_philo[i]).pid != 0)
+				kill((p->tab_philo[i]).pid, SIGKILL);
+			i++;
+		}
+		sem_close(p->sem_fork);
+		sem_close(p->sem_death);
+		sem_close(p->sem_print);
+		sem_close(p->sem_finish_eating);
+	}
 	if (p->tab_philo)
 		free(p->tab_philo);
-	if (p->finish_name)
-		free_char_mat(p->finish_name);
 	if (code_exit == EXIT_ERROR)
 		exit(EXIT_FAILURE);
-	exit(EXIT_SUCCESS);	
+	exit(EXIT_SUCCESS);
 }
 
 void	print_activite(t_philo *philo, char *msg, char *color)
@@ -104,6 +97,7 @@ void	print_activite(t_philo *philo, char *msg, char *color)
 	gettimeofday(&tv, NULL);
 	time_stamp = get_timediff_us(tv, philo->param->t0) / 1000;
 	sem_wait(philo->param->sem_print);
-	printf("%s%ld	%d %s\e[0m\n", color, time_stamp, philo->id, msg);
+	printf("%s%ld	%d %s\n", color, time_stamp, philo->id, msg);
+	//printf("%s%ld	%d %s\e[0m\n", color, time_stamp, philo->id, msg);
 	sem_post(philo->param->sem_print);
 }

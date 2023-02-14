@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:51:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 13:46:52 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:16:54 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@
 # define EATING "is eating"
 # define SLEEPING "is sleeping"
 # define THINKING "is thinking"
-# define GREEN "\e[32m"
+# define GREEN ""
+# define YELLOW ""
+# define CYAN ""
+# define MAGENTA ""
+/*# define GREEN "\e[32m"
 # define YELLOW "\e[33m"
 # define CYAN "\e[36m"
-# define MAGENTA "\e[35m"
-# define PHILO_DEATH 1
-# define ALL_FINISH 2
-# define EXIT_ERROR 3
+# define MAGENTA "\e[35m"*/
+# define EXIT_ERROR 1
 
 typedef struct s_philo {
 	int				id;
@@ -45,22 +47,19 @@ typedef struct s_philo {
 }					t_philo;
 
 typedef struct s_param {
+	struct timeval	t0;
 	int				n_philo;
 	t_philo			*tab_philo;
-	struct timeval	t0;
 	sem_t			*sem_fork;
-	sem_t			**sem_finish_eating;
+	sem_t			*sem_finish_eating;
 	sem_t			*sem_death;
 	sem_t			*sem_print;
-	char			**finish_name;
 	int				t_to_die;
 	int				t_to_eat;
 	int				t_to_sleep;
-	int				death;
-	int				n_finished;
+	int				n_meals;
 	pthread_t		thread_death;
 	pthread_t		thread_finish;
-	int				n_meals;
 }					t_param;
 
 /*	eat.c	*/
@@ -97,10 +96,9 @@ int				routine_sleep(t_philo *philo);
 /*	utils_exit.c	*/
 int				ft_isspace(int c);
 int				ft_atoi_ui_error(const char *nptr, int *val);
-int				ft_exit(t_param *p, int id_child, int code_exit);
+int				ft_exit(t_param *p, int n_philo, int code_exit);
 void			print_activite(t_philo *philo, char *msg, char *color);
 void			kill_child_process(t_param *p);
-
-void	routine_philo(t_philo *philo);
+void			routine_philo(t_philo *philo);
 
 #endif

@@ -6,31 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:07:05 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 11:43:17 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:19:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-
-int	open_sem(t_philo *philo)
-{
-	int		i;
-	t_param	*p;
-
-	p = philo->param;
-	i = 0;
-	p->sem_fork = sem_open("/fork", O_RDWR);
-	if (p->sem_fork == SEM_FAILED && printf("1\n"))
-		return (1);
-	(p->sem_finish_eating)[philo->id - 1] = sem_open(
-			(p->finish_name)[philo->id - 1], O_RDWR);
-	if ((p->sem_finish_eating)[philo->id - 1] == SEM_FAILED && printf("1\n"))
-		return (1);
-	p->sem_death = sem_open("/death", O_RDWR);
-	if (p->sem_death == SEM_FAILED && printf("1\n"))
-		return (1);
-	return (0);
-}
 
 void	routine_philo(t_philo *philo)
 {

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:32:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 12:10:06 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:15:39 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	check_dead(t_philo *philo)
 	{
 		philo->is_alive = 0;
 		sem_wait(philo->param->sem_print);
-		printf("\e[31m%ld	%d died\e[0m\n", time_stamp, philo->id);
+		printf("%ld	%d died\n", time_stamp, philo->id);
+		//printf("\e[31m%ld	%d died\e[0m\n", time_stamp, philo->id);
 		sem_post(philo->param->sem_death);
-		return (1);
 	}
 	return (0);
 }

@@ -6,19 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:32:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/10 18:33:52 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:19:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-/*unsigned long	get_timediff(struct timeval t, struct timeval t0)
-{
-	unsigned long	ts;
-
-	ts = (t.tv_sec - t0.tv_sec) * 1000 + (t.tv_usec - t0.tv_usec) / 1000;
-	return (ts);
-}*/
 
 unsigned long	get_timediff_us(struct timeval t, struct timeval t0)
 {
@@ -46,7 +38,8 @@ int	check_dead(t_philo *philo)
 			pthread_mutex_unlock(&(philo->param->mutex_death));
 			return (1);
 		}
-		printf("\e[31m%ld	%d died\e[0m\n", time_stamp, philo->id);
+		printf("%ld	%d died\n", time_stamp, philo->id);
+		//printf("\e[31m%ld	%d died\e[0m\n", time_stamp, philo->id);
 		philo->param->death = 1;
 		pthread_mutex_unlock(&(philo->param->mutex_death));
 		return (1);
