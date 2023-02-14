@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:28:33 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/13 18:50:26 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:17:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	get_sem_finish_name(t_param *p)
 		if (num == NULL)
 			return (1);
 		(p->finish_name)[i] = ft_strjoin("/finish_", num);
+		free(num);
 		if ((p->finish_name)[i] == NULL)
 			return (1);
 		i++;
@@ -62,17 +63,22 @@ int	init_semaphore(t_param *p)
 	i = 0;
 	if (get_sem_finish_name(p))
 		return (1);
-	p->sem_fork = sem_open("/fork", O_CREAT, 0644, p->n_philo);
+	sem_unlink("/fork");
+	sem_unlink("/death");
+	sem_unlink("/print");
+	p->sem_fork = sem_open("/fork", O_CREAT, S_IRWXG, p->n_philo);
+	p->sem_death = sem_open("/death", O_CREAT, S_IRWXG, 0);
+	p->sem_print = sem_open("/print", O_CREAT, S_IRWXG, 1);
 	p->sem_finish_eating = malloc(p->n_philo * sizeof(sem_t *));
 	if (p->sem_finish_eating == NULL)
 		return (1);
 	while (i < p->n_philo)
 	{
+		sem_unlink((p->finish_name)[i]);
 		(p->sem_finish_eating)[i] = sem_open((p->finish_name)[i],
-				O_CREAT, 0644, 0);
+				O_CREAT, S_IRWXG, 0);
 		i++;
 	}
-	p->sem_death = sem_open("/death", O_CREAT, 0644, 0);
 	return (0);
 }
 

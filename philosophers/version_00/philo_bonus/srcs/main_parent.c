@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:50:35 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/13 19:09:56 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:48:48 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ usleep, gettimeofday, waitpid, sem_open, sem_close,
 sem_post, sem_wait, sem_unlink
 */
 
-
-/*Thibault : 
-il commence par unlink tous les semaphore. 
-puis il les open dans le parent avec  sem_open("/fork", O_CREAT, S_IRWXG, p->n_philo);
-il ouvre pas dans les child process. 
-il sem_close dans le parent. 
+/*Revoir la facon dont je gere la verification de ma sortie. utiliser plutot un sem en mode mutex.
+=> permet de proteger le nombre de philo qui a fini de mange, comme sur la partie obligatoire.
+Permet d'eviter les Thread. 
 */
+
 int	start_simulation(t_param *p)
 {
 	int	i;
@@ -50,7 +48,23 @@ int	start_simulation(t_param *p)
 		waitpid((p->tab_philo)[i].pid, NULL, 0);
 	return (0);
 }
-
+/*
+int	check_if_stop(t_param *param)
+{
+	int	result;
+	result = 0;
+	
+	pthread_mutex_lock(&(param->mutex_death));
+	if (param->death)
+		result = 1;
+	pthread_mutex_unlock(&(param->mutex_death));
+	pthread_mutex_lock(&(param->mutex_n_finished));
+	if (param->n_finished == param->n_philo)
+		result = 1;
+	pthread_mutex_unlock(&(param->mutex_n_finished));
+	return (result);
+}
+*/
 int	main(int argc, char **argv)
 {
 	t_param	param;

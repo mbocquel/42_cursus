@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:07:05 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/13 18:50:43 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:43:17 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	open_sem(t_philo *philo)
 
 void	routine_philo(t_philo *philo)
 {
-	if (open_sem(philo))
-		ft_exit(philo->param, philo->id, 8);
 	if (philo->id % 2 == 0)
 	{
 		print_activite(philo, THINKING, MAGENTA);

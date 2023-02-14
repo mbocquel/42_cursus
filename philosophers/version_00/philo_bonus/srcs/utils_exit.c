@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:30:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/13 16:49:04 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:18:23 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,14 @@ void	kill_child_process(t_param *p)
 int	ft_exit(t_param *p, int id_child, int code_exit)
 {
 	int	i;
-
-	printf("ft_exit child : %d code exit %d\n", id_child, code_exit);
+	
+	(void)id_child;
 	i = -1;
 	if (code_exit == ALL_FINISH || code_exit == PHILO_DEATH)
 		kill_child_process(p);
 	sem_close(p->sem_fork);
 	sem_close(p->sem_death);
+	sem_close(p->sem_print);
 	while (++i < p->n_philo)
 		sem_close((p->sem_finish_eating)[i]);
 	if (p->tab_philo)
@@ -102,5 +103,7 @@ void	print_activite(t_philo *philo, char *msg, char *color)
 
 	gettimeofday(&tv, NULL);
 	time_stamp = get_timediff_us(tv, philo->param->t0) / 1000;
+	sem_wait(philo->param->sem_print);
 	printf("%s%ld	%d %s\e[0m\n", color, time_stamp, philo->id, msg);
+	sem_post(philo->param->sem_print);
 }

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:51:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/13 18:45:38 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:46:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,13 @@ typedef struct s_param {
 	sem_t			*sem_fork;
 	sem_t			**sem_finish_eating;
 	sem_t			*sem_death;
+	sem_t			*sem_print;
 	char			**finish_name;
 	int				t_to_die;
 	int				t_to_eat;
 	int				t_to_sleep;
+	int				death;
+	int				n_finished;
 	pthread_t		thread_death;
 	pthread_t		thread_finish;
 	int				n_meals;
