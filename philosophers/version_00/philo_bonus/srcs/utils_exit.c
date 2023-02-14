@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:30:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 17:16:45 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:23:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	print_activite(t_philo *philo, char *msg, char *color)
 	gettimeofday(&tv, NULL);
 	time_stamp = get_timediff_us(tv, philo->param->t0) / 1000;
 	sem_wait(philo->param->sem_print);
-	printf("%s%ld	%d %s\n", color, time_stamp, philo->id, msg);
-	//printf("%s%ld	%d %s\e[0m\n", color, time_stamp, philo->id, msg);
+	printf("%s%ld	%d %s\e[0m\n", color, time_stamp, philo->id, msg);
 	sem_post(philo->param->sem_print);
 }

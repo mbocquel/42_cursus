@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:32:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 17:15:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:22:59 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	check_dead(t_philo *philo)
 	{
 		philo->is_alive = 0;
 		sem_wait(philo->param->sem_print);
-		printf("%ld	%d died\n", time_stamp, philo->id);
-		//printf("\e[31m%ld	%d died\e[0m\n", time_stamp, philo->id);
+		printf("\e[31m%ld	%d died\e[0m\n", time_stamp, philo->id);
 		sem_post(philo->param->sem_death);
 	}
 	return (0);
@@ -62,9 +61,16 @@ int	ft_sleep(unsigned long sleep_time, t_philo *philo)
 
 int	routine_sleep(t_philo *philo)
 {
+	int	time_min_think;
+
+	time_min_think = (philo->param->t_to_die
+			- philo->param->t_to_sleep
+			- philo->param->t_to_eat) / 2;
 	print_activite(philo, SLEEPING, CYAN);
 	if (ft_sleep(philo->param->t_to_sleep, philo))
 		return (1);
 	print_activite(philo, THINKING, MAGENTA);
+	if (time_min_think > 0 && ft_sleep(time_min_think, philo))
+		return (1);
 	return (0);
 }

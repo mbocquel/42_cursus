@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:50:35 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 16:47:10 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:14:46 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ memset, printf, malloc, free, write, fork, kill,
 exit, pthread_create, pthread_detach, pthread_join,
 usleep, gettimeofday, waitpid, sem_open, sem_close,
 sem_post, sem_wait, sem_unlink
+*/
+
+/*Bugs pour les bonus : 
+- ca ne marche pas pour un seul philo
+- 5 800 200 200 il y en a un qui arrive pas a choper de fourchette, 
+mais il est dead que au moment ou il recupere sa fourchette. 
 */
 
 int	start_simulation(t_param *p)

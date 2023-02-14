@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:09:58 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 17:13:41 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:30:41 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	pick_fork(t_philo *philo)
 	if (sem_wait(philo->param->sem_fork))
 		return (1);
 	print_activite(philo, FORK_TAKEN, GREEN);
+	if (philo->param->n_philo == 1)
+		return (1);
 	if (sem_wait(philo->param->sem_fork))
 		return (1);
 	print_activite(philo, FORK_TAKEN, GREEN);

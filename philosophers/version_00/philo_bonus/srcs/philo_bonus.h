@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:51:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 17:16:54 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:55:24 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,10 @@
 # define EATING "is eating"
 # define SLEEPING "is sleeping"
 # define THINKING "is thinking"
-# define GREEN ""
-# define YELLOW ""
-# define CYAN ""
-# define MAGENTA ""
-/*# define GREEN "\e[32m"
+# define GREEN "\e[32m"
 # define YELLOW "\e[33m"
 # define CYAN "\e[36m"
-# define MAGENTA "\e[35m"*/
+# define MAGENTA "\e[35m"
 # define EXIT_ERROR 1
 
 typedef struct s_philo {
@@ -43,6 +39,7 @@ typedef struct s_philo {
 	struct timeval	t_last_meal;
 	int				count_meal;
 	int				is_alive;
+	pthread_t		thread_monitor;
 	struct s_param	*param;
 }					t_philo;
 

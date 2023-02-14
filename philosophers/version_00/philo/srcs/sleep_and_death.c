@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:32:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 17:19:53 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:24:27 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int	check_dead(t_philo *philo)
 			pthread_mutex_unlock(&(philo->param->mutex_death));
 			return (1);
 		}
-		printf("%ld	%d died\n", time_stamp, philo->id);
-		//printf("\e[31m%ld	%d died\e[0m\n", time_stamp, philo->id);
+		printf("\e[31m%ld	%d died\e[0m\n", time_stamp, philo->id);
 		philo->param->death = 1;
 		pthread_mutex_unlock(&(philo->param->mutex_death));
 		return (1);
