@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:32:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 19:22:59 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/15 12:43:48 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ int	check_dead(t_philo *philo)
 	unsigned long	time_passed;
 	unsigned long	time_stamp;
 	struct timeval	tv;
+	struct timeval	tv_last_meal;
 
 	gettimeofday(&tv, NULL);
-	time_passed = get_timediff_us(tv, philo->t_last_meal);
+	tv_last_meal = philo->t_last_meal;
+	time_passed = get_timediff_us(tv, tv_last_meal);
 	time_stamp = get_timediff_us(tv, philo->param->t0) / 1000;
 	if (time_passed > (unsigned long)philo->param->t_to_die * 1000)
 	{
@@ -65,7 +67,7 @@ int	routine_sleep(t_philo *philo)
 
 	time_min_think = (philo->param->t_to_die
 			- philo->param->t_to_sleep
-			- philo->param->t_to_eat) / 2;
+			- 2 * philo->param->t_to_eat) / 2;
 	print_activite(philo, SLEEPING, CYAN);
 	if (ft_sleep(philo->param->t_to_sleep, philo))
 		return (1);

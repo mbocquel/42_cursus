@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:09:58 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 18:30:41 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:17:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int	routine_eat(t_philo *philo)
 	print_activite(philo, EATING, YELLOW);
 	if (ft_sleep(philo->param->t_to_eat, philo))
 		return (1);
+	gettimeofday(&(philo->t_last_meal), NULL);
 	(philo->count_meal)++;
 	if (philo->param->n_meals != -1
 		&& philo->count_meal == philo->param->n_meals)
 		sem_post(philo->param->sem_finish_eating);
-	gettimeofday(&(philo->t_last_meal), NULL);
 	return (0);
 }

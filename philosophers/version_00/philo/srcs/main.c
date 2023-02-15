@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:26:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 18:16:18 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:00:41 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*start_routine(void *args)
 	t_philo	*philo;
 
 	philo = (t_philo *)args;
-	if (philo->id % 2 != 0)
+	if (philo->id % 2 != 0 && philo->param->n_philo > 1)
 	{
 		print_activite(philo, THINKING, MAGENTA);
 		if (ft_sleep(philo->param->t_to_eat, philo))

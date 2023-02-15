@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:32:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/14 19:36:11 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:28:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	routine_sleep(t_philo *philo)
 
 	time_min_think = (philo->param->t_to_die
 			- philo->param->t_to_sleep
-			- philo->param->t_to_eat) / 2;
+			- 2 * philo->param->t_to_eat) / 2;
 	print_activite(philo, SLEEPING, CYAN);
 	if (ft_sleep(philo->param->t_to_sleep, philo))
 		return (1);
