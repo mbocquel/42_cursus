@@ -1,5 +1,9 @@
 # 42_cursus
 
+Piscine realisee en septembre 2022 ([42_piscine](https://github.com/mbocquel/piscine_42))
+
+Rentree du cursus de 42 le 07/11/2022.
+
 - Cercle 0
   - Libft 
     - Valide le 16/11/2022 a 125/100.
