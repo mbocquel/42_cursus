@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:58:06 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/07 19:20:22 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:44:33 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,26 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <fcntl.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+typedef struct s_list_sto
+{
+	char					*content;
+	struct s_list_sto		*next;
+}					t_list_sto;
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
+void	ft_swap(int *a, int *b);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
@@ -47,7 +58,7 @@ char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char *sep);
 int		ft_power(int nb, int power);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -65,5 +76,22 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_printf(const char *str, ...);
+int		ft_printf_process(va_list *args, int *i, const char *str, int *error);
+int		ft_printf_putchar(int c, int *error);
+int		ft_printf_putstr(char *str, int *error);
+int		ft_printf_putptr(void *ptr, int *error);
+int		ft_printf_putnbr(int n, int *error);
+int		ft_printf_put_usint(unsigned int u_nbr, int *error);
+int		ft_printf_putnbrhex(unsigned int nb_hex, char x, int *error);
+int		ft_printf_putnbrhex_ull(unsigned long long nb_hex, char x, int *error);
+void	ft_lstadd_back_gnl(t_list_sto **lst, void *content);
+char	*get_next_line(int fd);
+int		line_to_make_gnl(t_list_sto *storage);
+char	*make_next_line(t_list_sto **storage, int *error);
+int		read_store_gnl(t_list_sto **storage, char *buffer, int fd, int *error);
+size_t	ft_line_len(t_list_sto *storage);
+void	clean_storage_gnl(t_list_sto **storage);
+void	clear_all_memory_gnl(t_list_sto **storage);
 
 #endif
