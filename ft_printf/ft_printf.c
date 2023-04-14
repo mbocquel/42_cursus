@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:58:01 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/11/28 11:10:44 by mbocquel         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:23:57 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	ft_printf_process(va_list *args, int *i, const char *str, int *error)
 	else if (str[*i] == 'u' && *error == 0)
 		return (ft_printf_put_usint(va_arg(*args, unsigned int), error));
 	else if ((str[*i] == 'x' || str[*i] == 'X') && *error == 0)
-		return (ft_printf_putnbrhex(va_arg(*args, unsigned int), str[*i], error));
+		return (ft_printf_putnbrhex(va_arg(*args, unsigned int),
+				str[*i], error));
 	else if (str[*i] == '%' && *error == 0)
 		return (ft_printf_putchar('%', error));
 	else
