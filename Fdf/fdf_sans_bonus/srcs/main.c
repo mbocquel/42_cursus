@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:55:25 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 11:15:40 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:40:22 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_event_param	initiate_img(int width, int height)
 void	initiate_param(t_event_param *param)
 {
 	param->z_factor = 1;
-	param->original_color = 1;
 }
 
 int	main(int argc, char **argv)

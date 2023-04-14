@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/31 11:27:20 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/31 11:57:21 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,10 +39,11 @@ SOURCES = 	apply_isometric_proj.c \
 			translation.c \
 			utils.c \
 			zoom_unzoom.c
+			 
 			
-OBJECTS	= $(addprefix ${SOURCES_DIR}, ${SOURCES:.c=.o})
+OBJECTS		= $(addprefix ${SOURCES_DIR}, ${SOURCES:.c=.o})
 
-CC = gcc
+CC = cc
 
 CFLAGS = 
 

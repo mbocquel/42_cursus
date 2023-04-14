@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:13:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 11:23:24 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:10:19 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_point {
 	int	x;
 	int	y;
 	int	color;
-	int	color_modif;
 }				t_point;
 
 typedef struct s_point2d_fl {

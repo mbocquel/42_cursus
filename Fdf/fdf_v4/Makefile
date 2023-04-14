@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2022/12/20 18:07:14 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/31 11:56:44 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,3 +86,28 @@ re: fclean all
 
 .PHONY: all clean fclean re
 
+apply_isometric_proj.c \
+			calculate_point_pos.c \
+			change_z_scale.c \
+			clear_all_change.c \
+			clear_img.c \
+			create_color_code.c \
+			event_key.c \
+			free_functions.c \
+			ft_atoi_color.c \
+			ft_swap_seg.c \
+			get_color_gradian.c \
+			get_origin_coord.c \
+			get_scale_factor.c \
+			get_tram_elem.c \
+			get_xf_min_and_max.c \
+			get_yf_min_and_max.c \
+			main.c \
+			make_trame.c \
+			my_mlx_pixel_put.c \
+			parsing.c \
+			put_segment_img.c \
+			tracer_trame.c \
+			translation.c \
+			utils.c \
+			zoom_unzoom.c

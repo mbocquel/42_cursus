@@ -1,0 +1,73 @@
+NO ./img/lab/LAB_1A_dark.xpm
+SO ./img/lab/LAB_1A_dark.xpm
+WE ./img/lab/LAB_1A.xpm
+EA ./img/lab/LAB_1A.xpm
+
+DO ./img/lab/DOOR_4B.xpm
+
+E0 ./img/lab/front0R.xpm
+E1 ./img/lab/front1R.xpm
+E2 ./img/lab/front2R.xpm
+E3 ./img/lab/front3R.xpm
+
+A0 ./img/lab/attack0R.xpm
+A1 ./img/lab/attack1R.xpm
+A2 ./img/lab/attack2R.xpm
+A3 ./img/lab/attack3R.xpm
+
+D0 ./img/lab/die0R.xpm
+D1 ./img/lab/die1R.xpm
+D2 ./img/lab/die2R.xpm
+D3 ./img/lab/die3R.xpm
+
+BA ./img/lab/BARREL_4.xpm
+HA ./img/lab/VINES_2.xpm
+PV ./img/lab/health_v2.xpm
+
+F 10,15,10
+C 17,20,17
+
+W2 ./img/lab/LAB_2.xpm
+W3 ./img/lab/LAB_3.xpm
+W4 ./img/lab/LAB_4.xpm
+W5 ./img/lab/LAB_5.xpm
+
+W6 ./img/lab/LAB_6_dark.xpm
+W7 ./img/lab/LAB_7_dark.xpm
+W8 ./img/lab/LAB_8_dark.xpm
+W9 ./img/lab/LAB_9_dark.xpm
+
+       1971111711
+       50000D00B6
+       5H00011011
+       111911102
+             1D1
+            11011                1817117911
+1197111  111100011191111         4000000001
+40000017110000000000000111711719110000000B3
+3H0000000D00000R0000000D000000000D000000RB2
+10000017110000000000000119100181110000000B3
+2000004  11911B0B1911111  3003   1000000001
+191D111      11011        1002   191C11H111
+5000001       1D1         3003     171171
+5BBR001 181911101111911   4001
+1817911 100001000100001 19100191916161
+        20000D000D000B1 5C0001B1C101H11
+       14C0001000100RB1 5B000D0000R0005
+       6H00001000400BB2 118191C1B1B1C11
+       1119112000181111 11111171717171
+        1000C1000100001
+        30E00D000D00H03
+        200001000100004
+        197111B0B111191
+           2000000011
+           3000R000C6
+           1000000011
+           181171911
+
+
+
+
+
+
+

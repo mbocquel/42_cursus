@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:32:48 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/20 23:23:13 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:20:19 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_trame	*mk_trame_elem(int line, int col, char *str_alt_color)
 		new->point_2d_px.color = ft_atoi_color(str_alt_color);
 	else
 		new->point_2d_px.color = create_trgb(0, 255, 255, 255);
-	new->point_2d_px.color_modif = 0;
 	new->point_2d_fl.xf = 0;
 	new->point_2d_fl.yf = 0;
 	new->down = NULL;

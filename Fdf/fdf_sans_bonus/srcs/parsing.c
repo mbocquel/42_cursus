@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:15:01 by mbocquel          #+#    #+#             */
-/*   Updated: 2022/12/20 23:36:43 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:24:40 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	process_line(t_trame **begin_trame, char **tab, int num_l, int *e)
 {
 	int				col;
 	t_trame			*elem;
-	static t_trame	*previous = NULL;
+	static t_trame	*elem_created_before = NULL;
 
 	if (!tab)
 		*e = 0;
@@ -72,14 +72,14 @@ static int	process_line(t_trame **begin_trame, char **tab, int num_l, int *e)
 		elem = mk_trame_elem(num_l, col, tab[col]);
 		if (!elem)
 			return (free_line_split(tab, 0));
-		if (previous)
-			previous->previous = elem;
+		if (elem_created_before)
+			elem_created_before->previous = elem;
 		if (num_l > 0)
 			get_tram_elem(num_l - 1, col, *begin_trame)->down = elem;
 		if (col > 0)
-			previous->right = elem;
+			elem_created_before->right = elem;
 		trame_add_front(elem, begin_trame);
-		previous = elem;
+		elem_created_before = elem;
 	}
 	return (free_line_split(tab, 1));
 }
