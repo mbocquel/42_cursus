@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:20:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/01/12 10:27:24 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:02:47 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	int		move;
 
 	if (argc == 1)
-		ft_exit(&ps, ERROR_ARG);
+		return (0);
 	parsing(argc, argv, &ps);
 	size = pile_size(ps.pile_a);
 	move = 0;
