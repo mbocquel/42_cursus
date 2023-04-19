@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:39:59 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/19 17:35:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:56:25 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ PhoneBook::PhoneBook(void)
 {
 	this->_index = 0;
 	this->_nb_contact = 0;
+	this->_nb_contact_max = 8;
 	//std::cout << "PhoneBook constructor called" << std::endl;
 }
 
@@ -28,24 +29,11 @@ void	PhoneBook::add_contact()
 {
 	this->_tab_contact[this->_index].set_contact();
 	(this->_index)++;
-	if (this->_index == 8)
+	if (this->_index == this->_nb_contact_max)
 		this->_index = 0;
-	if (this->_nb_contact < 8)
+	if (this->_nb_contact < this->_nb_contact_max)
 		(this->_nb_contact)++;
 	std::cout << std::endl;
-}
-
-void	PhoneBook::_print_info_contact(int index)
-{
-	if (index < 0 || index > this->_index)
-	{
-		std::cout << "	Invalid index";
-		return ;
-	}
-	else
-	{
-		(this->_tab_contact)[index].display_contact();
-	}
 }
 
 std::string trim_string(std::string str, std::basic_string<char>::size_type len)
@@ -54,14 +42,14 @@ std::string trim_string(std::string str, std::basic_string<char>::size_type len)
 
 	if (str.length() < len)
 	{
-		while (str.length() <= 9)
+		while (str.length() < len)
 			str += " ";
 		return (str);
 	}
 	else
 	{
 		trimed = str.substr(0,len - 1);
-		while (trimed.length() < 9)
+		while (trimed.length() < len - 1)
 			trimed += " ";
 		trimed += ".";
 		return (trimed);
@@ -88,7 +76,7 @@ void	PhoneBook::search(void)
 	std::getline(std::cin, index_string);
 	if (index_string.length() == 1 && index_string.at(0) >= '0' && index_string.at(0) <= '9' && index_string.at(0) - '0' < this->_nb_contact)
 	{
-		_print_info_contact(index_string.at(0) - '0');
+		(this->_tab_contact)[index_string.at(0) - '0'].display_contact();
 		std::cout << std::endl;
 	}
 	else if (!std::cin.eof())

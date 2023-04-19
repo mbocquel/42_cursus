@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:38:08 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/19 17:06:35 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:53:32 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ private:
 	Contact _tab_contact[8];
 	int		_index;
 	int		_nb_contact;
-	void	_print_info_contact(int index);
+	int		_nb_contact_max;
 	
 public:
 	PhoneBook(void);
