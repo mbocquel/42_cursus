@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 10:20:28 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/19 11:31:32 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/19 11:38:08 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/04/19 17:06:35 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+# include "Contact.hpp"
+# include <iostream>
 
-int	main(int argc, char **argv)
+class PhoneBook
 {
-	int	i;
+private:
+	Contact _tab_contact[8];
+	int		_index;
+	int		_nb_contact;
+	void	_print_info_contact(int index);
 	
-	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-	else
-	{
-		argv++;
-		while (*argv)
-		{
-			i = 0;
-			while ((*argv)[i])
-			{
-				std::cout << static_cast<char> (std::toupper((*argv)[i]));
-				i++;
-			}
-			argv++;
-		}
-		std::cout << std::endl;
-	}
-	return (0);	
-}
+public:
+	PhoneBook(void);
+	~PhoneBook(void);
+	void	add_contact();
+	void	search();
+};
+
+#endif
