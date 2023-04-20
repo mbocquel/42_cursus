@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:38:08 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/19 18:53:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:26:47 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
 	PhoneBook(void);
 	~PhoneBook(void);
 	void	add_contact();
-	void	search();
+	void	search() const;
 };
 
 #endif

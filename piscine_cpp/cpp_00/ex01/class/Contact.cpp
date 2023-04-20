@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:45:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/19 17:35:46 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:26:22 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	Contact::set_contact(void)
 	}
 }
 
-void	Contact::display_contact(void)
+void	Contact::display_contact(void) const
 {
 	std::cout << "	----------------------------------------------------" << std::endl;
 	std::cout << "	First name: " << this->_firstname << std::endl;
@@ -68,7 +68,7 @@ void	Contact::display_contact(void)
 	std::cout << "	----------------------------------------------------" << std::endl;
 }
 
-std::string Contact::get_info(std::string info)
+std::string Contact::get_info(std::string info) const
 {
 	if (info.compare("firstname") == 0)
 		return (this->_firstname);

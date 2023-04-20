@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:39:59 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/19 18:56:25 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:26:58 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ std::string trim_string(std::string str, std::basic_string<char>::size_type len)
 	}	
 }
 
-void	PhoneBook::search(void)
+void	PhoneBook::search(void) const
 {
 	int			i;
 	std::string	index_string;

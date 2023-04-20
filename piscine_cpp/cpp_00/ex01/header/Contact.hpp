@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:44:35 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/19 15:56:05 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:26:08 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ public:
 	Contact(void);
 	~Contact(void);
 	void	set_contact(void);
-	void	display_contact(void);
-	std::string	get_info(std::string info);
+	void	display_contact(void) const;
+	std::string	get_info(std::string info) const;
 };
 
 #endif
