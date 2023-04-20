@@ -6,19 +6,18 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/20 18:05:00 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/20 15:30:24 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
+NAME = ex02
 
 SOURCES_DIR = ./
 
 BUILD_DIR = ./build/
 
-SOURCES =	class/Contact.cpp \
-			class/PhoneBook.cpp \
-			main.cpp
+SOURCES =	Account.cpp \
+			tests.cpp
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.cpp=.o})
 
@@ -44,9 +43,6 @@ $(NAME):	$(OBJECTS)
 			@$(CC) $(CFLAGS) $(OBJECTS) $(CLIB) -o $(NAME)
 			@echo "Creating ./"$(NAME)
 			@echo "\nALL DONE THANKS!"
-
-run: all
-	./$(NAME)
 
 clean:
 	$(RM) $(BUILD_DIR)
