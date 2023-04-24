@@ -6,18 +6,19 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/24 16:19:28 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/24 19:30:06 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex00
+NAME = ex03
 
 SOURCES_DIR = ./
 
 BUILD_DIR = ./build/
 
-SOURCES =	main.cpp \
-			Fixed.cpp
+SOURCES =	bsp.cpp \
+			Fixed.cpp \
+			Point.cpp
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.cpp=.o})
 
