@@ -6,17 +6,18 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/24 10:59:25 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/24 13:32:07 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex04
+NAME = ex05
 
 SOURCES_DIR = ./
 
 BUILD_DIR = ./build/
 
-SOURCES =	main.cpp
+SOURCES =	main.cpp \
+			Harl.cpp
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.cpp=.o})
 

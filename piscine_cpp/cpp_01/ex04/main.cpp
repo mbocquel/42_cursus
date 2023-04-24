@@ -6,37 +6,48 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 16:45:08 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/23 16:09:13 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/24 11:16:15 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fstream>
 #include <iostream>
 
-int	maim(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc != 4)
 	{
 		std::cout << "Wrong number of argument" << std::endl;
 		return (1);
 	}
-	
-	std::ifstream file(argv[1]);
+	std::string filename = argv[1];
+	if (filename.empty())
+	{
+		std::cout << "Wrong file name" << std::endl;
+		return (1);
+	}
+	std::ifstream file_in(filename.c_str());
+	std::ofstream file_out((filename + ".replace").c_str());
 	std::string str = argv[2];
 	std::string str1 = argv[3];
 	std::string line;
 	std::size_t found;
-
-	std::getline(file, line);
+	
+	std::getline(file_in, line);
 	while (!line.empty())
 	{
 		found = line.find(str);
 		while (found!=std::string::npos)
 		{
-			
+			file_out << line.substr(0, found);
+			file_out << str1;
+			line = line.substr(found + str.size(), line.size() - found - str.size());
+			found = line.find(str);
 		}
+		file_out << line << std::endl;
+		std::getline(file_in, line);
 	}
-	
-	
-	
+	file_in.close();
+	file_out.close();
+	return (0);
 }
