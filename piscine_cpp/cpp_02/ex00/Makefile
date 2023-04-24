@@ -6,11 +6,11 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/24 15:13:27 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/24 15:13:38 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex05
+NAME = ex00
 
 SOURCES_DIR = ./
 
