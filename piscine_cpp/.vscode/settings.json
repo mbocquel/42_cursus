@@ -42,6 +42,11 @@
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
-		"numbers": "cpp"
+		"numbers": "cpp",
+		"deque": "cpp",
+		"numeric": "cpp",
+		"optional": "cpp",
+		"span": "cpp",
+		"ctime": "cpp"
 	}
 }

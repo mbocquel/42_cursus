@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/24 14:10:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:17:42 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,12 @@ void	Harl::complain(std::string level)
 	{
 	case 0:
 		this->_debug();
-		this->_info();
-		this->_warning();
-		this->_error();
-		break;
 	
 	case 1:
 		this->_info();
-		this->_warning();
-		this->_error();
-		break;
 		
 	case 2:
 		this->_warning();
-		this->_error();
-		break;
 		
 	case 3:
 		this->_error();
