@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:23:49 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/24 20:01:40 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/25 11:05:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ Point::Point(float const x, float const y) : _x(Fixed(x)), _y(Fixed(y))
 {
 }
 
-Point::Point(Point const & copie)
+Point::Point(Point const & copie) : _x(copie.get_x()), _y(copie.get_y())
 {
-	*this = copie;
 }
 
 Point::~Point()
@@ -39,10 +38,12 @@ Fixed Point::get_y(void) const
 	return (this->_y);
 }
 
-/*Point	& Point::operator=(Point const &point) const
+Point	& Point::operator=(Point const &point)
 {
-	//return(Point(point));
-}*/
+	(void)point;
+	std::cout << "Assignement impossible, the point's values are const. Nothing will change" << std::endl;
+	return(*this);
+}
 
 std::ostream & operator<<(std::ostream & o, Point const & p)
 {

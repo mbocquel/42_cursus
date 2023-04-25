@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:23:47 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/24 20:01:43 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/25 10:40:11 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 	Point(Point const & copie);
 	~Point();
 	
-	//Point	&operator=(Point const &point) const;
+	Point	&operator=(Point const &point);
 	Fixed 	get_x(void) const;
 	Fixed	get_y(void)const;
 	
