@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:23 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/24 13:42:14 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:47:36 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	Harl::complain(std::string level)
 
 	while (i < 4)
 	{
-		if (level.compare(complain_tab[i]) == 0)
+		if (level == complain_tab[i])
 			return ((this->*tab_fnct[i])());
 		i++;
 	}

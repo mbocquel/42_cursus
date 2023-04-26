@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:38:54 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/25 19:00:54 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:56:00 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ public:
 	void		attack(const std::string& target);
 	void		takeDamage(unsigned int amount);
 	void		beRepaired(unsigned int amount);
+	void		set_points(unsigned int	hit_points,
+			unsigned int energy_points, unsigned int attack_damage);
 
 private:
 	std::string		_name;

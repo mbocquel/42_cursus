@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:22:10 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/21 18:57:27 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:37:15 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class	Zombie {
 
 public:
 	Zombie(std::string name);
+	Zombie(void);
 	~Zombie(void);
 	void	announce(void);
 

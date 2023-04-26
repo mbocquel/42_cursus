@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:22:47 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/21 19:08:30 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:46:50 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Zombie::Zombie()
 {
+	std::cout << "Default Zombie constructor called" << std::endl; 
 }
 
 Zombie::~Zombie(void)

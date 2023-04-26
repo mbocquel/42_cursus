@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:29:20 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 13:55:48 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:02:06 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,24 @@
 */
 ScavTrap::ScavTrap(void) : ClapTrap::ClapTrap()
 {
-	this->_hit_points = 100;
-	this->_energy_points = 50;
-	this->_attack_damage = 20;
+	this->set_points(100, 50, 20);
 	std::cout << "ScavTrap default constructor called" << std::endl;
-	std::cout << "	Hit point : " << this->_hit_points << std::endl;
-	std::cout << "	Energy points : " << this->_energy_points << std::endl;
-	std::cout << "	Attack damage : " << this->_attack_damage << std::endl;
+	std::cout << "	Hit point : " << this->get_hit_points() << std::endl;
+	std::cout << "	Energy points : " << this->get_energy_point() << std::endl;
+	std::cout << "	Attack damage : " << this->get_attack_damage() << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap::ClapTrap(name)
 {
-	this->_hit_points = 100;
-	this->_energy_points = 50;
-	this->_attack_damage = 20;
-	std::cout << "ScavTrap constructor called for "<< this->_name << std::endl;
-	std::cout << "	Hit point : " << this->_hit_points << std::endl;
-	std::cout << "	Energy points : " << this->_energy_points << std::endl;
-	std::cout << "	Attack damage : " << this->_attack_damage << std::endl;
+	this->set_points(100, 50, 20);
+	std::cout << "ScavTrap constructor called for "<< this->get_name() << std::endl;
+	std::cout << "	Hit point : " << this->get_hit_points() << std::endl;
+	std::cout << "	Energy points : " << this->get_energy_point() << std::endl;
+	std::cout << "	Attack damage : " << this->get_attack_damage() << std::endl;
 }
 
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap destructor called" << std::endl; 
-	ClapTrap::~ClapTrap();
+	std::cout << "ScavTrap destructor called for " << this->get_name() << std::endl; 
 }

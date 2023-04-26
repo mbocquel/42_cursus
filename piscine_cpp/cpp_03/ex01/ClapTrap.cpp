@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:39:40 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/25 19:26:13 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:57:58 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ _attack_damage(0)
 ClapTrap::~ClapTrap(void)
 {
 	std::cout << "Destructor called for ClapTrap " << this->_name << std::endl;
+}
+
+void		ClapTrap::set_points(unsigned int hit_points,
+			unsigned int energy_points, unsigned int attack_damage)
+{
+	this->_hit_points = hit_points;
+	this->_energy_points = energy_points;
+	this->_attack_damage = attack_damage;
 }
 
 std::string	ClapTrap::get_name(void) const

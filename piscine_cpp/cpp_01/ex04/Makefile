@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/26 14:46:12 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/26 16:49:01 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,12 +50,6 @@ fclean: clean
 	$(RM)  $(NAME)
 
 re: fclean all
-
-run: all
-	./$(NAME)
-	
-memcheck: all
-	valgrind ./$(NAME)
 
 .PHONY: all clean fclean re
 
