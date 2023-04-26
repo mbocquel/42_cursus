@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:29:20 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 18:56:15 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:05:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,20 @@ ScavTrap & ScavTrap::operator=(ScavTrap const & scav_trap)
 void	ScavTrap::guardGate(void)
 {
 	std::cout << "\e[32mScavTrap " << this->get_name() << " just entered his Gate kepper mode!\e[0m" << std::endl;
+}
+
+void	ScavTrap::attack(const std::string& target)
+{
+	if (this->ClapTrap::_energy_points > 0 && this->ClapTrap::_hit_points > 0)
+	{
+		std::cout << "\e[32mScavTrap " << this->ClapTrap::_name << " attacks " 
+		<< target << ", causing " << this->ClapTrap::_attack_damage 
+		<< " points of damage!\e[0m" << std::endl;
+		this->ClapTrap::_energy_points--;
+	}
+	else
+	{
+		std::cout << "\e[32mScavTrap " << this->ClapTrap::_name
+		<< " doesn't have enouth points (energy or hit) to attack...\e[0m" << std::endl;
+	}
 }
