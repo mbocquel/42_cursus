@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:42:40 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/22 16:38:14 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 12:10:44 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ private:
 	
 public:
 	Weapon(std::string weapon_type);
-	std::string &getType(void);
-	void	setType(std::string type);
 	~Weapon();
+	const std::string	&getType(void) const;
+	void				setType(std::string type);
 };
 
 #endif
