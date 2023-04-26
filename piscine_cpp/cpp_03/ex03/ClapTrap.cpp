@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:39:40 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 18:47:44 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:51:06 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,7 @@ ClapTrap & ClapTrap::operator=(ClapTrap const & clap_trap)
 /* ************************************************************************** */
 /*                     Fonctions membres                                      */
 /* ************************************************************************** */
-/*
-void		ClapTrap::set_points(unsigned int hit_points,
-			unsigned int energy_points, unsigned int attack_damage)
-{
-	this->_hit_points = hit_points;
-	this->_energy_points = energy_points;
-	this->_attack_damage = attack_damage;
-}
 
-void		ClapTrap::set_name(std::string name)
-{
-	this->_name = name;
-}
-*/
 std::string	ClapTrap::get_name(void) const
 {
 	return (this->_name);

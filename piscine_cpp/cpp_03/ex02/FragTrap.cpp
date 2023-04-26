@@ -1,61 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 10:29:20 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 18:56:15 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/26 17:51:01 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/04/26 18:57:34 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
 
-ScavTrap::ScavTrap(void) : ClapTrap::ClapTrap()
+FragTrap::FragTrap(void) : ClapTrap::ClapTrap()
 {
 	this->ClapTrap::_hit_points = 100;
-	this->ClapTrap::_energy_points = 50;
-	this->ClapTrap::_attack_damage = 20;
-	std::cout << "\e[32mScavTrap default constructor called\e[0m" << std::endl;
+	this->ClapTrap::_energy_points = 100;
+	this->ClapTrap::_attack_damage = 30;
+	std::cout << "\e[31mFragTrap default constructor called\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap::ClapTrap(name)
+FragTrap::FragTrap(std::string name) : ClapTrap::ClapTrap(name)
 {
 	this->ClapTrap::_hit_points = 100;
-	this->ClapTrap::_energy_points = 50;
-	this->ClapTrap::_attack_damage = 20;
-	std::cout << "\e[32mScavTrap constructor called for "<< this->get_name() << "\e[0m" << std::endl;
+	this->ClapTrap::_energy_points = 100;
+	this->ClapTrap::_attack_damage = 30;
+	std::cout << "\e[31mFragTrap constructor called for "<< this->get_name() << "\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap const & copie) : ClapTrap::ClapTrap(copie.get_name())
+FragTrap::FragTrap(FragTrap const & copie) : ClapTrap::ClapTrap(copie.get_name())
 {
 	this->ClapTrap::_hit_points = copie.get_hit_points();
 	this->ClapTrap::_energy_points = copie.get_energy_point();
 	this->ClapTrap::_attack_damage = copie.get_attack_damage();
-	std::cout << "\e[32mScavTrap copie constructor called\e[0m" << std::endl;
+	std::cout << "\e[31mFragTrap copie constructor called\e[0m" << std::endl;
 }
 
-ScavTrap::~ScavTrap()
+FragTrap::~FragTrap()
 {
-	std::cout << "\e[32mScavTrap destructor called for " << this->get_name() << "\e[0m" << std::endl; 
+	std::cout << "\e[31mFragTrap destructor called for " << this->get_name() << "\e[0m" << std::endl; 
 }
 
 /* ************************************************************************** */
 /*                     Surchage d'opperateur                                  */
 /* ************************************************************************** */
 
-ScavTrap & ScavTrap::operator=(ScavTrap const & scav_trap)
+FragTrap & FragTrap::operator=(FragTrap const & frag_trap)
 {
-	this->ClapTrap::_name = scav_trap.get_name();
-	this->ClapTrap::_hit_points = scav_trap.get_hit_points();
-	this->ClapTrap::_energy_points = scav_trap.get_energy_point();
-	this->ClapTrap::_attack_damage = scav_trap.get_attack_damage();
-	std::cout << "\e[32mScavTrap assignation operator called\e[0m" << std::endl;
+	this->ClapTrap::_name = frag_trap.get_name();
+	this->ClapTrap::_hit_points = frag_trap.get_hit_points();
+	this->ClapTrap::_energy_points = frag_trap.get_energy_point();
+	this->ClapTrap::_attack_damage = frag_trap.get_attack_damage();
+	std::cout << "\e[31mFragTrap assignation operator called\e[0m" << std::endl;
 	return (*this);
 }
 
@@ -63,7 +63,7 @@ ScavTrap & ScavTrap::operator=(ScavTrap const & scav_trap)
 /*                     Fonction membre                                        */
 /* ************************************************************************** */
 
-void	ScavTrap::guardGate(void)
+void	FragTrap::highFivesGuys(void)
 {
-	std::cout << "\e[32mScavTrap " << this->get_name() << " just entered his Gate kepper mode!\e[0m" << std::endl;
+	std::cout << "\e[31mFragTrap " << this->get_name() << " is asking to high fives !\e[0m" << std::endl;
 }

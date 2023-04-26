@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:38:54 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 18:50:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:55:25 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ public:
 	void			beRepaired(unsigned int amount);
 	void			display_status(void) const;
 
-private:
+protected:
 	std::string		_name;
 	unsigned int	_hit_points;
 	unsigned int 	_energy_points;

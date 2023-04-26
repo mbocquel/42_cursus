@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 10:29:16 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 18:12:35 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/26 18:09:24 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/04/26 18:14:07 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAV_TRAP_HPP
-# define SCAV_TRAP_HPP
-# include "ClapTrap.hpp"
+#ifndef DIAMOND_TRAP_HPP
+# define DIAMOND_TRAP_HPP
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
 
-class ScavTrap : public ClapTrap
-{
-public:
-	ScavTrap(void);
-	ScavTrap(ScavTrap const & copie);
-	ScavTrap(std::string name);
-	ScavTrap & operator=(ScavTrap const & scav_trap);
-	~ScavTrap();
-	void	guardGate(void);
-	
-private:
 
-};
 
 #endif

@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 10:29:16 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 18:12:35 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/25 17:39:53 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/04/26 18:59:01 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAV_TRAP_HPP
-# define SCAV_TRAP_HPP
-# include "ClapTrap.hpp"
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
-class ScavTrap : public ClapTrap
+int	main(void)
 {
-public:
-	ScavTrap(void);
-	ScavTrap(ScavTrap const & copie);
-	ScavTrap(std::string name);
-	ScavTrap & operator=(ScavTrap const & scav_trap);
-	~ScavTrap();
-	void	guardGate(void);
 	
-private:
-
-};
-
-#endif
+	return (0);
+}
