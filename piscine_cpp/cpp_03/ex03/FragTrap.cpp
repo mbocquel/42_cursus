@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:51:01 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 18:57:34 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:41:06 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,23 @@
 
 FragTrap::FragTrap(void) : ClapTrap::ClapTrap()
 {
-	this->ClapTrap::_hit_points = 100;
-	this->ClapTrap::_energy_points = 100;
-	this->ClapTrap::_attack_damage = 30;
+	this->_hit_points = 100;
+	this->_energy_points = 100;
+	this->_attack_damage = 30;
 	std::cout << "\e[31mFragTrap default constructor called\e[0m" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap::ClapTrap(name)
 {
-	this->ClapTrap::_hit_points = 100;
-	this->ClapTrap::_energy_points = 100;
-	this->ClapTrap::_attack_damage = 30;
-	std::cout << "\e[31mFragTrap constructor called for "<< this->get_name() << "\e[0m" << std::endl;
+	this->_hit_points = 100;
+	this->_energy_points = 100;
+	this->_attack_damage = 30;
+	std::cout << "\e[31mFragTrap name constructor called for "<< this->get_name() << "\e[0m" << std::endl;
 }
 
 FragTrap::FragTrap(FragTrap const & copie) : ClapTrap::ClapTrap(copie.get_name())
 {
-	this->ClapTrap::_hit_points = copie.get_hit_points();
-	this->ClapTrap::_energy_points = copie.get_energy_point();
-	this->ClapTrap::_attack_damage = copie.get_attack_damage();
+	*this = copie;
 	std::cout << "\e[31mFragTrap copie constructor called\e[0m" << std::endl;
 }
 
@@ -51,16 +49,16 @@ FragTrap::~FragTrap()
 
 FragTrap & FragTrap::operator=(FragTrap const & frag_trap)
 {
-	this->ClapTrap::_name = frag_trap.get_name();
-	this->ClapTrap::_hit_points = frag_trap.get_hit_points();
-	this->ClapTrap::_energy_points = frag_trap.get_energy_point();
-	this->ClapTrap::_attack_damage = frag_trap.get_attack_damage();
+	this->_name = frag_trap.get_name();
+	this->_hit_points = frag_trap.get_hit_points();
+	this->_energy_points = frag_trap.get_energy_point();
+	this->_attack_damage = frag_trap.get_attack_damage();
 	std::cout << "\e[31mFragTrap assignation operator called\e[0m" << std::endl;
 	return (*this);
 }
 
 /* ************************************************************************** */
-/*                     Fonction membre                                        */
+/*                     Fonctions membres                                      */
 /* ************************************************************************** */
 
 void	FragTrap::highFivesGuys(void)

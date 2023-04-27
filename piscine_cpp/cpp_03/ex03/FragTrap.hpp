@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:50:58 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 18:12:23 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/27 11:17:41 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRAG_TRAP_HPP
 # include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 public:
 	FragTrap(void);

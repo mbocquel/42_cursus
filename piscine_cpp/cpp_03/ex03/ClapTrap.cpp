@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:39:40 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/26 18:51:06 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/27 12:22:00 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@
 
 ClapTrap::ClapTrap(void) : _hit_points(10), _energy_points(10), _attack_damage(0)
 {
-	std::cout << "\e[33mDefault constructor called for ClapTrap\e[0m" << std::endl;
+	std::cout << "\e[33mClapTrap default constructor called\e[0m" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const & copie)
 {
 	*this = copie;
-	std::cout << "\e[33mCopie constructor called for ClapTrap\e[0m" << std::endl;
+	std::cout << "\e[33mClapTrap copie constructor called\e[0m" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(10), _energy_points(10),
 _attack_damage(0)
 {
-	std::cout << "\e[33mName constructor called for ClapTrap " << this->_name << "\e[0m" << std::endl;
+	std::cout << "\e[33mClapTrap name constructor called for " << this->_name << "\e[0m" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "\e[33mDestructor called for ClapTrap " << this->_name << "\e[0m" << std::endl;
+	std::cout << "\e[33mClapTrap destructor called for " << this->_name << "\e[0m" << std::endl;
 }
 
 /* ************************************************************************** */
