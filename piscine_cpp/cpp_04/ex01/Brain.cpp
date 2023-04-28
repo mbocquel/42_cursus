@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:20:03 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/27 17:33:13 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:10:49 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@
 
 Brain::Brain(void) : _idea_index(-1)
 {
-	std::cout << "\e[29mBrain default constructor called\e[0m" << std::endl;
+	std::cout << "\e[35mBrain default constructor called\e[0m" << std::endl;
 }
 
 Brain::Brain(Brain const & copie)
 {
 	*this = copie;
-	std::cout << "\e[29mBrain copie constructor called\e[0m" << std::endl;
+	std::cout << "\e[35mBrain copie constructor called\e[0m" << std::endl;
 }
 
 Brain::~Brain(void)
 {
-	std::cout << "\e[29mBrain destructor called\e[0m" << std::endl;
+	std::cout << "\e[35mBrain destructor called\e[0m" << std::endl;
 }
 
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ Brain & Brain::operator=(Brain const & brain)
 		i++;
 	}
 	this->_idea_index = brain.get_idea_index();
-	std::cout << "\e[29mBrain assignation operator called\e[0m" << std::endl;
+	std::cout << "\e[35mBrain assignation operator called\e[0m" << std::endl;
 	return (*this);
 }
 
@@ -72,6 +72,11 @@ void		Brain::add_idea(std::string & new_idea)
 		this->_idea_index = 0;
 		this->_ideas[this->_idea_index] = new_idea;
 	}
+}
+void		Brain::add_idea(std::string & new_idea, int index)
+{
+	if (index >= 0 && index < 100)
+		this->_ideas[index] = new_idea;
 }
 
 int			Brain::get_idea_index(void) const

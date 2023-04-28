@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:14:32 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/27 17:27:46 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:21:10 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ public:
 	std::string	get_idea(int i) const;
 	int			get_idea_index(void) const;
 	void		add_idea(std::string & new_idea);
+	void		add_idea(std::string & new_idea, int index);
 
 private:
 	std::string _ideas[100];

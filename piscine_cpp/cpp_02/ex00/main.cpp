@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:45:30 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/24 16:19:23 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:44:17 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	main(void)
 	Fixed a;
 	Fixed b( a );
 	Fixed c;
-
+	
+	b.setRawBits(154);
 	c = b;
 
 	std::cout << a.getRawBits() << std::endl;

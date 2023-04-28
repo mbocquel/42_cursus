@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:18:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/27 16:05:47 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:15:48 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,14 @@ std::string		Animal::getType(void) const
 {
 	return (this->_type);	
 }
+/*
+Brain 			*Animal::getBrain(void) const
+{
+	return (NULL);
+}
+
+void			Animal::set_new_idea(std::string new_idea)
+{
+	(void)new_idea;
+}
+*/

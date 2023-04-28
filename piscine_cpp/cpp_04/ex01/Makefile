@@ -6,11 +6,11 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/27 16:06:44 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/28 17:56:33 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex00
+NAME = ex01
 
 SOURCES_DIR = ./
 
@@ -20,8 +20,8 @@ SOURCES =	main.cpp \
 			Animal.cpp \
 			Cat.cpp \
 			Dog.cpp \
-			WrongAnimal.cpp \
-			WrongCat.cpp
+			Brain.cpp \
+			ft_itostring_cpp.cpp
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.cpp=.o})
 
