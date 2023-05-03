@@ -1,0 +1,10 @@
+build
+libft
+Makefile
+minishell
+outfile1
+outfile2
+outfile3
+outfile4
+src
+valgrind_readline_leaks_ignore.supp

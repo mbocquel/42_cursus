@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:32:12 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/14 14:26:58 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:50:36 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char *argv[], char *env[])
 		if (ft_strlen(cmd) > 0)
 			add_history(cmd);
 		root = parse(&prm, cmd);
+		print_ast(&prm, root);
 		if (root != NULL)
 			exec_root(&prm, root);
 	}

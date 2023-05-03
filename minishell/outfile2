@@ -1,0 +1,23 @@
+build
+libft
+Makefile
+minishell
+outfile1
+outfile2
+outfile3
+outfile4
+src
+valgrind_readline_leaks_ignore.supp
+total 116
+drwxr-xr-x  5 mbocquel 2022_paris  4096 May  3 13:51 .
+drwxr-xr-x 16 mbocquel 2022_paris  4096 Apr 21 16:40 ..
+drwxr-xr-x 11 mbocquel 2022_paris  4096 May  3 13:50 build
+drwxr-xr-x  4 mbocquel 2022_paris  4096 May  3 13:50 libft
+-rw-r--r--  1 mbocquel 2022_paris  6160 Mar 14 17:46 Makefile
+-rwxr-xr-x  1 mbocquel 2022_paris 72376 May  3 13:50 minishell
+-rw-r--r--  1 mbocquel 2022_paris     0 May  3 13:51 outfile1
+-rw-r--r--  1 mbocquel 2022_paris   107 May  3 13:51 outfile2
+-rw-r--r--  1 mbocquel 2022_paris     5 May  3 13:54 outfile3
+-rw-r--r--  1 mbocquel 2022_paris   107 May  3 13:54 outfile4
+drwxr-xr-x 12 mbocquel 2022_paris  4096 Mar 14 17:46 src
+-rw-r--r--  1 mbocquel 2022_paris   192 Mar 14 17:50 valgrind_readline_leaks_ignore.supp
