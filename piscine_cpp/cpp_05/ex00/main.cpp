@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:45:47 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/03 16:17:00 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:03:43 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "\e[31mException: " << e.what() << "\e[0m" << std::endl;
+		std::cerr << "\e[31mException: " << e.what() << "\e[0m" << std::endl;
 	}
 	//Test de decrement jusqu'a ce que son grade soit trop bas
 	try 
@@ -65,7 +65,7 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "\e[31mException: " << e.what() << "\e[0m" << std::endl;
+		std::cerr << "\e[31mException: " << e.what() << "\e[0m" << std::endl;
 	}
 	//Test de increment jusqu'a ce que son grade soit trop haut
 	try 
@@ -93,7 +93,7 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "\e[31mException: " << e.what() << "\e[0m" << std::endl;
+		std::cerr << "\e[31mException: " << e.what() << "\e[0m" << std::endl;
 	}
 	
 	return (0);

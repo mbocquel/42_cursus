@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:46:15 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/03 17:38:31 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:42:19 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
-bool	Bureaucrat::_verbose = true;
+bool Bureaucrat::_verbose = false;
 
 Bureaucrat::Bureaucrat(void) : _name("")
 {
@@ -55,7 +55,8 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const & bureaucrat)
 {
 	this->_grade = bureaucrat.getGrade();
 	if (Bureaucrat::_verbose)
-		std::cout << "\e[33mBureaucrat assignement operator called. Warning, name is const and cannot be changed\e[0m" << std::endl;
+		std::cout << "\e[33mBureaucrat assignement operator called. Warning, name is const and cannot be changed\e[0m"
+		<< std::endl;
 	return (*this);
 }
 
@@ -84,7 +85,7 @@ void	Bureaucrat::increment_grade(void)
 	if (this->_grade > 1)
 		this->_grade--;
 	else
-		throw Bureaucrat::GradeTooHighException();
+		throw GradeTooHighException();
 }
 
 void	Bureaucrat::decrement_grade(void)
@@ -92,7 +93,21 @@ void	Bureaucrat::decrement_grade(void)
 	if (this->_grade < 150)
 		this->_grade++;
 	else
-		throw Bureaucrat::GradeTooLowException();
+		throw GradeTooLowException();
+}
+
+void	Bureaucrat::signForm(Form & form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
+	}
+	catch (Form::GradeTooLowException &e)
+	{
+		std::cout << this->_name << " couldn't sign " << form.getName() 
+		<< " because his/her grade is not high enouth." << std::endl;
+	}
 }
 
 /* ************************************************************************** */
