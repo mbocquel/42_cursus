@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:16:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:04 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/05/02 13:12:14 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/05/02 13:33:45 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
-# include <iostream>
-# include <string>
-# include "Brain.hpp" 
+#ifndef CURE_HPP
+# define CURE_HPP
+# include "AMateria.hpp"
 
-class	Animal
+class Cure : public AMateria
 {
 public:
-	Animal(void);
-	Animal(Animal const & copie);
-	Animal(std::string type);
-	virtual ~Animal(void);
+	Cure(void);
+	Cure(Cure const & copy);
+	~Cure(void);
 
-	Animal & operator=(Animal const & animal);
-	
-	virtual void	makeSound(void) const;
-	std::string		getType(void) const;
-
-protected:
-	std::string _type;
-	
+	Cure & operator=(Cure const & cure);
+	virtual AMateria* clone() const;
+	virtual void use(ICharacter& target);
 };
 
 #endif

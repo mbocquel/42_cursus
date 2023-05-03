@@ -1,61 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:18:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:07 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/27 15:24:54 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/05/02 11:36:59 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "Dog.hpp"
 
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
 
-Animal::Animal(void)
+Dog::Dog(void) : AAnimal::AAnimal("Dog")
 {
-	std::cout << "\e[33mAnimal default constructor called\e[0m" << std::endl;
+	std::cout << "\e[32mDog default constructor called\e[0m" << std::endl;
+	this->_my_brain = new Brain();
 }
 
-Animal::Animal(Animal const & copie)
+Dog::Dog(Dog const & copie)
 {
-	std::cout << "\e[33mAnimal copie constructor called\e[0m" << std::endl;
+	this->_my_brain = new Brain();
 	*this = copie;
+	std::cout << "\e[32mDog copie constructor called\e[0m" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+Dog::~Dog(void)
 {
-	std::cout << "\e[33mAnimal type constructor called\e[0m" << std::endl;
-}
-
-Animal::~Animal(void)
-{
-	std::cout << "\e[33mAnimal destructor called\e[0m" << std::endl;
+	delete this->_my_brain;
+	std::cout << "\e[32mDog destructor called\e[0m" << std::endl;
 }
 
 /* ************************************************************************** */
 /*                     Surcharge d'operateur                                  */
 /* ************************************************************************** */
-Animal & Animal::operator=(Animal const & animal)
+Dog & Dog::operator=(Dog const & dog)
 {
-	this->_type = animal.getType();
-	std::cout << "\e[33mAnimal assignation operator called\e[0m" << std::endl;
+	int	i = 0;
+	this->_type = dog.getType();
+	while (i < 100)
+	{
+		std::string idea = (dog.getBrain())->get_idea(i);
+		(this->_my_brain)->add_idea(idea, i);
+		i++;
+	}
+	std::cout << "\e[32mDog assignation operator called\e[0m" << std::endl;
 	return (*this);
 }
 
 /* ************************************************************************** */
 /*                     Methodes                                               */
 /* ************************************************************************** */
-void	Animal::makeSound(void) const
+void	Dog::makeSound(void) const
 {
-	std::cout << "\e[33m******* Random animal sound *******\e[0m" << std::endl;
+	std::cout << "\e[32m*** Whafff Whaff ! *** (Dog's sound if it wasn't clear enouth)\e[0m" << std::endl;
 }
 
-std::string		Animal::getType(void) const
+Brain 			*Dog::getBrain(void) const
 {
-	return (this->_type);	
+	return (this->_my_brain);
+}
+
+void			Dog::set_new_idea(std::string new_idea)
+{
+	this->_my_brain->add_idea(new_idea);
 }

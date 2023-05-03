@@ -1,61 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongCat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:18:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:07 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/27 15:54:08 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/04/27 15:56:42 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongCat.hpp"
 
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
 
-Animal::Animal(void)
+WrongCat::WrongCat(void) : WrongAnimal::WrongAnimal("WrongCat")
 {
-	std::cout << "\e[33mAnimal default constructor called\e[0m" << std::endl;
+	std::cout << "\e[35mWrongCat default constructor called\e[0m" << std::endl;
 }
 
-Animal::Animal(Animal const & copie)
+WrongCat::WrongCat(WrongCat const & copie)
 {
-	std::cout << "\e[33mAnimal copie constructor called\e[0m" << std::endl;
 	*this = copie;
+	std::cout << "\e[35mWrongCat copie constructor called\e[0m" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+WrongCat::~WrongCat(void)
 {
-	std::cout << "\e[33mAnimal type constructor called\e[0m" << std::endl;
-}
-
-Animal::~Animal(void)
-{
-	std::cout << "\e[33mAnimal destructor called\e[0m" << std::endl;
+	std::cout << "\e[35mWrongCat destructor called\e[0m" << std::endl;
 }
 
 /* ************************************************************************** */
 /*                     Surcharge d'operateur                                  */
 /* ************************************************************************** */
-Animal & Animal::operator=(Animal const & animal)
+WrongCat & WrongCat::operator=(WrongCat const & wrong_cat)
 {
-	this->_type = animal.getType();
-	std::cout << "\e[33mAnimal assignation operator called\e[0m" << std::endl;
+	this->_type = wrong_cat.get_type();
+	std::cout << "\e[35mWrongCat assignation operator called\e[0m" << std::endl;
 	return (*this);
 }
 
 /* ************************************************************************** */
 /*                     Methodes                                               */
 /* ************************************************************************** */
-void	Animal::makeSound(void) const
+void	WrongCat::makeSound(void) const
 {
-	std::cout << "\e[33m******* Random animal sound *******\e[0m" << std::endl;
-}
-
-std::string		Animal::getType(void) const
-{
-	return (this->_type);	
+	std::cout << "\e[35m*** Miaou Miaou ! *** (WrongCat's sound if it wasn't clear enouth)\e[0m" << std::endl;
 }

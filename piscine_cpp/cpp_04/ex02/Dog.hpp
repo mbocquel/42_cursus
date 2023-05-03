@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:16:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:04 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/27 15:24:57 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/05/02 11:36:31 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
-# include <iostream>
-# include <string>
-# include "Brain.hpp" 
+#ifndef DOG_HPP
+# define DOG_HPP
+# include "AAnimal.hpp"
+# include "Brain.hpp"
 
-class	Animal
+
+class	Dog : public AAnimal
 {
 public:
-	Animal(void);
-	Animal(Animal const & copie);
-	Animal(std::string type);
-	virtual ~Animal(void);
+	Dog(void);
+	Dog(Dog const & copie);
+	~Dog(void);
 
-	Animal & operator=(Animal const & animal);
+	Dog & operator=(Dog const & dog);
 	
 	virtual void	makeSound(void) const;
-	std::string		getType(void) const;
+	Brain 			*getBrain(void) const;
+	void			set_new_idea(std::string new_idea);
 
-protected:
-	std::string _type;
-	
+private:
+	Brain	*_my_brain;
 };
 
 #endif

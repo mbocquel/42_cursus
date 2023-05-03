@@ -6,18 +6,18 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/05/02 11:34:58 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/05/02 11:38:00 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
+NAME = ex02
 
 SOURCES_DIR = ./
 
 BUILD_DIR = ./build/
 
 SOURCES =	main.cpp \
-			Animal.cpp \
+			AAnimal.cpp \
 			Cat.cpp \
 			Dog.cpp \
 			Brain.cpp \

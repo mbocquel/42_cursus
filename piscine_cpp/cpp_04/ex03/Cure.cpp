@@ -1,61 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:18:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:07 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/05/02 13:12:17 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/05/02 16:55:33 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+// \e[33m \e[0m
+
+#include "Cure.hpp"
 
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
-
-Animal::Animal(void)
+Cure::Cure(void) : AMateria("cure")
 {
-	std::cout << "\e[33mAnimal default constructor called\e[0m" << std::endl;
+	std::cout << "\e[33mCure default constructor called.\e[0m" << std::endl;
 }
 
-Animal::Animal(Animal const & copie)
+Cure::Cure(Cure const & copy) : AMateria(copy.getType())
 {
-	std::cout << "\e[33mAnimal copie constructor called\e[0m" << std::endl;
-	*this = copie;
+	std::cout << "\e[33mCure copy constructor called.\e[0m" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+Cure::~Cure(void)
 {
-	std::cout << "\e[33mAnimal type constructor called\e[0m" << std::endl;
-}
-
-Animal::~Animal(void)
-{
-	std::cout << "\e[33mAnimal destructor called\e[0m" << std::endl;
+	std::cout << "\e[33mCure destructor called.\e[0m" << std::endl;
 }
 
 /* ************************************************************************** */
 /*                     Surcharge d'operateur                                  */
 /* ************************************************************************** */
-Animal & Animal::operator=(Animal const & animal)
+Cure & Cure::operator=(Cure const & cure)
 {
-	this->_type = animal.getType();
-	std::cout << "\e[33mAnimal assignation operator called\e[0m" << std::endl;
+	std::cout << "\e[33mWarning: copying a cure is pretty useless as the type is const...\e[0m"
+	<< std::endl;
+	(void)cure;
 	return (*this);
 }
 
 /* ************************************************************************** */
 /*                     Methodes                                               */
 /* ************************************************************************** */
-void	Animal::makeSound(void) const
+AMateria* Cure::clone() const
 {
-	std::cout << "\e[33m******* Random animal sound *******\e[0m" << std::endl;
+	AMateria* new_cure = new Cure();
+	return (new_cure);
 }
 
-std::string		Animal::getType(void) const
+void Cure::use(ICharacter& target)
 {
-	return (this->_type);	
+	std::cout <<  "	\e[33m* heals "<< target.getName() << "'s wounds *\e[0m" << std::endl;
 }

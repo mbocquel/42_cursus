@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:16:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:04 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/27 17:14:32 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/04/28 16:21:10 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 # include <iostream>
 # include <string>
-# include "Brain.hpp" 
 
-class	Animal
+class	Brain
 {
 public:
-	Animal(void);
-	Animal(Animal const & copie);
-	Animal(std::string type);
-	virtual ~Animal(void);
+	Brain(void);
+	Brain(Brain const & copie);
+	~Brain(void);
 
-	Animal & operator=(Animal const & animal);
-	
-	virtual void	makeSound(void) const;
-	std::string		getType(void) const;
+	Brain & operator=(Brain const & brain);
 
-protected:
-	std::string _type;
-	
+	std::string	get_idea(int i) const;
+	int			get_idea_index(void) const;
+	void		add_idea(std::string & new_idea);
+	void		add_idea(std::string & new_idea, int index);
+
+private:
+	std::string _ideas[100];
+	int			_idea_index;
+
 };
 
 #endif

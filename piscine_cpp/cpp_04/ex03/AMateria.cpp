@@ -1,61 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:18:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:07 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/05/02 12:06:48 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/05/02 16:26:32 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AMateria.hpp"
 
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
 
-Animal::Animal(void)
+AMateria::AMateria(std::string const & type) : _type(type)
 {
-	std::cout << "\e[33mAnimal default constructor called\e[0m" << std::endl;
+	std::cout << "\e[31mAMateria constructor called with type "<< this->_type 
+	<< "\e[0m" << std::endl;
 }
 
-Animal::Animal(Animal const & copie)
+AMateria::AMateria(void)
 {
-	std::cout << "\e[33mAnimal copie constructor called\e[0m" << std::endl;
-	*this = copie;
+	std::cout << "\e[31mAMateria default constructor called.\e[0m" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+AMateria::AMateria(AMateria const & copy) : _type(copy.getType())
 {
-	std::cout << "\e[33mAnimal type constructor called\e[0m" << std::endl;
+	std::cout << "\e[31mAMateria copy constructor called.\e[0m" << std::endl;
 }
 
-Animal::~Animal(void)
+AMateria::~AMateria(void)
 {
-	std::cout << "\e[33mAnimal destructor called\e[0m" << std::endl;
+	std::cout << "\e[31mAMateria destructor called.\e[0m" << std::endl;
 }
 
 /* ************************************************************************** */
 /*                     Surcharge d'operateur                                  */
 /* ************************************************************************** */
-Animal & Animal::operator=(Animal const & animal)
+
+AMateria & AMateria::operator=(AMateria const & amateria)
 {
-	this->_type = animal.getType();
-	std::cout << "\e[33mAnimal assignation operator called\e[0m" << std::endl;
+	(void)amateria;
+	std::cout << "\e[31mWarning: copying a AMateria is pretty useless as the type is const...\e[0m"
+	<< std::endl;
 	return (*this);
 }
 
 /* ************************************************************************** */
 /*                     Methodes                                               */
 /* ************************************************************************** */
-void	Animal::makeSound(void) const
+
+std::string const & AMateria::getType() const
 {
-	std::cout << "\e[33m******* Random animal sound *******\e[0m" << std::endl;
+	return (this->_type);
 }
 
-std::string		Animal::getType(void) const
+void AMateria::use(ICharacter& target)
 {
-	return (this->_type);	
+	(void)target;
+	std::cout << "\e[31mSorry, using a pure AMateria doesn't do much ...\e[0m"<< std::endl;
 }

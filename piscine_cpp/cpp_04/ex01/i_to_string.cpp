@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itostring_cpp.cpp                               :+:      :+:    :+:   */
+/*   i_to_string.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:43:46 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/28 17:56:14 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/02 11:34:27 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static std::string	ft_c_to_string(int i)
 	return ("");
 }
 
-std::string	ft_itoa(int n)
+std::string i_to_string(int n)
 {
 	std::string	nbr_string;
 	long int	nbr;

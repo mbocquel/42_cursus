@@ -1,61 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:18:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:07 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/02 11:36:13 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
 
-Animal::Animal(void)
+AAnimal::AAnimal(void)
 {
-	std::cout << "\e[33mAnimal default constructor called\e[0m" << std::endl;
+	std::cout << "\e[33mAAnimal default constructor called\e[0m" << std::endl;
 }
 
-Animal::Animal(Animal const & copie)
+AAnimal::AAnimal(AAnimal const & copie)
 {
-	std::cout << "\e[33mAnimal copie constructor called\e[0m" << std::endl;
+	std::cout << "\e[33mAAnimal copie constructor called\e[0m" << std::endl;
 	*this = copie;
 }
 
-Animal::Animal(std::string type) : _type(type)
+AAnimal::AAnimal(std::string type) : _type(type)
 {
-	std::cout << "\e[33mAnimal type constructor called\e[0m" << std::endl;
+	std::cout << "\e[33mAAnimal type constructor called\e[0m" << std::endl;
 }
 
-Animal::~Animal(void)
+AAnimal::~AAnimal(void)
 {
-	std::cout << "\e[33mAnimal destructor called\e[0m" << std::endl;
+	std::cout << "\e[33mAAnimal destructor called\e[0m" << std::endl;
 }
 
 /* ************************************************************************** */
 /*                     Surcharge d'operateur                                  */
 /* ************************************************************************** */
-Animal & Animal::operator=(Animal const & animal)
+AAnimal & AAnimal::operator=(AAnimal const & animal)
 {
 	this->_type = animal.getType();
-	std::cout << "\e[33mAnimal assignation operator called\e[0m" << std::endl;
+	std::cout << "\e[33mAAnimal assignation operator called\e[0m" << std::endl;
 	return (*this);
 }
 
 /* ************************************************************************** */
 /*                     Methodes                                               */
 /* ************************************************************************** */
-void	Animal::makeSound(void) const
-{
-	std::cout << "\e[33m******* Random animal sound *******\e[0m" << std::endl;
-}
-
-std::string		Animal::getType(void) const
+std::string		AAnimal::getType(void) const
 {
 	return (this->_type);	
 }

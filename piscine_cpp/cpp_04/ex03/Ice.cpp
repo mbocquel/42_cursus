@@ -1,61 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:18:02 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:07 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/05/02 13:12:12 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/05/02 16:55:23 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "Ice.hpp"
 
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
-
-Animal::Animal(void)
+Ice::Ice(void) : AMateria("ice")
 {
-	std::cout << "\e[33mAnimal default constructor called\e[0m" << std::endl;
+	std::cout << "\e[34mIce default constructor called.\e[0m" << std::endl;
 }
 
-Animal::Animal(Animal const & copie)
+Ice::Ice(Ice const & copy) : AMateria(copy.getType())
 {
-	std::cout << "\e[33mAnimal copie constructor called\e[0m" << std::endl;
-	*this = copie;
+	std::cout << "\e[34mIce copy constructor called.\e[0m" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+Ice::~Ice(void)
 {
-	std::cout << "\e[33mAnimal type constructor called\e[0m" << std::endl;
-}
-
-Animal::~Animal(void)
-{
-	std::cout << "\e[33mAnimal destructor called\e[0m" << std::endl;
+	std::cout << "\e[34mIce destructor called.\e[0m" << std::endl;
 }
 
 /* ************************************************************************** */
 /*                     Surcharge d'operateur                                  */
 /* ************************************************************************** */
-Animal & Animal::operator=(Animal const & animal)
+Ice & Ice::operator=(Ice const & ice)
 {
-	this->_type = animal.getType();
-	std::cout << "\e[33mAnimal assignation operator called\e[0m" << std::endl;
+	std::cout << "\e[34mWarning: copying an ice is pretty useless as the type is const...\e[0m"
+	<< std::endl;
+	(void)ice;
 	return (*this);
 }
 
 /* ************************************************************************** */
 /*                     Methodes                                               */
 /* ************************************************************************** */
-void	Animal::makeSound(void) const
+AMateria* Ice::clone() const
 {
-	std::cout << "\e[33m******* Random animal sound *******\e[0m" << std::endl;
+	AMateria* new_ice = new Ice();
+	return (new_ice);
 }
 
-std::string		Animal::getType(void) const
+void Ice::use(ICharacter& target)
 {
-	return (this->_type);	
+	std::cout << "	\e[34m* shoots an ice bolt at " << target.getName() << " *\e[0m" << std::endl;
 }

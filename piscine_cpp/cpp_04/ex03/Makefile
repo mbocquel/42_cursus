@@ -6,24 +6,22 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/05/02 11:34:58 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/05/02 16:21:26 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
+NAME = ex03
 
 SOURCES_DIR = ./
 
 BUILD_DIR = ./build/
 
 SOURCES =	main.cpp \
-			Animal.cpp \
-			Cat.cpp \
-			Dog.cpp \
-			Brain.cpp \
-			i_to_string.cpp \
-			WrongAnimal.cpp \
-			WrongCat.cpp
+			AMateria.cpp \
+			Character.cpp \
+			Cure.cpp \
+			Ice.cpp \
+			MateriaSource.cpp
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.cpp=.o})
 
@@ -31,7 +29,7 @@ DEPS := $(OBJECTS:.o=.d)
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98 -g3
 
 RM = rm -rf
 
@@ -62,7 +60,7 @@ run: all
 	./$(NAME)
 	
 memcheck: all
-	valgrind ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible ./$(NAME)
 
 .PHONY: all clean fclean re
 

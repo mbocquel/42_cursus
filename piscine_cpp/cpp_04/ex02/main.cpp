@@ -6,20 +6,29 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:15:46 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:35:11 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/02 11:54:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "Brain.hpp"
 
 std::string	i_to_string(int n);
 
+/* Main qui ne peux pas compiler car ma classe AAnimal 
+est une classe abstraitre*/
+
+/*int	main(void)
+{
+	AAnimal *animal = new AAnimal();
+	return (0);
+}*/
+
 int	main(void)
 {
-	Animal *animal_tab[10];
+	AAnimal *animal_tab[10];
 
 	// Creation de mes annimaux
 	for (int i = 0; i < 5; i++)

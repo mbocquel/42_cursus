@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:16:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/02 11:17:04 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:16:48 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef A_ANIMAL_HPP
+# define A_ANIMAL_HPP
 # include <iostream>
 # include <string>
 # include "Brain.hpp" 
 
-class	Animal
+class	AAnimal
 {
 public:
-	Animal(void);
-	Animal(Animal const & copie);
-	Animal(std::string type);
-	virtual ~Animal(void);
+	AAnimal(void);
+	AAnimal(AAnimal const & copie);
+	AAnimal(std::string type);
+	virtual ~AAnimal(void);
 
-	Animal & operator=(Animal const & animal);
+	AAnimal & operator=(AAnimal const & animal);
 	
-	virtual void	makeSound(void) const;
+	virtual void	makeSound(void) const = 0; //permet d'en faire une classe abstraite
 	std::string		getType(void) const;
 
 protected:
