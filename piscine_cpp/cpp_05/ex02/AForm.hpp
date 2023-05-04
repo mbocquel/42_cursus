@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:21:57 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/03 18:54:25 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:51:24 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,25 @@ public:
 
 	virtual AForm & operator=(AForm const & form);
 
-	virtual std::string const	getName(void) const;
-	virtual bool				getSigned(void) const;
-	virtual int					getGrade_to_sign(void) const;
-	virtual int 				getGrade_to_execute(void) const;
-	virtual void				beSigned(Bureaucrat const & bur_to_sng);
-	virtual void				execute(Bureaucrat const & executor) const = 0;
-	virtual void				check_executable(Bureaucrat const & executor);
-	
+	std::string const	getName(void) const;
+	bool				getSigned(void) const;
+	int					getGrade_to_sign(void) const;
+	int 				getGrade_to_execute(void) const;
+	void				beSigned(Bureaucrat const & bur_to_sng);
+	virtual void		execute(Bureaucrat const & executor) const = 0;
+	void				check_executable(Bureaucrat const & executor) const;
+
 	class GradeTooLowException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw();
+	};
+	class FormNotSigned : public std::exception
+	{
+		public:
+			virtual const char* what() const throw();
+	};
+	class ExecutionFailed : public std::exception
 	{
 		public:
 			virtual const char* what() const throw();

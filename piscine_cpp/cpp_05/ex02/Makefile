@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/05/03 17:48:00 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/05/04 14:53:55 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,10 @@ BUILD_DIR = ./build/
 
 SOURCES =	main.cpp \
 			Bureaucrat.cpp \
-			Form.cpp \
-			ShrubberyCreationForm.cpp \
+			AForm.cpp \
+			PresidentialPardonForm.cpp \
 			RobotomyRequestForm.cpp \
-			PresidentialPardonForm.cpp
-			
+			ShrubberyCreationForm.cpp
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.cpp=.o})
 
