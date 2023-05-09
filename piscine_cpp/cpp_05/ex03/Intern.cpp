@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:11:03 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/09 11:05:15 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:35:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,19 @@ AForm *Intern::makeForm(std::string request, std::string target)
 	{
 		case 0:
 			form_created = new RobotomyRequestForm(target);
-			std::cout << "Ok boss I am making a Robotomy Request Form"<< std::endl;
+			std::cout << "\e[33mIntern: Ok boss I am making a Robotomy Request Form\e[0m"<< std::endl;
 			break ;
 		case 1:
 			form_created = new PresidentialPardonForm(target);
-			std::cout << "Ok boss I am making a Presidential Pardon Form"<< std::endl;
+			std::cout << "\e[33mIntern: Ok boss I am making a Presidential Pardon Form\e[0m"<< std::endl;
 			break ;
 		case 2:
 			form_created = new ShrubberyCreationForm(target);
-			std::cout << "Ok boss I am making a Shrubbery Creation Form"<< std::endl;
+			std::cout << "\e[33mIntern: Ok boss I am making a Shrubbery Creation Form\e[0m"<< std::endl;
 			break ;
 		default:
 			form_created = NULL;
-			std::cout << "I am so so sorry boss but I don't know what form you are talking about..."
+			std::cout << "\e[33mIntern: I am so so sorry boss but I don't know what form you are talking about...\e[0m"
 			<< std::endl;
 			break ;
 	}
