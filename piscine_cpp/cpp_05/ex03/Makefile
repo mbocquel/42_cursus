@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/05/09 11:45:05 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/05/09 16:50:48 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ clean:
 	$(RM) $(BUILD_DIR)
 
 fclean: clean
-	$(RM)  $(NAME)
+	$(RM)  $(NAME) Garden_shrubbery
 
 re: fclean all
 
