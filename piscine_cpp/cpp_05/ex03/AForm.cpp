@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:22:58 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/09 11:10:56 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:15:38 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ _name(""), _signed(false), _grade_to_sign(1), _grade_to_execute(1)
 AForm::AForm(std::string const form_name, int const grade_to_sign, int const grade_to_execute) :
 _name(form_name), _signed(false), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
 {
+	if (grade_to_sign <= 0 || grade_to_execute <= 0)
+		throw GradeTooHighException();
+	else if (grade_to_sign > 150 || grade_to_execute > 150)
+		throw GradeTooLowException();
 	if (AForm::_verbose)
 		std::cout << "\e[93mAForm constructor called\e[0m" << std::endl;
 }
@@ -118,6 +122,11 @@ void	AForm::check_executable(Bureaucrat const & executor) const
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return ("\e[91mForm grade too low exception\e[0m");
+}
+
+const char* AForm::GradeTooHighException::what() const throw()
+{
+	return ("\e[91mForm grade too high exception\e[0m");
 }
 
 const char* AForm::FormNotSigned::what() const throw()

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:46:15 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/03 17:42:19 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:07:30 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
-bool Bureaucrat::_verbose = false;
+bool Bureaucrat::_verbose = true;
 
 Bureaucrat::Bureaucrat(void) : _name("")
 {

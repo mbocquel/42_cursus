@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:21:57 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/04 11:51:24 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:14:50 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ public:
 	void				check_executable(Bureaucrat const & executor) const;
 
 	class GradeTooLowException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw();
+	};
+	class GradeTooHighException : public std::exception
 	{
 		public:
 			virtual const char* what() const throw();

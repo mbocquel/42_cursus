@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:22:58 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/03 17:42:13 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:07:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
 /* ************************************************************************** */
-bool	Form::_verbose = false;
+bool	Form::_verbose = true;
 
 Form::Form(void) :
 _name(""), _signed(false), _grade_to_sign(1), _grade_to_execute(1)
@@ -27,6 +27,10 @@ _name(""), _signed(false), _grade_to_sign(1), _grade_to_execute(1)
 Form::Form(std::string const form_name, int const grade_to_sign, int const grade_to_execute) :
 _name(form_name), _signed(false), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
 {
+	if (grade_to_sign <= 0 || grade_to_execute <= 0)
+		throw GradeTooHighException();
+	else if (grade_to_sign > 150 || grade_to_execute > 150)
+		throw GradeTooLowException();
 	if (Form::_verbose)
 		std::cout << "Form constructor called" << std::endl;
 }
@@ -109,4 +113,9 @@ void				Form::beSigned(Bureaucrat const & bur_to_sng)
 const char* Form::GradeTooLowException::what() const throw()
 {
 	return ("Form grade too low exception");
+}
+
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return ("Form grade too high exception");
 }

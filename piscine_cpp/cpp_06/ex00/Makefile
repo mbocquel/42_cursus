@@ -6,22 +6,17 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/05/09 16:19:28 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/05/09 12:37:46 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex02
+NAME = ex00
 
 SOURCES_DIR = ./
 
 BUILD_DIR = ./build/
 
-SOURCES =	main.cpp \
-			Bureaucrat.cpp \
-			AForm.cpp \
-			PresidentialPardonForm.cpp \
-			RobotomyRequestForm.cpp \
-			ShrubberyCreationForm.cpp
+SOURCES =	main.cpp
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.cpp=.o})
 
@@ -52,7 +47,7 @@ clean:
 	$(RM) $(BUILD_DIR)
 
 fclean: clean
-	$(RM)  $(NAME) Garden_shrubbery
+	$(RM)  $(NAME)
 
 re: fclean all
 
