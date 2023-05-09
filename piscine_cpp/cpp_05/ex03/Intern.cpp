@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:11:03 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/09 10:49:11 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:05:15 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ AForm *Intern::makeForm(std::string request, std::string target)
 			break ;
 		case 2:
 			form_created = new ShrubberyCreationForm(target);
+			std::cout << "Ok boss I am making a Shrubbery Creation Form"<< std::endl;
 			break ;
 		default:
 			form_created = NULL;

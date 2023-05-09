@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:45:47 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/09 10:48:30 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:11:30 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(void)
 	std::cout << std::endl;
 	
 	std::cout << "	Boss: Intern ! I want you to make a shrubbery creation form for the garden" << std::endl;
-	form2 = intern_0.makeForm("shrubbery creationn", "Garden");
+	form2 = intern_0.makeForm("shrubbery creation", "Garden");
 	std::cout << "	Boss: Ok, let's have a look at what you made..." << std::endl;
 	std::cout << *form2 << std::endl;
 	delete form2;
