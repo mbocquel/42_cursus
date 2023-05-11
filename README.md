@@ -37,4 +37,11 @@ Rentree du cursus de 42 le 07/11/2022.
   - Netpractice
     - Valide le 17/04/2023 a 100/100.
   - Piscine CPP
-    - CPP 00 en cours.
+    - CPP 00 valide le 24/04/2023 a 100/100.
+    - CPP 01 valide le 28/04/2023 a 100/100.
+    - CPP 02 valide le 28/04/2023 a 100/100.
+    - CPP 03 valide le 30/04/2023 a 100/100.
+    - CPP 04 valide le 02/05/2023 a 100/100.
+- Cercle 5
+  - Piscine CPP
+    - CPP 05 valide le 11/05/2023 a 100/100.
