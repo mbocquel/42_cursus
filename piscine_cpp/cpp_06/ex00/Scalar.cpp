@@ -6,11 +6,12 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:29:01 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/11 10:55:01 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:15:16 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
+#include <string>
 
 bool	Scalar::_verbose = true;
 /* ************************************************************************** */
@@ -29,9 +30,13 @@ Scalar::Scalar(Scalar const & copy)
 		std::cout << "Scalar copy constructor called" << std::endl;
 }
 
-Scalar::Scalar(std::string str) :
-_string(str)
+Scalar::Scalar(const char *str)
 {
+	this->_double = std::atof(str);
+	this->_float = static_cast<float>(this->_double);
+	this->_int = static_cast<int>(this->_double);
+	this->_char = static_cast<int>(this->_double);
+
 	if (Scalar::_verbose)
 		std::cout << "Scalar string constructor called" << std::endl;
 }
@@ -47,7 +52,6 @@ Scalar::~Scalar(void)
 /* ************************************************************************** */
 Scalar & Scalar::operator=(Scalar const & scalar)
 {
-	this->_string = scalar.getString();
 	this->_char = scalar.getChar();
 	this->_int = scalar.getInt();
 	this->_float = scalar.getFloat();
@@ -65,11 +69,6 @@ std::ostream & operator<<(std::ostream & o, Scalar const & scalar)
 /* ************************************************************************** */
 /*                     Methodes                                               */
 /* ************************************************************************** */
-std::string	Scalar::getString(void) const
-{
-	return (this->_string);
-}
-
 char		Scalar::getChar(void) const
 {
 	return (this->_char);
