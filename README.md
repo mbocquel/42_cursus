@@ -33,7 +33,7 @@ Rentree du cursus de 42 le 07/11/2022.
     - Valide le 14/03/2023 a 101/100.
 - Cercle 4
   - Cub3d (fait avec [jlanza](https://github.com/Zattilio))
-    - Valide le 13/04/2023 a 125/100 - 3 "Outstanding projects".
+    - Valide le 13/04/2023 a 125/100 - 3 "Outstanding project".
   - Netpractice
     - Valide le 17/04/2023 a 100/100.
   - Piscine CPP
