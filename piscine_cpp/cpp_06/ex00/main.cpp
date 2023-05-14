@@ -6,11 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:45:47 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/12 15:10:12 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/12 20:03:46 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Scalar.hpp"
+#include "ScalarConverter.hpp"
 
 int	main(int argc, char **argv)
 {
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		std::string	_str(argv[1]);	
-		Scalar	my_scalar(_str);
+		ScalarConverter::convert(_str);
 		return (0);
 	}
 }

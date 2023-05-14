@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/05/12 15:37:32 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/05/12 20:03:58 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SOURCES_DIR = ./
 BUILD_DIR = ./build/
 
 SOURCES =	main.cpp \
-			Scalar.cpp
+			ScalarConverter.cpp
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.cpp=.o})
 

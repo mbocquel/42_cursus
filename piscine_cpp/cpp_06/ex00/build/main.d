@@ -1,2 +1,2 @@
-build/main.o: main.cpp Scalar.hpp
-Scalar.hpp:
+build/main.o: main.cpp ScalarConverter.hpp
+ScalarConverter.hpp:

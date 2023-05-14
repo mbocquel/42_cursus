@@ -1,43 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Scalar.hpp                                         :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:29:04 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/12 16:12:59 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/14 11:29:12 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALAR_HPP
-# define SCALAR_HPP
+#ifndef SCALARCONVERTER_HPP
+# define SCALARCONVERTER_HPP
 # include <iostream>
 # include <string>
 # include <cstdlib>
 # include <climits>
+# include <limits>  
+# include <iomanip>
+# include <ostream>
+# include <cmath>
+# include <sstream>
 
-class Scalar
+class ScalarConverter
 {
 private:
-	double			_double;
-	static	bool	_verbose;
-	std::string		_string;
-	std::string		_origin_type;
-	std::string		_pseudo;
-	Scalar(void);
+	ScalarConverter(void);
+	ScalarConverter(ScalarConverter const & sc);
 	
 public:
-	Scalar(std::string str);
-	Scalar(Scalar const & copy);
-	~Scalar(void);
+	~ScalarConverter(void);
 	
-	Scalar & operator=(Scalar const & scalar);
+	ScalarConverter & operator=(ScalarConverter const & scalar);
 	
-	double		getDouble(void) const;
-	std::string	getPseudo(void) const;
+	static void	convert(std::string str);
+	static void	convert_char(std::string str);
+	static void convert_int(double db);
+	static void	convert_float(double db);
+	static void	convert_double(double db);
 };
 
-std::ostream & operator<<(std::ostream & o, Scalar const & scalar);
 
 #endif
