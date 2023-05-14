@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:29:01 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/14 12:50:24 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/14 13:02:49 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,6 @@ ScalarConverter::ScalarConverter(ScalarConverter const & copy)
 {
 	(void)copy;
 }
-/*
-Scalar::Scalar(std::string str) : _string(str)
-{
-	char	*remain = NULL;
-	this->_double = strtod(str.c_str(), &remain);
-	std::string remain_string(remain);
-
-	if (str.find('.') == std::string::npos && remain_string.empty())
-		this->_origin_type = "int";
-	else if (str.find('.') != std::string::npos && remain_string == "f")
-		this->_origin_type = "float";
-	else if (str.find('.') != std::string::npos && remain_string.empty())
-		this->_origin_type = "double";
-	else if (str == "-inff" || str == "+inff" || str == "inff" )
-	{
-		this->_origin_type = "float";
-		this->_pseudo = str;
-	}
-	else if (str == "-inf" || str == "+inf" || str == "inf")
-	{
-		this->_origin_type = "double";
-		this->_pseudo = str;
-	}
-	else
-		this->_pseudo = "nan";
-	if (Scalar::_verbose)
-		std::cout << "Scalar string constructor called" << std::endl;
-}*/
 
 ScalarConverter::~ScalarConverter(void)
 {
@@ -209,7 +181,7 @@ void	ScalarConverter::convert_inf(bool pos)
 		return ; 
 	}
 }
-/* Besoin de gerer la precision pour que ca soit la meme que ce qui est passe en entree */
+
 void		ScalarConverter::convert(std::string str)
 {
 	std::ostringstream	os;

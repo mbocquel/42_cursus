@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/05/12 20:03:58 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/05/14 13:03:13 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,11 +52,11 @@ fclean: clean
 
 re: fclean all
 
-run: all
-	./$(NAME)
+#run: all
+#	./$(NAME)
 	
-memcheck: all
-	valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible ./$(NAME)
+#memcheck: all
+#	valgrind --leak-check=full --show-leak-kinds=definite,indirect,possible ./$(NAME)
 
 .PHONY: all clean fclean re
 
