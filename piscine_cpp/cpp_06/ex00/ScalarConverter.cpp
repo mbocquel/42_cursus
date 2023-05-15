@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:29:01 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/14 13:02:49 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:34:30 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,9 @@ void	ScalarConverter::convert_int(double db)
 		else
 			os << "char: '" << static_cast<char>(i) << "'" << std::endl;
 		os << "int: " << i << std::endl;
-		std::streamsize ss = std::cout.precision();
 		os << std::setprecision(1);
 		os << std::setiosflags(std::ios::fixed) ;
 		os << "float: " << static_cast<float>(i) << "f" << std::endl;
-		os << std::setprecision(ss);
-		os << std::resetiosflags(std::ios::fixed) ;
 		os << "double: " << static_cast<double>(i) << std::endl;
 		std::cout << os.str();
 		return ;
@@ -103,8 +100,6 @@ void	ScalarConverter::convert_float(double db, std::string str)
 	std::ostringstream	os;
 	float				f = static_cast<float>(db);
 	int	precision = str.size() - 2 - str.find('.'); 
-
-	std::cout << "precision : " << precision << std::endl;
 
 	if (std::abs(db) < std::numeric_limits<float>::min() || std::abs(db) > std::numeric_limits<float>::max())
 	{
@@ -198,7 +193,6 @@ void		ScalarConverter::convert(std::string str)
 	std::string remain_string(remain);
 
 	/* ------------  Test si c'est des psuedo literals ---------------- */
-	
 	if (db != db && (remain_string.empty() || remain_string == "f" || remain_string == "F")) // NAN
 	{
 		ScalarConverter::convert_nan();
