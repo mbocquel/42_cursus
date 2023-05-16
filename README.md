@@ -45,3 +45,4 @@ Rentree du cursus de 42 le 07/11/2022.
 - Cercle 5
   - Piscine CPP
     - CPP 05 valide le 11/05/2023 a 100/100.
+    - CPP 06 valide le 15/05/2023 a 100/100.
