@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:11:11 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/16 12:51:01 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:22:31 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <iostream>
 
 template<typename T>
-void	iter(T *array, std::size_t size, void (*f)(T & elem))
+void	iter(T *array, std::size_t size, void (*f)(T const & elem))
 {
 	std::size_t i = 0;
 
@@ -29,7 +29,7 @@ void	iter(T *array, std::size_t size, void (*f)(T & elem))
 }
 
 template<typename T>
-void	my_function(T & elem)
+void	my_function(T const & elem)
 {
 	std::cout << elem << std::endl;
 }

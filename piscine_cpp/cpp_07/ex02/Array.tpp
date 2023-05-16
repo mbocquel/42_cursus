@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:25:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/16 14:27:41 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:21:38 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,21 @@ Array<T>::~Array(void)
 template<typename T>
 Array<T> & Array<T>::operator=(Array<T> const & arr)
 {
-	if (this->_array)
-		delete this->_array;
-	this->_size = arr._size;
-	if (this->_size == 0)
-		this->_array = NULL;
-	else
+	if (this != &arr)
 	{
-		this->_array = new T[this->_size];
-		if (this->_array == NULL)
-			throw std::exception();
-		for (unsigned int i = 0; i < this->_size; i++)
-			this->_array[i] = arr._array[i];
+		if (this->_array)
+			delete this->_array;
+		this->_size = arr._size;
+		if (this->_size == 0)
+			this->_array = NULL;
+		else
+		{
+			this->_array = new T[this->_size];
+			if (this->_array == NULL)
+				throw std::exception();
+			for (unsigned int i = 0; i < this->_size; i++)
+				this->_array[i] = arr._array[i];
+		}
 	}
 	return (*this);
 }

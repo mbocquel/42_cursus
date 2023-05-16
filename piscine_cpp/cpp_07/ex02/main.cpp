@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:45:47 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/16 14:25:57 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:21:43 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void test_string_array(void)
 	string_array[2] = "ca ";
 	string_array[3] = "va ";
 	string_array[4] = "aujourd'hui ?";
-
+	
 	std::cout << string_array[0] 
 	<< string_array[1] 
 	<< string_array[2] 

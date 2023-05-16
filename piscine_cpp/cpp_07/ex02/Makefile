@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/05/16 14:06:50 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/05/16 18:20:44 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ DEPS := $(OBJECTS:.o=.d)
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98 -g3
+CFLAGS = -Wall -Wextra  -MMD -MP -std=c++98 -g3
 
 RM = rm -rf
 
