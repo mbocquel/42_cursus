@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:45:47 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/15 11:43:33 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:10:37 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(void)
 	std::cout << "&temp : " << &temp << std::endl;
 	std::cout << "temp : " << temp << std::endl << std::endl;
 
+	std::cout << "result_deserialize : " << result_deserialize << std::endl;
 	result_deserialize = Serializer::deserialize(temp);
 	std::cout << "result_deserialize : " << result_deserialize << std::endl;
 	std::cout << "result_deserialize->a : " << result_deserialize->a << std::endl;
