@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/05/22 12:00:14 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/05/23 15:22:10 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SOURCES_DIR = ./
 
 BUILD_DIR = ./build/
 
-SOURCES =	main.cpp
+SOURCES =	main.cpp \
+			Span.cpp
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.cpp=.o})
 
@@ -44,7 +45,7 @@ $(NAME):	$(OBJECTS)
 			@echo "\nALL DONE THANKS!"
 
 clean:
-	$(RM) $(BUILD_DIR)
+	$(RM) $(BUILD_DIR) *_content.txt *_distance.txt
 
 fclean: clean
 	$(RM)  $(NAME)
