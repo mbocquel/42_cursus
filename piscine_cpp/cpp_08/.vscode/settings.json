@@ -48,6 +48,10 @@
 		"set": "cpp",
 		"optional": "cpp",
 		"ranges": "cpp",
-		"span": "cpp"
+		"span": "cpp",
+		"stack": "cpp",
+		"*.tpp": "cpp",
+		"ctime": "cpp",
+		"fstream": "cpp"
 	}
 }

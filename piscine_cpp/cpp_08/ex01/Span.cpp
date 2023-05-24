@@ -6,14 +6,13 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:21:43 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/23 14:28:01 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:35:02 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 bool	Span::_verbose = false;
-
 
 /* ************************************************************************** */
 /*                     Constructeurs et destructeurs                          */
