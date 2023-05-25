@@ -1,0 +1,12 @@
+Mes choix de containers :
+
+ex00:
+map pour avoir une paire entre la date et la valeur
+
+ex01:
+stack ?
+
+ex02:
+vector
+deque ?
+
