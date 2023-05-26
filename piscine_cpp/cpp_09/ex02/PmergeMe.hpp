@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 10:43:33 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/26 15:01:09 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/05/26 15:48:42 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/05/26 18:37:39 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RPN_HPP
-# define RPN_HPP
+#ifndef P_MERGE_ME_HPP
+# define P_MERGE_ME_HPP
 # include <iostream>
 # include <string>
-# include <stack>
-
-class RPN
+# include <vector>
+# include <deque>
+# include <cstdlib>
+	
+class	PmergeMe
 {
-private:
-	std::stack<int>	_my_stack;
-	static bool		_verbose;
-	
 public:
-	RPN(void);
-	RPN(RPN const & copy);
-	~RPN(void);
-	
-	RPN & 	operator=(RPN const & rpn);
+	PmergeMe(void);
+	PmergeMe(PmergeMe const & copy);
+	~PmergeMe(void);
 
-	void	rpn_add(std::string elem);
-	int		result(void) const;
-	void	print(void) const;
+	PmergeMe & operator=(PmergeMe const & p_mergeme);
 
-	class rpn_error : public std::exception
+	void	add_vector(char **argv);
+	void	add_deque(char **argv);
+	void	sort_vector(void);
+	void	sort_deque(void);
+	void	view_deque(void);
+	void	view_vector(void);
+
+	class input_error : public std::exception
 	{
 		public:
 			virtual const char* what() const throw();
 	};
+
+private:
+	std::vector<int>	_my_vector;
+	std::deque<int>		_my_deque;
 };
 
 #endif
