@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:05:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/25 16:49:57 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:38:56 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ int	main(int argc, char **argv)
 	}
 	std::getline(input_file, line);
 	std::getline(input_file, line);
-	while (!(line.empty() && input_file.eof()))
+	while (1)
 	{
+		if (line.size() == 0 && input_file.eof())
+			break;
 		pos_sep = line.find(" | ");
 		if (pos_sep != 10 || line.size() < 14)
 		{
@@ -72,6 +74,8 @@ int	main(int argc, char **argv)
 			continue ;
 		}
 		std::cout << date << " => " << value << " = " << btc.getValue(date, value) << std::endl;
+		if (input_file.eof())
+			break;
 		std::getline(input_file, line);
 	}
 	input_file.close();
