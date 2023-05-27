@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:48:44 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/26 18:49:24 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:48:08 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,28 @@ void	PmergeMe::add_deque(char **argv)
 void	PmergeMe::sort_vector(void)
 {
 	std::vector< std::pair<int, int> >	vect;
-	std::vector<int>::iterator			it = this->_my_vector.begin();
 	int last = -1;
 	if (this->_my_vector.size() % 2 != 0)
 	{
 		last = this->_my_vector.back();
 		this->_my_vector.pop_back();
 	}
-	while (it != this->_my_vector.end())
+	for (std::vector<int>::iterator	it = this->_my_vector.begin(); it != this->_my_vector.end(); ++it)
 	{
 		vect.push_back(std::make_pair(*it, *(++it)));
-		++it;
 	}
+	for (std::vector< std::pair<int,int> >::iterator it = vect.begin(); it != vect.end(); ++it)
+	{
+		if (it->first > it->second)
+		{
+			int tmp = it->first;
+			it->first = it->second;
+			it->second = tmp;
+		}
+		std::cout << "[" << it->first << " , " << it->second << "]" << std::endl;
+	}
+	//besoin de trier les pairs a partir des plus grandes valeurs. 
+	(void)last;
 	//A finir https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort
 }
 

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:48:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/26 18:37:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:38:12 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <vector>
 # include <deque>
 # include <cstdlib>
+# include <utility>
 	
 class	PmergeMe
 {
