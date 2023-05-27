@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:48:44 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/27 18:48:08 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:54:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ void	PmergeMe::sort_vector(void)
 		}
 		std::cout << "[" << it->first << " , " << it->second << "]" << std::endl;
 	}
-	//besoin de trier les pairs a partir des plus grandes valeurs. 
+	// Besoin de trier les pairs a partir des plus grandes valeurs pour en faire une main chain ==> via de la recursive (MERGE SORT)
+	// puis on utilise un binary search insertion algo pour ajouter les autres valeurs dans la chaine principale. 
+	// et si jamais il reste une last elem, il faut aussi le rajouter.
 	(void)last;
 	//A finir https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort
 }
