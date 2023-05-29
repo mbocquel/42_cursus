@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:48:47 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/29 11:35:07 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:02:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ int	main(int argc, char **argv)
 	try
 	{
 		time_vector = clock();
-		//p_merge_me.add_vector(argv);
 		p_merge_me.sort_vector(argv, argc - 1);
 		time_vector = clock() - time_vector;
 
 		time_deque = clock();
-		p_merge_me.add_deque(argv);
-		p_merge_me.sort_deque();
+		p_merge_me.sort_deque(argv, argc - 1);
 		time_deque = clock() - time_deque;
 	}
 	catch(const std::exception& e)
@@ -56,9 +54,10 @@ int	main(int argc, char **argv)
 	std::cout << std::endl << "After deque:	";
 	p_merge_me.view_deque();
 	
-	std::cout << "Time to process a range of " << argc- 1 << " elements with std::vector<int> : ";
+	std::cout << std::endl;
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector<int> : ";
 	std::cout << (double)(1000000 * time_vector) / CLOCKS_PER_SEC << " us" << std::endl;
-	std::cout << "Time to process a range of " << argc- 1 << " elements with std::deque<int>  : ";
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque<int>  : ";
 	std::cout << (double)(1000000 * time_deque) / CLOCKS_PER_SEC << " us" << std::endl;
 	return (0);
 }

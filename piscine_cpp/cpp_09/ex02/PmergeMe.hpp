@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:48:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/29 12:30:37 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:03:06 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,22 @@ public:
 
 	PmergeMe & operator=(PmergeMe const & p_mergeme);
 
-	void	add_vector(char **argv);
-	void	add_deque(char **argv);
-	void	sort_vector(char **argv, int len);
-	void	sort_deque(void);
-	void	view_deque(void);
 	void	view_vector(void);
+	void	sort_vector(char **argv, int len);
 	void 	merge_sort_recursion_vector(std::vector< std::pair<int, int> > & vect_pair,
 			int left, int right);
 	void 	merge_sorted_arrays_vector(std::vector< std::pair<int, int> > & vect_pair,
 			int left, int middle, int right);
 	int		find_element_index_vector(int val);
-	void 	merge_sort_recursion_deque(std::deque< std::pair<int, int> > & vect_pair,
-			int left, int right);
-	void 	merge_sorted_arrays_deque(std::deque< std::pair<int, int> > & vect_pair,
-			int left, int middle, int right);
 	
-
+	void	sort_deque(char **argv, int len);
+	void	view_deque(void);
+	void 	merge_sort_recursion_deque(std::deque< std::pair<int, int> > & deque_pair,
+			int left, int right);
+	void 	merge_sorted_arrays_deque(std::deque< std::pair<int, int> > & deque_pair,
+			int left, int middle, int right);
+	int		find_element_index_deque(int val);
+	
 	int		ft_atoi(char *str);
 
 	class input_error : public std::exception
