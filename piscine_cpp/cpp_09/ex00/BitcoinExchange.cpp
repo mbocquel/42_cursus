@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 17:13:57 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/25 16:55:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:22:04 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ BitcoinExchange::BitcoinExchange(std::string file) : _file_name(file)
 {
 	if (BitcoinExchange::_verbose)
 		std::cout << "BitcoinExchange file constructor called" << std::endl;
+	this->_file_ok = true;
 	try
 	{
 		this->_parsing_data();
 	}
 	catch(const std::exception& e)
 	{
+		this->_file_ok = false;
 		this->_data.clear();
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << " (" << file << ")" << std::endl;
 	}
 }
 
@@ -44,6 +46,7 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange & copy)
 		std::cout << "BitcoinExchange copy constructor called" << std::endl;
 	this->_file_name = copy._file_name;
 	this->_data = copy._data;
+	this->_file_ok = copy._file_ok;
 }
 
 BitcoinExchange::~BitcoinExchange(void)
@@ -62,6 +65,7 @@ BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const & bt_cp)
 		this->_data.clear();
 		this->_data = bt_cp._data;
 		this->_file_name = bt_cp._file_name;
+		this->_file_ok = bt_cp._file_ok;
 	}
 	return (*this);
 }
@@ -79,7 +83,7 @@ void	BitcoinExchange::_parsing_data()
 	
 	if (file_in.fail())
 		throw CannotOpenFile();
-	
+		
 	std::getline(file_in, line);//first line to ignore
 	std::getline(file_in, line);
 	while (!(line.empty() && file_in.eof()))
@@ -107,6 +111,8 @@ void	BitcoinExchange::_parsing_data()
 
 double	BitcoinExchange::getValue(std::string date, std::string quantity) const
 {	
+	if (!_file_ok)
+		return (0);
 	std::pair<std::string, double> exchange = *(--this->_data.upper_bound(date));
 	double	qt = strtod(quantity.c_str(), NULL);
 	return (qt * exchange.second);
@@ -188,6 +194,11 @@ void	BitcoinExchange::seeData(std::ostream & o) const
 		o << it->first << " | " << it->second << std::endl;
 		++it;
 	}
+}
+
+bool	BitcoinExchange::getFileOk(void) const
+{
+	return (this->_file_ok);
 }
 
 /* ************************************************************************** */

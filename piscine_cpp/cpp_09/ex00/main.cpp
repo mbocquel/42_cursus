@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:05:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/26 10:38:56 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:24:27 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	main(int argc, char **argv)
 		return (1); 
 	}
 	BitcoinExchange	btc("data.csv");
+	if (!btc.getFileOk())
+		return (1);
 	std::ifstream 	input_file(argv[1]);
 	std::string		line; 
 	std::size_t		pos_sep;

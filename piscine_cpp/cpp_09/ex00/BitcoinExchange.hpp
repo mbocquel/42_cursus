@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 17:13:46 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/25 16:54:47 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:20:23 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ private:
 	std::map<std::string, double>	_data;
 	std::string						_file_name;
 	void							_parsing_data();
+	bool							_file_ok;
 	BitcoinExchange(void);
 
 public:
@@ -41,6 +42,7 @@ public:
 	static int		pbValueQt(std::string value_str);
 	static bool		leapYear(int year);
 	void			seeData(std::ostream & o) const;
+	bool			getFileOk(void) const;
 
 	class CannotOpenFile : public std::exception
 	{
