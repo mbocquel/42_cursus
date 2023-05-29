@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:48:47 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/05/26 18:10:06 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/05/29 11:35:07 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char **argv)
 	try
 	{
 		time_vector = clock();
-		p_merge_me.add_vector(argv);
-		p_merge_me.sort_vector();
+		//p_merge_me.add_vector(argv);
+		p_merge_me.sort_vector(argv, argc - 1);
 		time_vector = clock() - time_vector;
 
 		time_deque = clock();
