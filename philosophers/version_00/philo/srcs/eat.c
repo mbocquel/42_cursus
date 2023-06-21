@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:30:42 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/02/10 12:34:33 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:56:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void	release_right_fork(t_philo *philo)
 
 int	routine_eat(t_philo *philo)
 {
+	if (check_dead(philo))
+		return (1);
 	print_activite(philo, EATING, YELLOW);
+	gettimeofday(&(philo->t_last_meal), NULL);
 	if (ft_sleep(philo->param->t_to_eat, philo))
 		return (1);
 	(philo->count_meal)++;
@@ -69,6 +72,5 @@ int	routine_eat(t_philo *philo)
 		(philo->param->n_finished)++;
 		pthread_mutex_unlock(&(philo->param->mutex_n_finished));
 	}
-	gettimeofday(&(philo->t_last_meal), NULL);
 	return (0);
 }
