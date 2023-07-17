@@ -47,6 +47,13 @@
 		"numeric": "cpp",
 		"optional": "cpp",
 		"span": "cpp",
-		"ctime": "cpp"
+		"ctime": "cpp",
+		"cstring": "cpp",
+		"fstream": "cpp",
+		"list": "cpp",
+		"map": "cpp",
+		"set": "cpp",
+		"iomanip": "cpp",
+		"sstream": "cpp"
 	}
 }
