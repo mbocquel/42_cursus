@@ -1,0 +1,64 @@
+version: '3.5'
+
+networks:
+  inception:
+    driver: bridge
+
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:1.0
+    networks:
+      - inception
+    build: requirements/mariadb
+    env_file: .env
+    restart: unless-stopped
+    expose:
+      - "3306"
+    volumes:
+      - mariadb_vol:/var/lib/mysql/
+
+  wordpress:
+    container_name: wordpress
+    image: wordpress:1.0
+    env_file: .env
+    volumes:
+      - wordpress_vol:/var/www/html/
+    networks:
+      - inception
+    build: requirements/wordpress
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+    expose: 
+      - "9000"
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.0
+    volumes:
+      - wordpress_vol:/var/www/html
+    networks:
+      - inception
+    depends_on:
+      - wordpress
+    build: requirements/nginx
+    env_file: .env
+    ports:
+      - "443:443"
+    restart: on-failure
+
+volumes:
+  mariadb_vol:
+    driver: local
+    driver_opts:
+      type: 'none' 
+      o: 'bind'
+      device: '/home/mbocquel/data/mariadb'
+
+  wordpress_vol:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/mbocquel/data/wordpress'

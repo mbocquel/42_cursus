@@ -27,10 +27,12 @@ Un container c'est le running environnement of an image. A container contient un
 	- telecharge l'image et run le container. 
 - **sudo docker images**
 	- Donne la liste des images docker dispo sur l'ordi.
+- **sudo docker rm $(sudo docker ps -aq)**
+	- Pour supprimer les containers. 
 
 
 ## Container port vs Host Port
-il faut faire un binding de ports entre le port de la machine et celui du container. en gros une redirection. 
+il faut faire un binding sudo docker rm $(sudo docker ps -aq)
 
 **Pour ca il faut faire :**
 
@@ -167,14 +169,3 @@ volumes:
 	db-data
 
 Permet de monter le meme volume sur plusieurs containers, si jamais lews containers on besoin de partager des volumes. 
-
-
-
-
-
-
-
-
-1:57:32 https://www.youtube.com/watch?v=3c-iBn73dDE&list=PLy7NrYWoggjxtN4YbSMYFFdpaxb-fR4zC&ab_channel=TechWorldwithNana
-
-Se renseigner sur les deamons et PID 1 
