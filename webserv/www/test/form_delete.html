@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemple de suppression avec affichage de la réponse</title>
+</head>
+<body>
+    <h2>Entrez le nom du fichier a supprimer :</h2>
+    <form id="deleteForm">
+        <input type="text" name="fileName" placeholder="Nom du fichier">
+        <button type="submit">Supprimer la ressource</button>
+    </form>
+    <div id="responseArea"></div>
+
+    <script>
+        document.getElementById("deleteForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Empêcher le rechargement de la page
+            var fileName = document.querySelector("input[name='fileName']").value;
+
+            if (confirm("Voulez-vous vraiment supprimer cette ressource ?")) {
+                // Effectuer une requête DELETE avec AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.open("DELETE", "/test/" + fileName, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        var responseArea = document.getElementById("responseArea");
+                        responseArea.innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.send();
+            }
+        });
+    </script>
+</body>
+</html>
