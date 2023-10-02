@@ -220,6 +220,7 @@ void	exitError(t_serv *server)
 int		processReadingClient(t_serv *server, t_client *client)
 {
 	char	*buffer;
+	char	*newBuffer;
 	char	*line;
 	int 	byteRecv;
 	char	str[150];
@@ -239,27 +240,24 @@ int		processReadingClient(t_serv *server, t_client *client)
 		if (broadcastMsg(server, str, client->id) || removeClient(server, client->id))
 			return (1);
 	}
-	else //cas normal
+	else
 	{
 		if (strstr(buffer, "\n") == NULL)
 		{
-			if (client->bufMsg == NULL)
-				client->bufMsg = buffer;
-			else
-				client->bufMsg = str_join(client->bufMsg, buffer);
+			client->bufMsg = str_join(client->bufMsg, buffer);
 			return (0);
 		}
-		buffer = str_join(client->bufMsg, buffer);
-		testLine = extract_message(&buffer, &line);
+		newBuffer = str_join(client->bufMsg, buffer);
+		testLine = extract_message(&newBuffer, &line);
 		sprintf(str, "client %d: ", client->id);
 		while (testLine)
 		{
 			if (broadcastMsg(server, str, client->id) || broadcastMsg(server, line, client->id))
 				return (1);
-			testLine = extract_message(&buffer, &line);
+			testLine = extract_message(&newBuffer, &line);
 		}
-		if (strlen(buffer))
-			client->bufMsg = buffer;
+		if (strlen(newBuffer))
+			client->bufMsg = newBuffer;
 	}
 	return (0);
 }
