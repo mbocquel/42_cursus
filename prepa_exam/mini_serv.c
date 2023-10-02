@@ -8,6 +8,7 @@
 #include <sys/select.h>
 #include <stdio.h>
 #include <sys/types.h>
+#define BUFFER_SIZE 10
 
 typedef struct	s_msg {
 	char			*msg;
@@ -164,6 +165,7 @@ void	freeClient(t_client *client)
 		free(tmp);
 	}
 	close (client->comSocket);
+	free(client->bufMsg);
 	free(client);
 }
 
@@ -219,7 +221,7 @@ void	exitError(t_serv *server)
 
 int		processReadingClient(t_serv *server, t_client *client)
 {
-	char	*buffer;
+	char	buffer[BUFFER_SIZE + 1];
 	char	*newBuffer;
 	char	*line;
 	int 	byteRecv;
@@ -228,10 +230,10 @@ int		processReadingClient(t_serv *server, t_client *client)
 	
 	line = NULL;
 	memset(str, 0, 150);
-	buffer = calloc(4097, sizeof(char));
+	memset(buffer, 0, BUFFER_SIZE + 1);
 	if (buffer == NULL)
 		return (1);
-	byteRecv = recv(client->comSocket, buffer, 4096, MSG_DONTWAIT);
+	byteRecv = recv(client->comSocket, buffer, BUFFER_SIZE, MSG_DONTWAIT);
 	if (byteRecv == -1)
 		return (1);
 	else if (byteRecv == 0)
@@ -244,20 +246,27 @@ int		processReadingClient(t_serv *server, t_client *client)
 	{
 		if (strstr(buffer, "\n") == NULL)
 		{
-			client->bufMsg = str_join(client->bufMsg, buffer);
+			client->bufMsg = str_join(client->bufMsg, buffer);	
 			return (0);
 		}
 		newBuffer = str_join(client->bufMsg, buffer);
+		client->bufMsg = NULL;
 		testLine = extract_message(&newBuffer, &line);
 		sprintf(str, "client %d: ", client->id);
 		while (testLine)
 		{
 			if (broadcastMsg(server, str, client->id) || broadcastMsg(server, line, client->id))
 				return (1);
+			free(line);
+			line = NULL;
 			testLine = extract_message(&newBuffer, &line);
 		}
 		if (strlen(newBuffer))
-			client->bufMsg = newBuffer;
+		{
+			client->bufMsg = calloc(strlen(newBuffer) + 1 , sizeof(char));
+			strcpy(client->bufMsg, newBuffer);
+		}
+		free(newBuffer);
 	}
 	return (0);
 }
@@ -333,6 +342,7 @@ int main(int argc, char ** argv)
 {
 	t_serv 				server;
 	t_client			*client;
+	t_client			*next;
 	struct sockaddr_in	servaddr;
 	int					selectRetVal;
 
@@ -370,11 +380,12 @@ int main(int argc, char ** argv)
 		client = server.clients;
 		while (client)
 		{
-			if (FD_ISSET(client->comSocket, &(server.readFdSet)) && processReadingClient(&server, client))
-				exitError(&server);
+			next = client->next;
 			if (FD_ISSET(client->comSocket, &(server.writeFdSet)) && processWritingClient(client))
 				exitError(&server);
-			client = client->next;
+			if (FD_ISSET(client->comSocket, &(server.readFdSet)) && processReadingClient(&server, client))
+				exitError(&server);
+			client = next;
 		}
 	}
 	return (0);
