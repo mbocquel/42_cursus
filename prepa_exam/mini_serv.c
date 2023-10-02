@@ -2,49 +2,64 @@
 #include <string.h>
 #include <unistd.h>
 #include <netdb.h>
-#include <stdio.h>
+#include <stdlib.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/select.h>
-#include <stdlib.h>
-#include <signal.h>
-#define BUFFER_SIZE 65000
+#include <stdio.h>
+#include <sys/types.h>
 
-typedef struct s_message {
-	char 				*message;
-	int					send;
-	int					length;
-	struct s_message	*next;
-}				t_message;
+typedef struct	s_msg {
+	char			*msg;
+	size_t			length;
+	size_t			sent;
+	struct s_msg	*next;
+}				t_msg;
 
-typedef	struct 	s_client {
-	int					id;
-	int					comSocket;
-	struct sockaddr_in	clientAddr; 
-	t_message			*msg;
-	struct s_client		*next;
+typedef	struct s_client {
+	unsigned int	id;
+	int				comSocket;
+	char			*bufMsg;
+	t_msg			*msgs;
+	struct s_client	*next;
 }				t_client;
 
-typedef struct 	s_server {
-	int					serverSocket;
-	int					maxSocket;
-	t_client			*clients;
-	fd_set				readFdSet;
-	fd_set 				writeFdSet;
-	struct sockaddr_in	servAddr;
-}				t_server;
+typedef	struct s_serv {
+	int			servSocket;
+	int			maxSocket;
+	t_client	*clients;
+	fd_set		readFdSet;
+	fd_set		writeFdSet;
+}				t_serv;
 
+int		getMaxSocket(t_serv *server);
 int 	extract_message(char **buf, char **msg);
-int		addMessageClient(t_client *client, char *str);
-int 	broadcastMessage(t_server	*server, char *str, int	idSender);
-int		acceptNewClient(t_server *server);
-fd_set	fillFdSetClients(t_server *server);
+char 	*str_join(char *buf, char *add);
+int		broadcastMsg(t_serv *server, char *msg, unsigned int idSender);
+int		acceptNewClient(t_serv *server);
+int		removeClient(t_serv *server, unsigned int idToRemove);
+void	exitError(t_serv *server);
+int		processReadingClient(t_serv *server, t_client *client);
+int		processWritingClient(t_client *client);
+void	setFdSet(t_serv *server);
+int		addMsgToClient(t_client *client, char *msg);
 void	freeClient(t_client *client);
-void	exit_clean(t_server *server, int returnValue);
-void	remove_client(t_server *server, int idClient);
-int		processReadingClient(t_server *server, int fd);
-int		processWritingClient(t_server *server, int fd);
-void 	handlerSignal(int sig);
+
+int		getMaxSocket(t_serv *server)
+{
+	int			max;
+	t_client	*client;
+
+	max = server->servSocket;
+	client = server->clients;
+	while (client)
+	{
+		if (client->comSocket > max)
+			max = client->comSocket;
+		client = client->next;
+	}
+	return (max);
+}
 
 int extract_message(char **buf, char **msg)
 {
@@ -73,311 +88,295 @@ int extract_message(char **buf, char **msg)
 	return (0);
 }
 
-int	addMessageClient(t_client *client, char *str)
+char *str_join(char *buf, char *add)
 {
-	t_message	*new_msg;
-	t_message	*msg;
+	char	*newbuf;
+	int		len;
 
-	if (str == NULL)
+	if (buf == 0)
+		len = 0;
+	else
+		len = strlen(buf);
+	newbuf = malloc(sizeof(*newbuf) * (len + strlen(add) + 1));
+	if (newbuf == 0)
 		return (0);
-	new_msg = calloc(1, sizeof(t_message));
-	if (new_msg == NULL)
-		return (1);
-	new_msg->length = strlen(str);
-	new_msg->message = calloc(new_msg->length + 1, sizeof(char));
-	if (new_msg->message == NULL)
-		return (1);
-	strcpy(new_msg->message, str);
-	if (client->msg == NULL)
-		client->msg = new_msg;
-	else
-	{
-		msg = client->msg;
-		while (msg->next)
-			msg = msg->next;
-		msg->next = new_msg;
-	}
-	return (0);
+	newbuf[0] = 0;
+	if (buf != 0)
+		strcat(newbuf, buf);
+	free(buf);
+	strcat(newbuf, add);
+	return (newbuf);
 }
 
-int broadcastMessage(t_server	*server, char *str, int	idSender)
+int		broadcastMsg(t_serv *server, char *msg, unsigned int idSender)
 {
-	t_client	*client = server->clients;
+	t_client	*client;
 
+	client = server->clients;
 	while (client)
 	{
-		if (client->id != idSender)
-		{
-			if (addMessageClient(client, str))
-				return (1);
-		}
+		if (client->id != idSender && addMsgToClient(client, msg))
+			return (1);
 		client = client->next;
 	}
 	return (0);
 }
 
-int	acceptNewClient(t_server *server)
+int		acceptNewClient(t_serv *server)
 {
-	t_client	*new_client;
-	static int	id = 0;
-	int			len;
-	char		buffer[BUFFER_SIZE + 1];
+	t_client			*newClient;
+	static unsigned int	id = 0;
+	struct sockaddr_in	cli;
+	socklen_t 				len;
+	char				str[150];
 
-	memset(&buffer, 0, BUFFER_SIZE + 1);
-	new_client = calloc(1, sizeof(t_client));
-	if (new_client == NULL)
+	newClient = calloc(1, sizeof(t_client));
+	if (newClient == NULL)
 		return (1);
-	new_client->id = id;
-	len = sizeof(new_client->clientAddr);
-	new_client->comSocket = accept(server->serverSocket, (struct sockaddr *)&(new_client->clientAddr), (socklen_t *)&len);
-	if (new_client->comSocket < 0)
-		return (1);
+	len = sizeof(cli);
+	newClient->id = id;
 	id++;
-	if (server->clients == NULL)
-		server->clients = new_client;
-	else
-	{
-		new_client->next = server->clients;
-		server->clients = new_client;
-	}
-	if (new_client->comSocket > server->maxSocket)
-		server->maxSocket = new_client->comSocket;
-	sprintf(buffer, "server: client %d just arrived\n", new_client->id);
-	if (broadcastMessage(server, buffer, new_client->id))
+	newClient->comSocket = accept(server->servSocket, (struct sockaddr *)&cli, &len);
+	if (newClient->comSocket < 0)
+		return (1);
+	if (newClient->comSocket > server->maxSocket)
+		server->maxSocket = newClient->comSocket;
+  	newClient->next = server->clients;
+	server->clients = newClient;
+	sprintf(str, "server: client %d just arrived\n", newClient->id);
+	if (broadcastMsg(server, str, newClient->id))
 		return (1);
 	return (0);
-}
-
-fd_set	fillFdSetClients(t_server *server)
-{
-	t_client	*client = server->clients;
-
-	fd_set fdSet;
-	FD_ZERO(&fdSet);
-	while (client)
-	{
-		FD_SET(client->comSocket, &fdSet);
-		client = client->next;
-	}
-	return (fdSet);
 }
 
 void	freeClient(t_client *client)
 {
-	t_message	*msg;
-	t_message	*tmp_msg;
+	t_msg	*msg;
+	t_msg	*tmp;
 
-	
-	if (client->msg != NULL)
+	msg = client->msgs;
+	while (msg)
 	{
-		msg = client->msg;
-		while (msg)
-		{
-			tmp_msg = msg;
-			msg = msg->next;
-			if (tmp_msg->message)
-				free(tmp_msg->message);
-			free(tmp_msg);
-		}
+		tmp = msg;
+		if (msg->msg)
+			free(msg->msg);
+		msg = msg->next;
+		free(tmp);
 	}
-	close(client->comSocket);
+	close (client->comSocket);
 	free(client);
 }
 
-void	exit_clean(t_server *server, int returnValue)
-{
-	t_client	*client;
-	t_client	*tmp_client;
-	
-	if (server->clients != NULL)
-	{
-		client = server->clients;
-		while (client)
-		{
-			tmp_client = client;
-			client = client->next;
-			freeClient(tmp_client);
-		}
-	}
-	write(2, "Fatal error\n", strlen("Fatal error\n"));
-	close(server->serverSocket);
-	exit(returnValue);
-}
-
-void	remove_client(t_server *server, int idClient)
+int		removeClient(t_serv *server, unsigned int idToRemove)
 {
 	t_client	*client;
 	t_client	*previous;
+	int			clientSocket;
 	
 	previous = NULL;
 	client = server->clients;
 	while (client)
 	{
-		if (client->id == idClient)
+		if (client->id == idToRemove)
 		{
 			if (previous == NULL)
-			{
 				server->clients = client->next;
-				freeClient(client);
-			}
 			else
-			{
 				previous->next = client->next;
-				freeClient(client);
-			}
-			return;
+			FD_CLR(client->comSocket, &(server->readFdSet));
+			FD_CLR(client->comSocket, &(server->writeFdSet));
+			clientSocket = client->comSocket;
+			freeClient(client);
+			break;
 		}
-		previous = client;
-		client = client->next;
+		else
+		{
+			previous = client;
+			client = client->next;
+		}
 	}
+	if (server->maxSocket == clientSocket)
+		server->maxSocket = getMaxSocket(server);
+	return (0);
 }
 
-int	processReadingClient(t_server *server, int fd)
+void	exitError(t_serv *server)
 {
-	int			byte_read;
-	char		*buffer;
-	char		str[150];
-	t_client 	*client;
-	char		*msg_line;
+	t_client	*client;
+	t_client	*tmp;
 
 	client = server->clients;
-	buffer = calloc((BUFFER_SIZE + 1), sizeof(char));
 	while (client)
 	{
-		if (client->comSocket == fd)
-			break;
+		tmp = client;
+		freeClient(tmp);
 		client = client->next;
 	}
-	if (client == NULL)
+	close(server->servSocket);
+	write(2, "Fatal error\n", strlen("Fatal error\n"));
+	exit(1);
+}
+
+int		processReadingClient(t_serv *server, t_client *client)
+{
+	char	*buffer;
+	char	*line;
+	int 	byteRecv;
+	char	str[150];
+	int 	testLine;
+	
+	line = NULL;
+	memset(str, 0, 150);
+	buffer = calloc(4097, sizeof(char));
+	if (buffer == NULL)
 		return (1);
-	byte_read = recv(fd, buffer, BUFFER_SIZE, 0);
-	if (byte_read == -1)
+	byteRecv = recv(client->comSocket, buffer, 4096, MSG_DONTWAIT);
+	if (byteRecv == -1)
 		return (1);
-	if (byte_read == 0)
+	else if (byteRecv == 0)
 	{
-		sprintf(buffer, "server: client %d just left\n", client->id);
-		if (broadcastMessage(server, buffer, client->id))
+		sprintf(str, "server: client %d just left\n", client->id);
+		if (broadcastMsg(server, str, client->id) || removeClient(server, client->id))
 			return (1);
-		FD_CLR(client->comSocket, &(server->writeFdSet));
-		remove_client(server, client->id);
 	}
+	else //cas normal
+	{
+		if (strstr(buffer, "\n") == NULL)
+		{
+			if (client->bufMsg == NULL)
+				client->bufMsg = buffer;
+			else
+				client->bufMsg = str_join(client->bufMsg, buffer);
+			return (0);
+		}
+		buffer = str_join(client->bufMsg, buffer);
+		testLine = extract_message(&buffer, &line);
+		sprintf(str, "client %d: ", client->id);
+		while (testLine)
+		{
+			if (broadcastMsg(server, str, client->id) || broadcastMsg(server, line, client->id))
+				return (1);
+			testLine = extract_message(&buffer, &line);
+		}
+		if (strlen(buffer))
+			client->bufMsg = buffer;
+	}
+	return (0);
+}
+
+int		processWritingClient(t_client *client)
+{
+	int 	byteSent;
+	t_msg	*msg;
+
+	msg = client->msgs;
+	if (msg == NULL)
+		return (0);
+	byteSent = send(client->comSocket, msg->msg + msg->sent, msg->length - msg->sent, MSG_DONTWAIT);
+	if (byteSent == -1)
+		return (1);
 	else
 	{
-		msg_line = NULL;
-		sprintf(str, "client %d: ", client->id);
-		int	test_message; 
-		test_message = extract_message(&buffer, &msg_line);
-		while (test_message > 0)
+		msg->sent += byteSent;
+		if (msg->sent == msg->length)
 		{
-			broadcastMessage(server, str, client->id);
-			broadcastMessage(server, msg_line, client->id);
-			free(msg_line);
-			test_message = extract_message(&buffer, &msg_line);
+			client->msgs = msg->next;
+			free(msg->msg);
+			free(msg);
 		}
-		if (test_message == -1)
-			return (1);
-		if (strlen(buffer))
-		{
-			broadcastMessage(server, str, client->id);
-			broadcastMessage(server, buffer, client->id);
-		}
-		if (msg_line)
-			free(msg_line);
 	}
-	free(buffer);
 	return (0);
 }
 
-int	processWritingClient(t_server *server, int fd)
+void	setFdSet(t_serv *server)
 {
-	t_client 	*client;
-	int			byte_sent;
-	t_message	*tmp;
+	t_client	*client;
 
+	FD_ZERO(&(server->readFdSet));
+	FD_ZERO(&(server->writeFdSet));
 	client = server->clients;
 	while (client)
 	{
-		if (client->comSocket == fd)
-			break;
+		FD_SET(client->comSocket, &(server->writeFdSet));
 		client = client->next;
 	}
-	if (client == NULL)
-	{
-		printf("coucou\n");
+	server->readFdSet = server->writeFdSet;
+	FD_SET(server->servSocket, &(server->readFdSet));
+}
+
+int		addMsgToClient(t_client *client, char *str)
+{
+	t_msg	*newMsg;
+	t_msg	*msg;
+	
+	if (str == NULL)
 		return (1);
-	}
-	if (client->msg == NULL)
-		return (0);
-	byte_sent = send(fd, client->msg->message + client->msg->send, client->msg->length - client->msg->send, MSG_DONTWAIT);
-	if (byte_sent == -1)
-		remove_client(server, client->id);
-	client->msg->send += byte_sent;
-	if (client->msg->send == client->msg->length)
+	newMsg = calloc(1, sizeof(t_msg));
+	if (newMsg == NULL)
+		return (1);
+	newMsg->msg = calloc(strlen(str) + 1, sizeof(char));
+	if (newMsg->msg == NULL)
+		return (1);
+	strcpy(newMsg->msg, str);
+	newMsg->length = strlen(newMsg->msg);
+	if (client->msgs == NULL)
+		client->msgs = newMsg;
+	else
 	{
-		tmp = client->msg;
-		client->msg = tmp->next;
-		if (tmp->message)
-			free(tmp->message);
-		free(tmp);
+		msg = client->msgs;
+		while (msg->next)
+			msg = msg->next;
+		msg->next = newMsg;
 	}
 	return (0);
 }
 
-int main(int argc, char **argv)
+int main(int argc, char ** argv)
 {
-	t_server	server;
-	int		retval;
+	t_serv 				server;
+	t_client			*client;
+	struct sockaddr_in	servaddr;
+	int					selectRetVal;
 
-	memset(&server, 0, sizeof(t_server));
 	if (argc != 2)
 	{
 		write(2, "Wrong number of arguments\n", strlen("Wrong number of arguments\n"));
 		return (1);
 	}
+	memset(&server, 0, sizeof(t_serv));
 	// socket create and verification 
-	server.serverSocket = socket(AF_INET, SOCK_STREAM, 0);
-	if (server.serverSocket == -1)
-		exit_clean(&server, 1);
-	const int enable = 1;
-	if (setsockopt(server.serverSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
-		exit_clean(&server, 8);
-	
-	server.maxSocket = server.serverSocket;
-	bzero(&(server.servAddr), sizeof(server.servAddr)); 
+	server.servSocket = socket(AF_INET, SOCK_STREAM, 0); 
+	if (server.servSocket == -1)
+		exitError(&server);
+	server.maxSocket = server.servSocket;
+	bzero(&servaddr, sizeof(servaddr)); 
 
 	// assign IP, PORT 
-	server.servAddr.sin_family = AF_INET; 
-	server.servAddr.sin_addr.s_addr = htonl(2130706433); //127.0.0.1
-	server.servAddr.sin_port = htons(atoi(argv[1])); 
+	servaddr.sin_family = AF_INET; 
+	servaddr.sin_addr.s_addr = htonl(2130706433); //127.0.0.1
+	servaddr.sin_port = htons(atoi(argv[1]));
   
 	// Binding newly created socket to given IP and verification 
-	if ((bind(server.serverSocket, (const struct sockaddr *)&(server.servAddr), sizeof(server.servAddr))) != 0)
-		exit_clean(&server, 2);
-	if (listen(server.serverSocket, 10) != 0)
-		exit_clean(&server, 3);
-	
+	if ((bind(server.servSocket, (const struct sockaddr *)&servaddr, sizeof(servaddr))) != 0)
+		exitError(&server);
+	if (listen(server.servSocket, 4096) != 0)
+		exitError(&server);
 	while (1)
 	{
-		server.readFdSet = fillFdSetClients(&server);
-		server.writeFdSet = server.readFdSet;
-		FD_SET(server.serverSocket, &(server.readFdSet));
-		retval = select(FD_SETSIZE, &(server.readFdSet), &(server.writeFdSet), NULL, NULL);
-		if (retval == -1)
-			exit_clean(&server, 4);
-		else
+		setFdSet(&server);
+		selectRetVal = select(server.maxSocket + 1, &(server.readFdSet), &(server.writeFdSet), NULL, NULL);
+		if (selectRetVal == -1)
+			exitError(&server);
+		if (FD_ISSET(server.servSocket, &(server.readFdSet)) && acceptNewClient(&server))
+			exitError(&server);
+		client = server.clients;
+		while (client)
 		{
-			for (int fd = 0; fd <= server.maxSocket; fd++)
-			{
-				if (FD_ISSET(fd, &(server.readFdSet)) && fd == server.serverSocket && acceptNewClient(&server))
-					exit_clean(&server, 5);
-				else if (FD_ISSET(fd, &(server.readFdSet)) && fd != server.serverSocket && processReadingClient(&server, fd))
-					exit_clean(&server, 6);
-			}
-			for (int fd = 0; fd <= server.maxSocket; fd++)
-			{
-				if (FD_ISSET(fd, &(server.writeFdSet)) && processWritingClient(&server, fd))
-					exit_clean(&server, 7);
-			}
+			if (FD_ISSET(client->comSocket, &(server.readFdSet)) && processReadingClient(&server, client))
+				exitError(&server);
+			if (FD_ISSET(client->comSocket, &(server.writeFdSet)) && processWritingClient(client))
+				exitError(&server);
+			client = client->next;
 		}
 	}
 	return (0);
