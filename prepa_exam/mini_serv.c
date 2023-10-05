@@ -8,7 +8,6 @@
 #include <sys/select.h>
 #include <stdio.h>
 #include <sys/types.h>
-#define BUFFER_SIZE 10
 
 typedef struct	s_msg {
 	char			*msg;
@@ -221,7 +220,7 @@ void	exitError(t_serv *server)
 
 int		processReadingClient(t_serv *server, t_client *client)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	char	buffer[4096 + 1];
 	char	*newBuffer;
 	char	*line;
 	int 	byteRecv;
@@ -230,10 +229,10 @@ int		processReadingClient(t_serv *server, t_client *client)
 	
 	line = NULL;
 	memset(str, 0, 150);
-	memset(buffer, 0, BUFFER_SIZE + 1);
+	memset(buffer, 0, 4096 + 1);
 	if (buffer == NULL)
 		return (1);
-	byteRecv = recv(client->comSocket, buffer, BUFFER_SIZE, MSG_DONTWAIT);
+	byteRecv = recv(client->comSocket, buffer, 4096, MSG_DONTWAIT);
 	if (byteRecv == -1)
 		return (1);
 	else if (byteRecv == 0)
