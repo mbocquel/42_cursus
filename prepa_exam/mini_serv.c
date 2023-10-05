@@ -229,8 +229,6 @@ int		processReadingClient(t_serv *server, t_client *client)
 	
 	bzero(str, 150);
 	bzero(buffer,4096 + 1);
-	if (buffer == NULL)
-		return (1);
 	byteRecv = recv(client->comSocket, buffer, 4096, MSG_DONTWAIT);
 	if (byteRecv == -1)
 		return (1);
