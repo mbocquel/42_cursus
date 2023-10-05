@@ -45,22 +45,6 @@ void	setFdSet(t_serv *server);
 int		addMsgToClient(t_client *client, char *msg);
 void	freeClient(t_client *client);
 
-int		getMaxSocket(t_serv *server)
-{
-	int			max;
-	t_client	*client;
-
-	max = server->servSocket;
-	client = server->clients;
-	while (client)
-	{
-		if (client->comSocket > max)
-			max = client->comSocket;
-		client = client->next;
-	}
-	return (max);
-}
-
 int extract_message(char **buf, char **msg)
 {
 	char	*newbuf;
@@ -106,6 +90,22 @@ char *str_join(char *buf, char *add)
 	free(buf);
 	strcat(newbuf, add);
 	return (newbuf);
+}
+
+int		getMaxSocket(t_serv *server)
+{
+	int			max;
+	t_client	*client;
+
+	max = server->servSocket;
+	client = server->clients;
+	while (client)
+	{
+		if (client->comSocket > max)
+			max = client->comSocket;
+		client = client->next;
+	}
+	return (max);
 }
 
 int		broadcastMsg(t_serv *server, char *msg, unsigned int idSender)

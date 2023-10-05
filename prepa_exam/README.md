@@ -14,11 +14,11 @@ Il faut donc optimiser les etapes apres le Select pour rapidement realiser les t
 
 ### int extract_message(char **buf, char **msg);
 
-Fonction fournie par le sujet, un peu complique a comprendre, mais permet en l'appelant plusieurs fois de recuperer chaque lignes d'une chaine de characteres. 
+Fonction fournie par le sujet, un peu complique a comprendre, mais permet en l'appelant plusieurs fois de recuperer chaque lignes d'une chaine de characteres. Attention, "msg" est malloc et il faut le liberer. 
 
 ### char *str_join(char *buf, char *add);
 
-Fonction fournie par le sujet. Attention a la fin de la fonction buf est free. 
+Fonction fournie par le sujet. ATTENTION, a la fin de la fonction, "buf" est free. 
 
 ### int getMaxSocket(t_serv *server);
 
