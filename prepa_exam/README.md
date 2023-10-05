@@ -59,3 +59,8 @@ Fonction qui ajoute le message msg dans la liste des messages à envoyer d'un cl
 ### void freeClient(t_client *client);
 
 Fonction qui libère proprement la mémoire d'un client. 
+
+### int main(int argc, char **argv)
+
+La structure du main est copie du main.c donné par le sujet. À la suite du Select, on ne teste que les Sockets qui sont utilisés par le serveur et les clients pour réduire les actions inutiles. 
+Attention quand on teste les clients, la fonction processReadingClient peut entrainer la suppression (et donc la libération) du client, il faut donc sauvegarder le pointeur vers le prochain client (next = client->next;) avant de lancer cette fonction. C'est aussi pour cela que l'on tente d'abord d'écriture au client avant de tenter la lecture. 
