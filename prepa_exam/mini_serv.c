@@ -227,9 +227,8 @@ int		processReadingClient(t_serv *server, t_client *client)
 	char	str[150];
 	int 	testLine;
 	
-	line = NULL;
-	memset(str, 0, 150);
-	memset(buffer, 0, 4096 + 1);
+	bzero(str, 150);
+	bzero(buffer,4096 + 1);
 	if (buffer == NULL)
 		return (1);
 	byteRecv = recv(client->comSocket, buffer, 4096, MSG_DONTWAIT);
@@ -250,8 +249,9 @@ int		processReadingClient(t_serv *server, t_client *client)
 		}
 		newBuffer = str_join(client->bufMsg, buffer);
 		client->bufMsg = NULL;
-		testLine = extract_message(&newBuffer, &line);
 		sprintf(str, "client %d: ", client->id);
+		line = NULL;
+		testLine = extract_message(&newBuffer, &line);
 		while (testLine)
 		{
 			if (broadcastMsg(server, str, client->id) || broadcastMsg(server, line, client->id))
