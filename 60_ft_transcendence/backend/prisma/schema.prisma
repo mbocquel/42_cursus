@@ -1,0 +1,121 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     Int                  @id @default(autoincrement())
+  username               String               @unique @db.VarChar(10)
+  login                  String               @unique
+  email                  String
+  avatar                 String               @default("1111111111111.jpeg")
+  tfa_secret             String?
+  tfa_activated          Boolean              @default(false)
+  newbie                 Boolean              @default(true)
+  banned_chats           UsersBannedToChats[]
+  friends                Friend[]             @relation("UserToFriends")
+  sentDirectMessages     DirectMsg[]          @relation("SenderMessages")
+  receivedDirectMessages DirectMsg[]          @relation("ReceiverMessages")
+  blockedUsers           BlockedUser[]        @relation("BlockingUser")
+  usersBlockedBy         BlockedUser[]        @relation("BlockedByUser")
+  chatChannelsUser       ChatChannelsUser[]   @relation("chatChanelUser")
+  channelOwner           ChatChannels[]       @relation("ChatChannelsOwner")
+  GameLeft               Game[]               @relation("GameLeft")
+  GameRight              Game[]               @relation("GameRight")
+}
+
+model UsersBannedToChats {
+  user   User         @relation(fields: [userId], references: [id])
+  userId Int
+  chat   ChatChannels @relation(fields: [chatId], references: [id])
+  chatId Int
+
+  @@id([userId, chatId])
+}
+
+model ChatChannelsUser {
+  id               Int              @id @default(autoincrement())
+  channel_id       Int
+  user_id          Int
+  user_role        String
+  date_joined      DateTime
+  date_left        DateTime?
+  kicked           Boolean
+  banned           Boolean
+  chatChannelsUser User             @relation("chatChanelUser", fields: [user_id], references: [id], map: "chat_channels_user", onDelete: Cascade)
+  channel          ChatChannels     @relation("ChatChannelsUser", fields: [channel_id], references: [id], onDelete: Cascade)
+  messagesSent     ChatMsgHistory[] @relation("ChatMessagesSender")
+}
+
+model ChatChannels {
+  id       Int     @id @default(autoincrement())
+  owner    Int
+  type     String
+  name     String?
+  password String?
+
+  chatMessages       ChatMsgHistory[]     @relation("ChatMessages")
+  channelOwner       User                 @relation("ChatChannelsOwner", fields: [owner], references: [id], onDelete: Cascade)
+  channelsUsers      ChatChannelsUser[]   @relation("ChatChannelsUser")
+  // Add other fields...
+  UsersBannedToChats UsersBannedToChats[]
+}
+
+model ChatMsgHistory {
+  id                    Int              @id @default(autoincrement())
+  chat_channels_id      Int
+  chat_channels_user_id Int
+  message               String
+  serviceMessage        Boolean
+  date_sent             DateTime
+  channel               ChatChannels     @relation("ChatMessages", fields: [chat_channels_id], references: [id], onDelete: Cascade)
+  sender                ChatChannelsUser @relation("ChatMessagesSender", fields: [chat_channels_user_id], references: [id], onDelete: Cascade)
+}
+
+model DirectMsg {
+  id          Int    @id @default(autoincrement())
+  sender_id   Int
+  receiver_id Int
+  msg_status  String
+  message     String
+  sender      User   @relation("SenderMessages", fields: [sender_id], references: [id])
+  receiver    User   @relation("ReceiverMessages", fields: [receiver_id], references: [id])
+}
+
+model Friend {
+  id        Int  @id @default(autoincrement())
+  user_id   Int
+  friend_id Int
+  user      User @relation("UserToFriends", fields: [user_id], references: [id])
+}
+
+model Game {
+  id               Int       @id @default(autoincrement())
+  player_one_id    Int
+  player_one       User      @relation("GameLeft", fields: [player_one_id], references: [id])
+  player_two_id    Int
+  player_two       User      @relation("GameRight", fields: [player_two_id], references: [id])
+  type             String
+  winner_id        Int?
+  game_status      String?
+  player_one_score Int?
+  player_two_score Int?
+  date_begin       DateTime  @default(now())
+  date_end         DateTime?
+}
+
+model BlockedUser {
+  id              Int      @id @default(autoincrement())
+  user_id         Int
+  blocked_user_id Int
+  date_blocked    DateTime
+  user            User     @relation("BlockingUser", fields: [user_id], references: [id])
+  blockedUser     User     @relation("BlockedByUser", fields: [blocked_user_id], references: [id])
+}

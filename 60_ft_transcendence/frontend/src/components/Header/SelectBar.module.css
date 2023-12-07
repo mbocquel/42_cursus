@@ -1,0 +1,51 @@
+.file1 {
+  align-items: center;
+  height: 30px;
+  position: absolute;
+  top: 3px;
+  text-align: center;
+  cursor:default;
+  margin-top: 2px;
+  font-size: 14px;
+}
+.file {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 29px;
+  overflow: hidden;
+  color: rgb(255, 255, 255);
+}
+.file:hover {
+  color:#3580dc;
+  border-bottom: solid 2px #15539e;
+}
+
+.file1Light {
+  align-items: center;
+  height: 30px;
+  position: absolute;
+  top: 3px;
+  text-align: center;
+  cursor:default;
+  margin-top: 2px;
+  font-size: 14px;
+}
+.fileLight {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 29px;
+  overflow: hidden;
+  color: black;
+}
+.fileLight:hover {
+  color:#3580dc;
+  border-bottom: solid 2px #15539e;
+}
+.text_list {
+  color:black;
+}
+.text_list:hover {
+  color: white;
+}

@@ -1,0 +1,27 @@
+.chatcomponent {
+    height: 66%;
+    width: 500px;
+    position: fixed;
+    bottom: 52px;
+    right:0px;
+    justify-content: center;
+    text-align: center;
+
+    .container {
+        border-radius: 10px 0px 0px 10px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        overflow: hidden;
+        .noChat {
+            width: 320px;
+            height: 100%;
+            background-color: #e8e8e8;
+            font-weight: bold;
+            justify-content: center;
+            text-align: center;
+            color: #d5d5d5;
+            padding: 100px;
+        }
+    }
+}

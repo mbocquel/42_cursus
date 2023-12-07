@@ -1,0 +1,387 @@
+.headerFrame {
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+    font-size: 12px;
+    color: var(--color-white);
+    font-family: var(--font-inter);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 142px;
+  }
+.headerBackground {
+    top: 0;
+    background-color: var(--color-darkslategray-100);
+    height: 142px;
+    position: fixed;
+    width: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-bottom: 1px solid #313131;
+}
+.headerBackgroundLight {
+  top: 0;
+  background-color: white;
+  height: 142px;
+  position: fixed;
+  width: 100%;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border-bottom: 1px solid #c2c2c2;
+}
+.line3 {
+  position: absolute;
+  width: calc(100% - 24px);
+  right: 12px;
+  bottom: 7px;
+  left: 12px;
+  height: 25.46px;
+  }
+.line2 {
+  position: absolute;
+  bottom: 42px;
+  width: 150px;
+  height: 35px;
+  left: 12px;
+  width: 277px;
+  text-align: center;
+}
+.bar {
+  position: absolute;
+  width: calc(100% - 150px);
+  right: 0;
+  bottom: 2px;
+  left: 150px;
+  background-color: #2d2d2d;
+  border: 1px solid var(--color-gray-200);
+  box-sizing: border-box;
+  height: 25px;
+  color: white;
+  text-indent: 5px;
+  font-size: 12px;
+}
+.bar:focus {
+  outline: none;
+}
+
+.barLight {
+  position: absolute;
+  width: calc(100% - 150px);
+  right: 0;
+  bottom: 2px;
+  left: 150px;
+  background-color: #efefef;
+  border: 1px solid rgb(228, 228, 228);
+  box-sizing: border-box;
+  height: 25px;
+  color: black;
+  text-indent: 5px;
+  font-size: 12px;
+}
+.barLight:focus {
+  outline: none;
+}
+.buttonsIcon {
+  position: absolute;
+  bottom: 2px;
+  left: 137px;
+  width: 38.72px;
+  height: 25.46px;
+}
+.menu {
+  position: absolute;
+  bottom: 0.46px;
+  left: 0;
+  width: 137px;
+  height: 25px;
+}
+.menuBackground {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: 1px solid var(--color-gray-200);
+  box-sizing: border-box;
+  height: 28px;
+  width: 100%;
+  left: 0;
+  border-radius: var(--br-6xs);
+  background-color: var(--color-darkslategray-200);
+}
+.menuBackgroundLight {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: 1px solid lightgrey;
+  box-sizing: border-box;
+  height: 28px;
+  width: 100%;
+  left: 0;
+  border-radius: var(--br-6xs);
+  background-color: white;
+}
+.buttpn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32;
+  height: 28px;
+}
+.buttonBackground {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: 1px solid var(--color-gray-200);
+  box-sizing: border-box;
+  height: 28px;
+  border-radius: 0 var(--br-6xs) var(--br-6xs) 0;
+  background-color: var(--color-darkslategray-100);
+  width: 27px;
+}
+.buttonBackground:hover {
+  background-color: rgb(35, 35, 35);
+}
+.buttonBackgroundLight {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: 1px solid lightgrey;
+  box-sizing: border-box;
+  height: 28px;
+  border-radius: 0 var(--br-6xs) var(--br-6xs) 0;
+  background-color: white;
+  width: 27px;
+}
+.buttonBackgroundLight:hover {
+  background-color: rgb(212, 212, 212);
+}
+.buttonChild {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  border-radius: var(--br-12xs);
+  pointer-events: none;
+}
+.buttonChildLight {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  border-radius: var(--br-12xs);
+  color: rgb(28, 28, 28);
+  pointer-events: none;
+}
+.frameText {
+  position: absolute;
+  width: calc(100% - 52px);
+  top: 3.5px;
+  right: 27px;
+  left: 11px;
+  height: 23px;
+}
+.basicSansCs {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 16px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+.basicSansCsLight {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 16px;
+  font-size: 12px;
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+.menu2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 150px;
+  height: 25px;
+  text-align: left;
+}
+.textBar1 {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: var(--color-darkslategray-100);
+  border-bottom: 1px solid #2b2b2b;
+  box-sizing: border-box;
+  height: 30px;
+}
+.textBar1Light {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: rgb(245, 245, 245);
+  border-bottom: 1px solid #d4d4d4;
+  box-sizing: border-box;
+  height: 30px;
+}
+.textBar {
+  position: absolute;
+  width: 100%;
+  top: 35px;
+  right: 0;
+  left: 0;
+  height: 21px;
+  color: #c1c1c1;
+}
+.titleBar {
+    position: absolute;
+    width: calc(100% + 0.46px);
+    top: 0;
+    right: -0.46px;
+    left: 0;
+    box-shadow: 0 1px 0#474747 inset, 0 1px 1px #3b415d;
+    height: 37px;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+  }
+.titleBarBackground {
+    position: absolute;
+    width: calc(100% - 0.46px);
+    top: 0;
+    right: 0.46px;
+    left: 0;
+    background-color: #282828;
+    box-shadow: 0 1px 1px rgb(0, 0, 0);
+    height: 37px;
+}
+.titleBarBackgroundLight {
+    position: absolute;
+    width: calc(100% - 0.46px);
+    top: 0;
+    right: 0.46px;
+    left: 0;
+    background-color: #e3e3e3;
+    box-shadow: 0 1px 1px rgb(235, 235, 235);
+    height: 37px;
+}
+.untitled1 {
+    position: absolute;
+    top: 8px;
+    left: calc(50% - 15%);
+    font-weight: 600;
+    font-size: 14px;
+    mix-blend-mode: normal;
+    cursor: default;
+    width:30%;
+    height: 27px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.untitled1Light {
+  position: absolute;
+  top: 8px;
+  left: calc(50% - 83.23px);
+  font-weight: 500;
+  font-size: 14px;
+  mix-blend-mode: normal;
+  cursor: default;
+  color:rgb(65, 65, 65);
+}
+.frameText1 {
+  width: calc(100% - 27px);
+  top: 1px;
+  right: 27px;
+}
+.userChild {
+  position: absolute;
+  top: 6px;
+  height: 20px;
+  right: 40px;
+  border-radius: 50%;
+  width: 20px;
+  object-fit: cover;
+}
+.user {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    width: 150px;
+    height: 25.46px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 500;
+    color: #e2e2e2;
+  }
+.user1 {
+  position: relative;
+  top: 7px;
+  font-weight: 600;
+  right: 70px;
+  text-align: right;
+  text-emphasis-color: #e2e2e2;
+}
+.user1:hover {
+  color: #3580dc;
+  cursor: pointer;
+}.user1Light {
+  position: relative;
+  top: 7px;
+  font-weight: 600;
+  right: 70px;
+  text-align: right;
+  text-emphasis-color: #e2e2e2;
+  color:#282828;
+}
+.user1Light:hover {
+  color: #15539e;
+  cursor: pointer;
+}
+.crossIcon{
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 25.46px;
+  height: 25.46px;
+  color: black;
+}
+.crossButton{
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  width: 25.46px;
+  height: 25.46px;
+}
+.crossButton:hover{
+  background-color:#474747;
+}
+.crossButtonLight{
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  width: 25.46px;
+  height: 25.46px;
+  background-color:#7a7a7a00;
+  color: black;
+  font-size:18px;
+  cursor: pointer;
+}
+.crossButtonLight:hover{
+  color: white;
+  background-color:#e11818;
+}

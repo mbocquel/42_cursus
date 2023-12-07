@@ -1,0 +1,17 @@
+.button{
+    width:35px;
+    height:25px;
+}
+.icon{
+    width: 25px;
+}
+.icon:hover{
+    background-color:rgb(71, 71, 71);
+}
+.iconLight{
+    width: 25px;
+}
+.iconLight:hover{
+    color: black;
+    background-color:rgb(242, 242, 242);
+}

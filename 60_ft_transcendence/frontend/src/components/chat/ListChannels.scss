@@ -1,0 +1,70 @@
+.listchannels {
+    .submenu {
+        width: 360px;
+        background-color: #4d4d4d;
+        top: 50px;
+        right: 30px;
+        position: absolute;
+        border-radius: 0px 10px 10px 10px;
+        color: #f5f5f5;
+        padding: 20px;
+        cursor: auto;
+        max-height: 600px;
+        overflow: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        .top {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            .joinInfo {
+                display: flex;
+                flex-direction: column;;
+                span {
+                    font-size: 14px;
+                    padding: 12px;
+                    font-weight: 500;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 390px;
+                }
+                input {
+                    height: 25px;
+                    width: 150px;
+                    padding: 10px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+            button {
+                padding: 10px;
+                width: 70px;
+                margin-right: auto;
+                margin-left: auto;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                background-color: #404040;
+                color: #f7f7f7;
+                border-radius: 10px;
+                height: 50px;
+                cursor: pointer;
+                position: sticky;
+            }
+        }
+        .channelItem {
+            margin-top: 10px;
+            p {
+                cursor: pointer;
+                background-color: #404040;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                border-radius: 10px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+}

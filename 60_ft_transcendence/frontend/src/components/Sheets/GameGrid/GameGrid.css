@@ -1,0 +1,12 @@
+.title_game {
+    background-color: rgb(24, 65, 151);
+    color: white;
+    border: 1px solid black;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+}
+.title_game:hover {
+    background-color: rgb(10, 48, 132);
+    font-weight: 600;
+}

@@ -1,0 +1,9 @@
+.messages {
+    background-color: #e6e6e6;
+    padding: 10px;
+    height: calc(100% - 100px);
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

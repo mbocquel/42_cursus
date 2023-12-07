@@ -1,0 +1,26 @@
+.messageinput {
+    height: 50px;
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    input {
+        width: 100%;
+        border: none;
+        outline: none;
+        color: #2f2d52;
+        font-size: 18px;
+        &::placeholder {
+            color: lightgray;
+        }
+    }
+    button {
+        border: none; 
+        padding: 10px 15px;
+        color: white;
+        background-color: #757575;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}

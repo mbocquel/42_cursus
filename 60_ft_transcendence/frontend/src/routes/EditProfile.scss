@@ -1,0 +1,91 @@
+.register {
+    background-color: #303030;
+    display: flex;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    .card {
+        //width: 50%;
+        display: flex;
+        flex-direction: row-reverse;
+        background-color: white;
+        border-radius: 10px;
+        min-height: 600px;
+
+        overflow: hidden;
+
+        .left {
+            background: linear-gradient(rgba(92, 92, 92, 0.5), rgba(39, 11, 96, 0.5)), url(https://img.lamontagne.fr/c6BQg2OSHIeQEv4GJfr_br_8h5DGcOy84ruH2ZResWQ/fit/657/438/sm/0/bG9jYWw6Ly8vMDAvMDAvMDMvMTYvNDYvMjAwMDAwMzE2NDYxMQ.jpg) center;
+            background-size: cover;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            flex: 1;
+            color: white;
+            h1{
+                font-size: 100px;
+                line-height: 100px;
+            }
+            span{
+                font-size: 14px;
+            }
+            button{
+                width: 50%;
+                padding: 10px;
+                border: none;
+                background-color: white;
+                color: #5c5c5c;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+
+        .right {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            justify-content: center;
+            h1{
+                color: #555;
+            }
+            h2{
+                color: #555;
+            }
+            form{
+                display: flex;;
+                flex-direction: column;
+                gap: 30px;
+                input{
+                    border: none;
+                    border-bottom: 1px solid lightgray;
+                    padding: 20px 10px;
+                }
+                button{
+                    display: block;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 50%;
+                    padding: 10px;
+                    border: none;
+                    background-color: #333333;
+                    color: white;
+                    font-weight: bold;
+                    cursor: pointer;
+
+                }
+                button:hover{
+                    background-color: #141414;
+                }   
+            }
+            p.errorMessage{
+                color: red;
+            }
+        }
+    }
+}

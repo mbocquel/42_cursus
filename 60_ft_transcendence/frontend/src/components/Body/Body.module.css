@@ -1,0 +1,119 @@
+.body {
+  width: 100%;
+  height:calc(100% - 191px);
+  right: 0;
+  left: 0;
+  top: 142px;
+  bottom: 30px;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--color-white);
+}
+.grid {
+  position:fixed;
+  height: calc(100% - 58px);
+  width: calc(100% - 50px);
+  top: 166px;
+  bottom: 41px;
+  left: calc(1% + 31px);
+}
+.rightLettersBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-darkslategray-100);
+  width: 31px;
+  height: 100%;
+  bottom: 0;
+}
+.rightLettersBackgroundLight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #f6f5f4;
+  width: 31px;
+  height: 100%;
+  bottom: 0;
+}
+.rightLettersFrame {
+  position: fixed;
+  box-sizing: border-box;
+  top: 166px;
+  left: 1%;
+  border-left: 1px solid var(--color-gray-100);
+  width: 25px;
+  height: 100%;
+}
+.rightLettersFrameLight {
+  position: fixed;
+  box-sizing: border-box;
+  top: 166px;
+  left: 1%;
+  border-left: 1px solid var(--color-gray-100);
+  width: 25px;
+  height: 100%;
+  color: rgb(66, 66, 66);
+}
+.up {
+  position: fixed;
+  box-sizing: border-box;
+  top: 142px;
+  left: 1%;
+  background-color: var(--color-darkslategray-100);
+  border-right: 0.5px solid var(--color-gray-100);
+  border-bottom: 0.5px solid var(--color-gray-100);
+  width: 31px;
+  height: 24px;
+}
+.upLight {
+  position: fixed;
+  box-sizing: border-box;
+  top: 142px;
+  left: 1%;
+  background-color: #f6f5f4;
+  border-right: 0.5px solid var(--color-gray-100);
+  border-bottom: 0.5px solid var(--color-gray-100);
+  width: 31px;
+  height: 24px;
+}
+.letters {
+  top: 142px;
+  left: calc(1% + 31px);
+  width: 32px;
+  text-align: center;
+  position: fixed;
+}
+.racketPlayer2 {
+  position: fixed;
+  height: calc(100% - 41px);
+  top: 0px;
+  bottom: 41px;
+  left: 0;
+  width: 1%;
+}
+.racketPlayer1 {
+  position: fixed;
+  height: calc(100% - 41px);
+  top: 0px;
+  right: 0;
+  bottom: 41px;
+  width: 1%;
+}
+.rightScrollZone {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-darkslategray-100);
+  width: 100%;
+}
+.rightScrollZoneLight {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  width: 100%;
+}

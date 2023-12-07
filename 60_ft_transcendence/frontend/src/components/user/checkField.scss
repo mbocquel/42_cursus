@@ -1,0 +1,29 @@
+input.NA{
+    border-color: blue;
+    
+}
+input.NA:focus-visible{
+    outline: 1px solid blue;
+
+    background-color: white;
+}
+input.OK{
+    border-color: green;
+    
+}
+input.OK:focus-visible{
+    outline: 2px solid green;
+
+    background-color: white;
+}
+input.KO{
+    border-color: red;
+    color: orange;
+    
+}
+input.KO:focus-visible{
+    outline: 1px solid red;
+    color: black;
+
+    background-color: orange;
+}

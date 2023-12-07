@@ -1,0 +1,52 @@
+.chats {
+    height: 620px;
+    overflow: scroll;
+    text-align: left;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    .noConversations {
+        color : white;
+        padding: 10px;
+    }
+    .userChat {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: white;
+        cursor: pointer;
+        &:hover {
+            background-color: #515151;
+        }
+        
+        img {
+           width: 50px;
+           height: 50px; 
+           border-radius: 50%;
+           object-fit: cover;
+        }
+        .userChatInfo {
+            max-width: 170px;
+            h1 {
+                font-size: 14px;
+                font-weight: 500;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100px;
+            }
+            p {
+                font-size: 10px;
+                color: lightgray;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100px;
+            }
+        }
+        &.active {
+            background-color: #525252;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+.title_profile{
+    padding-top: 2px;
+    text-align: center;
+    border: 1px solid black;
+    font-weight: 500;
+    background-color: rgb(220, 226, 255);
+}
+.data_profile{
+    border: 1px solid black;
+    background-color: azure;
+    padding-top: 2px;
+    padding-right: 4px;
+    text-align: right;
+}
+.edit_profile{
+    padding-top: 2px;
+    text-align: center;
+    border: 1px solid black;
+    background-color: rgb(233, 233, 233);
+    cursor:pointer;
+    font-weight: 500;
+}
+.edit_profile:hover{
+    background-color: rgb(198, 198, 198);
+}
+.border_profile {
+    border: 2px solid black;
+}
+.default{
+    padding-left: 4px;
+}
