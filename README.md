@@ -54,5 +54,5 @@ Rentrée du cursus de 42 le 07/11/2022.
   - Webserv (fait avec [jlanza](https://github.com/Zattilio) et [Tibobobo](https://github.com/Tibobobo))
     - Validé le 13/09/2023 à 125/100 - 2 "Outstanding project".
 - **Cercle 6**
-  - ft_transcendence (fait avec [jlanza](https://github.com/Zattilio), [Tibobobo](https://github.com/Tibobobo), [Pierrickjay] (https://github.com/Pierrickjay) et [rertzer] (https://github.com/rertzer))
+  - ft_transcendence (fait avec [jlanza](https://github.com/Zattilio), [Tibobobo](https://github.com/Tibobobo), [Pierrickjay](https://github.com/Pierrickjay) et [rertzer](https://github.com/rertzer))
   	- Validé le 06/12/2023 à 100/100 - 3 "Outstanding project".
