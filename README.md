@@ -30,7 +30,7 @@ Rentrée du cursus de 42 le 07/11/2022.
   - philosopher
     - Validé le 15/02/2023 à 125/100.
   - minishell (fait avec [jlanza](https://github.com/Zattilio))
-    - validé le 14/03/2023 à 101/100.
+    - Validé le 14/03/2023 à 101/100.
 - **Cercle 4**
   - Cub3d (fait avec [jlanza](https://github.com/Zattilio))
     - Validé le 13/04/2023 à 125/100 - 3 "Outstanding project".
