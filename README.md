@@ -29,10 +29,10 @@ Rentrée du cursus de 42 le 07/11/2022.
 - **Cercle 3**
   - philosopher
     - Validé le 15/02/2023 à 125/100.
-  - minishell (fait avec [jlanza](https://github.com/Zattilio))
+  - minishell (fait avec [lanzaj](https://github.com/lanzaj))
     - Validé le 14/03/2023 à 101/100.
 - **Cercle 4**
-  - Cub3d (fait avec [jlanza](https://github.com/Zattilio))
+  - Cub3d (fait avec [lanzaj](https://github.com/lanzaj))
     - Validé le 13/04/2023 à 125/100 - 3 "Outstanding project".
   - Netpractice
     - Validé le 17/04/2023 à 100/100.
@@ -51,8 +51,8 @@ Rentrée du cursus de 42 le 07/11/2022.
     - CPP 09 validé le 29/05/2023 à 100/100.
   - Inception
     - Validé le 02/08/2023 à 100/100.
-  - Webserv (fait avec [jlanza](https://github.com/Zattilio) et [Tibobobo](https://github.com/Tibobobo))
+  - Webserv (fait avec [lanzaj](https://github.com/lanzaj) et [Tibobobo](https://github.com/Tibobobo))
     - Validé le 13/09/2023 à 125/100 - 2 "Outstanding project".
 - **Cercle 6**
-  - ft_transcendence (fait avec [jlanza](https://github.com/Zattilio), [Tibobobo](https://github.com/Tibobobo), [Pierrickjay](https://github.com/Pierrickjay) et [rertzer](https://github.com/rertzer))
+  - ft_transcendence (fait avec [lanzaj](https://github.com/lanzaj), [Tibobobo](https://github.com/Tibobobo), [Pierrickjay](https://github.com/Pierrickjay) et [rertzer](https://github.com/rertzer))
   	- Validé le 06/12/2023 à 100/100 - 3 "Outstanding project".
